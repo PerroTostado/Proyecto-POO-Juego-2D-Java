@@ -59,7 +59,21 @@ public class GamePanel extends JPanel implements Runnable{
                 // 2 Update: Draw the Screen with the updated information
                 repaint();
                 
-                double remainiingTime = nextDrawTime - System.nanoTime();
+                
+                try {
+                    double remainingTime = nextDrawTime - System.nanoTime();
+                    remainingTime = remainingTime/1000000;
+                    
+                    if(remainingTime < 0){
+                        remainingTime = 0;
+                    }
+                    
+                    Thread.sleep((long) remainingTime);
+                    
+                    nextDrawTime += drawInterval;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             
         }
@@ -75,7 +89,7 @@ public class GamePanel extends JPanel implements Runnable{
         else if(keyH.leftPress == true){
             playerX -= playerSpeed;
         }
-        else if(keyH.leftPress == true){
+        else if(keyH.rigthPress == true){
             playerX += playerSpeed;
         }
     }
