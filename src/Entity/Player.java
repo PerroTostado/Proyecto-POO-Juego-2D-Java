@@ -37,21 +37,13 @@ public class Player extends Entity{
             up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(2).png"));
             up3 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(3).png"));
             up4 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(4).png"));
-            up5 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(5).png"));
-            up6 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(6).png"));
-            up7 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(7).png"));
-            up8 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(8).png"));
             
             // Sprite player abajo
             down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(1).png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(2).png"));
             down3 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(3).png"));
             down4 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(4).png"));
-            down5 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(5).png"));
-            down6 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(6).png"));
-            down7 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(7).png"));
-            down8 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(8).png"));
-            
+           
             // Sprite player izquierda
             left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(1).png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(2).png"));
@@ -78,22 +70,38 @@ public class Player extends Entity{
     }
     
     public void update(){
-        if(keyH.upPress == true){
-            direction = "UP";
-            y -= speed;
-        }
-        else if(keyH.downPress == true){
-            direction = "DOWN";
-            y += speed;
-        }
-        else if(keyH.leftPress == true){
-            direction = "LEFT";
+        
+        if(keyH.upPress == true || keyH.downPress == true || keyH.leftPress == true || keyH.rigthPress == true){
+            
+            if(keyH.upPress == true){
+                direction = "UP";
+                y -= speed;
+            }
+            else if(keyH.downPress == true){
+                direction = "DOWN";
+                y += speed;
+            }
+            else if(keyH.leftPress == true){
+                   direction = "LEFT";
             x -= speed;
         }
         else if(keyH.rigthPress == true){
             direction = "RIGHT";
             x += speed;
         }
+        
+        spriteCounter ++;
+        if(spriteCounter > 10){
+            if(spriteNum == 1){
+                spriteNum = 2;
+            }
+            else if(spriteNum == 2){
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }
+        }
+        
     }
     
     public void draw(Graphics2D g2){
@@ -103,10 +111,65 @@ public class Player extends Entity{
         BufferedImage image = null;
         
         switch (direction){
-            case "UP" -> image = up1;
-            case "DOWN" -> image = down1;
-            case "LEFT" -> image = left1;
-            case "RIGHT" -> image = right1;
+            case "UP":
+                if (spriteNum == 1){
+                    image = up1;
+                }
+                if (spriteNum == 2){
+                    image = up2;
+                }
+                if (spriteNum == 3){
+                    image = up3;
+                }
+                if (spriteNum == 4){
+                    image = up4;
+                }
+                break;
+                
+            case "DOWN":
+                if (spriteNum == 1){
+                    image = down1;
+                }
+                if (spriteNum == 2){
+                    image = down2;
+                }
+                if (spriteNum == 3){
+                    image = down3;
+                }
+                if (spriteNum == 4){
+                    image = down4;
+                }
+                break;
+                
+            case "LEFT":
+                if (spriteNum == 1){
+                    image = left1;
+                }
+                if (spriteNum == 2){
+                    image = left2;
+                }
+                if (spriteNum == 3){
+                    image = left3;
+                }
+                if (spriteNum == 4){
+                    image = left4;
+                }
+                break;
+                
+            case "RIGHT":
+                if (spriteNum == 1){
+                    image = right1;
+                }
+                if (spriteNum == 2){
+                    image = right2;
+                }
+                if (spriteNum == 3){
+                    image = right3;
+                }
+                if (spriteNum == 4){
+                    image = right4;
+                }
+                break;
         }
         
         g2.drawImage(image, x, y, gP.tileSize, gP.tileSize, null);
