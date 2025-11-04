@@ -1,6 +1,8 @@
 
 package ComunidadUIS;
 import java.util.ArrayList;
+import Utileria.Validacion;
+
 public class Profesor extends Persona {
     
     private ArrayList<String> cursos;

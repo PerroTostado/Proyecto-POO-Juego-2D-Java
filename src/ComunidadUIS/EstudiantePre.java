@@ -1,4 +1,5 @@
 package ComunidadUIS;
+import Utileria.Validacion;
 
 
 public class EstudiantePre extends Estudiante {

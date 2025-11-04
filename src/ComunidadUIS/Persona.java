@@ -1,5 +1,6 @@
 
 package ComunidadUIS;
+import Utileria.Validacion;
 
 public abstract class Persona {
     private String name;
@@ -33,33 +34,42 @@ public abstract class Persona {
     }
     
     protected final void setName(String name){
+        Validacion.validateName(name);
         this.name = name;
     }
     protected final void setEdad(int edad){
+        Validacion.validateInt(edad);
         this.edad = edad;
     }
     protected final void setLugarOrigen(String lugarOrigen){
+        Validacion.validateString(lugarOrigen);
         this.lugarOrigen = lugarOrigen;
     }
     protected final void setColorPiel(String colorPiel){
+        Validacion.validateString(colorPiel);
         this.colorPiel = colorPiel;
     }
     protected final void setGenero(String genero){
+        Validacion.validateString(genero);
         this.genero = genero;
     }
     protected final void setOrientacionSexual(String orientacionSexual){
+        Validacion.validateString(orientacionSexual);
         this.orientacionSexual = orientacionSexual;
     }
     protected final void setSexo(String sexo){
+        Validacion.validateString(sexo);
         this.sexo = sexo;
     }
     protected final void setComunidadUIS(boolean comunidadUIS){
         this.comunidadUIS = comunidadUIS;
     }
     protected final void setEstratoSocial(int estratoSocial){
+        Validacion.validateInt(estratoSocial);
         this.estratoSocial = estratoSocial;
     }
     protected final void setSisben(String sisben){
+        Validacion.validateString(sisben);
         this.sisben = sisben;
     }
     

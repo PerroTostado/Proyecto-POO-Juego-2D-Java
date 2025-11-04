@@ -1,5 +1,6 @@
 
 package ComunidadUIS;
+import Utileria.Validacion;
 
 public class ProfesorPlanta extends Profesor{
     
