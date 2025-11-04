@@ -1,4 +1,4 @@
-package game;
+package Consumibles;
 
 
 abstract public class Item {

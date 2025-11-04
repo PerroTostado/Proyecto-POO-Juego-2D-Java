@@ -1,4 +1,4 @@
-package game;
+package Consumibles;
 
 
 public class ItemOfensivo extends Item{
