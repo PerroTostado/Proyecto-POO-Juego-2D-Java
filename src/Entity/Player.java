@@ -49,21 +49,13 @@ public class Player extends Entity{
             left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(2).png"));
             left3 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(3).png"));
             left4 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(4).png"));
-            left5 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(5).png"));
-            left6 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(6).png"));
-            left7 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(7).png"));
-            left8 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(8).png"));
-            
+             
             // Sprite player derecha
             right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(1).png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(2).png"));
             right3 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(3).png"));
             right4 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(4).png"));
-            right5 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(5).png"));
-            right6 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(6).png"));
-            right7 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(7).png"));
-            right8 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(8).png"));
-        
+            
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -84,22 +76,22 @@ public class Player extends Entity{
             else if(keyH.leftPress == true){
                    direction = "LEFT";
             x -= speed;
-        }
-        else if(keyH.rigthPress == true){
-            direction = "RIGHT";
-            x += speed;
-        }
+            }
+            else if(keyH.rigthPress == true){
+                direction = "RIGHT";
+                x += speed;
+            }
         
-        spriteCounter ++;
-        if(spriteCounter > 10){
-            if(spriteNum == 1){
-                spriteNum = 2;
-            }
-            else if(spriteNum == 2){
+            spriteCounter ++;
+            if(spriteCounter > 10){
+                if(spriteNum == 1){
+                    spriteNum = 2;
+                }
+                else if(spriteNum == 2){
                 spriteNum = 1;
+                }
+                spriteCounter = 0;
             }
-            spriteCounter = 0;
-        }
         }
         
     }
