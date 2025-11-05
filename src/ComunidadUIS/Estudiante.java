@@ -2,7 +2,7 @@
 package ComunidadUIS;
 import Utileria.Validacion;
 
-public class Estudiante extends Persona {
+public abstract class Estudiante extends Persona {
     private int cantidadDeCreditos;
     private int nivel;
     
@@ -31,23 +31,5 @@ public class Estudiante extends Persona {
     }
     public int getNivel(){
         return this.nivel;
-    }
-    
-    
-    
-    
-      @Override
-    public void mostrarPersonalInfo(){
-        
-    }
-    @Override
-    public void mostrarRol(){
-        
-    }
-    @Override
-    public String obtenerID(){
-        String mess = "hla;";
-        return mess;
-        
-    }
+    }   
 }
