@@ -3,24 +3,29 @@ package ComunidadUIS;
 import java.util.ArrayList;
 import Utileria.Validacion;
 
-public class Profesor extends Persona {
+public abstract class Profesor extends Persona {
     
     private ArrayList<String> cursos;
     private ArrayList<String> materias;
     
+    public Profesor(){
+        
+    }
     
-      @Override
-    public void mostrarPersonalInfo(){
+    public Profesor(String name, int edad, String lugarOrigen, String colorPiel, String genero, String orientacionSexual, String sexo, boolean comunidadUIS, 
+            int estratoSocial, String sisben){
         
+        super(name, edad, lugarOrigen, colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben);
+        this.cursos = new ArrayList<>();
+        this.materias = new ArrayList<>();
     }
-    @Override
-    public void mostrarRol(){
+    
+        public void agregarCurso(String curso){
+            cursos.add(curso);
+        }
         
-    }
-    @Override
-    public String obtenerID(){
-        String mess = "hla;";
-        return mess;
-        
-    }
+        public void agregarMateria(String materia){
+            materias.add(materia);
+        }
+      
 }
