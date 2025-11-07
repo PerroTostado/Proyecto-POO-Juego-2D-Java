@@ -2,6 +2,7 @@
 package game;
 
 import Entity.Player;
+import Tile.TileManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -23,21 +24,20 @@ public class GamePanel extends JPanel implements Runnable{
     // FPS
     int FPS = 60;
     
+    TileManager tileM;
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
-    Player player = new Player(this,keyH);
-    
-    // Deafault positions from player
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
+    Player player;
     
     public GamePanel(){
-         this.setPreferredSize(new Dimension(screenHeight, screenWidth));
-         this.setBackground(Color.black);
-         this.setDoubleBuffered(true);
-         this.addKeyListener(keyH);
-         this.setFocusable(true);
+        this.setPreferredSize(new Dimension(screenHeight, screenWidth));
+        this.setBackground(Color.black);
+        this.setDoubleBuffered(true);
+        this.addKeyListener(keyH);
+        this.setFocusable(true);
+         
+        tileM = new TileManager(this);
+        player = new Player(this,keyH);
     }
     
     public void startGameThread(){
@@ -123,6 +123,8 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         
         Graphics2D g2 =(Graphics2D)g;
+        
+        tileM.draw(g2);
         
         player.draw(g2);
         
