@@ -1,5 +1,0 @@
-idVet,name,experience
-01,Mark,5
-02,Mat,4
-03,Simon,3
-04,Laura,3
