@@ -49,6 +49,10 @@ public class TileManager {
             
             tile[6] = new Tile();
             tile[6].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carreteraIzq.png"));
+            
+            tile[7] = new Tile();
+            tile[7].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carreteraInterseccion.png"));
+            
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -95,7 +99,7 @@ public class TileManager {
         while (col < gp.maxScreenCol && row < gp.maxScreenRow){
             
             int tileNum = mapTileNum[col][row];
-            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize+1, gp.tileSize, null);
             col++;
             x += gp.tileSize;
 
