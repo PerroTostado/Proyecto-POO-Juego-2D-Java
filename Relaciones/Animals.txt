@@ -1,0 +1,8 @@
+idAnimal,name,age,idVet
+a1,Lulu,3,01
+a2,Tokyo,4,04
+a3,Eslatan,5,03
+a4,Dante,4,03
+a5,Nico,3,01
+a6,Luna,5,03
+a7,Lucho,7,01
