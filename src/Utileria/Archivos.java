@@ -10,7 +10,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import game.Game;
+import game.game;
 import Consumibles.Item;
 
 public final class Archivos {
