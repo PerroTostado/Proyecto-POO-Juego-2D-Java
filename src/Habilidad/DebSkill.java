@@ -7,8 +7,10 @@ public abstract class DebSkill extends Habilidades {
 public DebSkill(){
     
 }   
+
 public DebSkill(int stamina, int obtainProb, int attDeb, int resDeb){
     super(stamina, obtainProb);
+
     this.attDeb=attDeb;
     this.resDeb=resDeb;
 }
