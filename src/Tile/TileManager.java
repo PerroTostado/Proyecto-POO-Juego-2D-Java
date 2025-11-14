@@ -1,6 +1,5 @@
  package Tile;
 
-
 import game.GamePanel;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
