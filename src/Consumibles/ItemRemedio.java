@@ -10,6 +10,7 @@ public class ItemRemedio extends Item implements ItemMedicos {
         
     }
     public ItemRemedio(String nombre, String descripciones, int precio, int cantidad, String rareza, String estadoCurado, int efectividad, boolean suceso){
+        super(nombre, descripciones, precio, cantidad, rareza);
         this.efectividad=efectividad;
         this.estadoCurado=estadoCurado;
         this.suceso=suceso;
