@@ -10,6 +10,7 @@ public class ItemEspecial extends Item {
         
     }
     public ItemEspecial(String nombre, String descripciones, int precio, int cantidad, String rareza, String habEspecial, int poder){
+        super(nombre, descripciones, precio, cantidad, rareza);
         this.habEspecial=habEspecial;
         this.poder=poder;
     }

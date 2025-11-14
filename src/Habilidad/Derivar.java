@@ -7,6 +7,10 @@ public Derivar(){
     
 }    
 public Derivar(int stamina, int obtainProb, int damage){
+
+
+    super(stamina, obtainProb, damage);
+
     
 }
 @Override
