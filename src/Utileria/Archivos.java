@@ -37,11 +37,11 @@ public final class Archivos {
     public static void escogeEstu(){
         System.out.println("Podras tener cualquiera de los siguientes estudiantes:");
         System.out.println("1.Estudiante Pregrado");
-        System.out.println("2.Estudiante Pregrado");
-        System.out.println("3.Estudiante Pregrado");
-        System.out.println("4.Estudiante Pregrado");
-        System.out.println("5.Estudiante Pregrado");
-        System.out.println("6.Estudiante Pregrado");
+        System.out.println("2.Estudiante Tecnico");
+        System.out.println("3.Estudiante Especializacion");
+        System.out.println("4.Estudiante Maestria");
+        System.out.println("5.Estudiante Doctorado");
+        System.out.println("6.Estudiante Posgrado");
     }
     
     public static void escogeProfe(){
@@ -50,6 +50,12 @@ public final class Archivos {
         System.out.println("2.Profesor catedra");
     }
     
+    public static void escogeGen(){
+        System.out.println("Que genero tienes: ");
+        System.out.println("1.Masculino");
+        System.out.println("2.Femenino");
+    }
+   
     
     public static ArrayList<Jugador> readJugador(String filePath){
         

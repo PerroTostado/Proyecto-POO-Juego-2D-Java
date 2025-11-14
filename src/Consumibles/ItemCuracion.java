@@ -9,6 +9,7 @@ public class ItemCuracion extends Item implements ItemMedicos {
     
 }
     public ItemCuracion(String nombre, String descripciones, int precio, int cantidad, String rareza, int puntosCuracion, boolean curarEstados){
+        super(nombre, descripciones, precio, cantidad, rareza);
         this.curarEstados=curarEstados;
         this.puntosCuracion=puntosCuracion;
     }

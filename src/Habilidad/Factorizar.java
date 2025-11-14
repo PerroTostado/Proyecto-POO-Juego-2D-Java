@@ -7,6 +7,7 @@ public Factorizar(){
     
 }   
 public Factorizar(int stamina, int obtainProb, int moodInc, int resInc, int attInc, int stamInc){
+    super(stamina, obtainProb, moodInc, resInc, attInc, stamInc);
     
 }
 @Override

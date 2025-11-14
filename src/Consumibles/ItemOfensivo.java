@@ -9,6 +9,7 @@ public ItemOfensivo(){
     
 }   
 public ItemOfensivo(String nombre, String descripciones, int precio, int cantidad, String rareza, int poderAtaque, double probabilidadCritico){
+    super(nombre, descripciones, precio, cantidad, rareza);
     this.poderAtaque=poderAtaque;
     this.probabilidadCritico=probabilidadCritico;
 }

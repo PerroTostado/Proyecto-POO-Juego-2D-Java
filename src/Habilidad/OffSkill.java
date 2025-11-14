@@ -8,6 +8,7 @@ public OffSkill(){
     
 }
 public OffSkill(int stamina, int obtainProb, int damage){
+    super(stamina, obtainProb);
     this.damage=damage;
 }
 final protected void setDamage(int damage){

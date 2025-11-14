@@ -10,6 +10,7 @@ public class ItemUtilidad extends Item{
         
     }
     public ItemUtilidad(String nombre, String descripciones, int precio, int cantidad, String rareza, String tipoUso, int durabilidad){
+        super(nombre, descripciones, precio, cantidad, rareza);
         this.durabilidad=durabilidad;
         this.tipoUso=tipoUso;
     }
