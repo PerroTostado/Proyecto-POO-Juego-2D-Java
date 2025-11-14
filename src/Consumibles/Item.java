@@ -11,7 +11,7 @@ abstract public class Item {
     public Item(){
     
     }
-    public Item(String nombre, String descripciones, int precio, int cantidad, String rareza){
+    public Item(String nombre, String descripcion, int precio, int cantidad, String rareza){
     this.nombre=nombre;
     this.descripcion=descripcion;
     this.precio=precio;

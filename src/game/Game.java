@@ -26,7 +26,7 @@ public class Game {
         boolean comunidadUIS;
         
         Persona rol = null;
-        /*JFrame window = new JFrame();
+        JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("JUEGO");
@@ -39,7 +39,7 @@ public class Game {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
         
-        gamePanel.startGameThread();*/
+        gamePanel.startGameThread();
         
         Scanner scanner = new Scanner(System.in);
         
@@ -54,22 +54,8 @@ public class Game {
         lugarOrigen = scanner.nextLine();
         System.out.println("Digita tu color de piel: ");
         colorPiel = scanner.nextLine();
-        System.out.println("Escoge tu genero: ");
-        Archivos.escogeGen();
-        int opcionX = scanner.nextInt();
-        while(true){
-            switch(opcionX){
-                case 1: {genero = "Masculino";
-                }
-                case 2: {genero = "Femenino";
-                }
-                default:{
-                    System.out.println("No existe esa opcion");
-                }
-            }
-            
-        break;}
-        
+        System.out.println("digita tu genero: ");
+        genero = scanner.nextLine();
         System.out.println("digita tu orientacion sexual: ");
         orientacionSexual = scanner.nextLine();
         System.out.println("Digita tu sexo: ");
@@ -84,7 +70,7 @@ public class Game {
         Archivos.escogerRol();
         int opcion = scanner.nextInt();
         
-        /*while(true){
+        while(true){
         switch(opcion){
             case 1:{
                 Archivos.escogeEstu();
@@ -93,7 +79,6 @@ public class Game {
                     case 1:{
                         rol = new EstudiantePre(name, edad, lugarOrigen,colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben, 20, 1, false, false, false); 
                     }
-                    
                     case 2:{
                         rol = new EstudianteTec(name, edad, lugarOrigen,colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben, 20, 1, "hola", false);
                     }
@@ -137,7 +122,7 @@ public class Game {
             }
         }
       }   
-        */
+        
     }
     
 }

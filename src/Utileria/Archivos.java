@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import game.Game;
+import Consumibles.Item;
 
 public final class Archivos {
     
@@ -64,6 +66,8 @@ public final class Archivos {
         int exp = 0;
         int salud = 0;
         int energia = 0;
+        Persona rol;
+        
         
       
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
@@ -79,20 +83,66 @@ public final class Archivos {
                             energia = Integer.parseInt(parts[3].trim());
                             
                             
+                            jugadores.add(new Jugador());
+                            
+                        }
+                        else{
+                            System.out.println("No se pudo crear el personaje por falta de atributos");
                         }
                }
                catch(Exception e){
-                   
+                   System.out.println("Error creando el personaje: " + e.getMessage());
                }
            }
-            
+           reader.close();
         }
         catch(IOException e){
-            
+            System.err.println("Error al recuperar los datos" + e.getMessage());
+        }
+        return jugadores;
+    }
+    
+    public static ArrayList<Item> readInventario(String filePath){
+        ArrayList<Item>inventario = new ArrayList<>();
+        
+        String line = "";
+        String nombre;
+        String descripcion;
+        int precio;
+        int cantidad;
+        String rareza;
+        
+                try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+           reader.readLine();
+           
+           while((line = reader.readLine())!=null){
+               String[] parts = line.split(",");
+               try{
+                        if(parts.length>=5){
+                            nombre = parts[0].trim();
+                            descripcion = parts[1].trim();
+                            precio = Integer.parseInt(parts[2].trim());
+                            cantidad = Integer.parseInt(parts[3].trim());
+                            rareza = parts[4].trim();
+                            
+                            
+                            
+                            
+                        }
+                        else{
+                            System.out.println("No se pudo crear el personaje por falta de atributos");
+                        }
+               }
+               catch(Exception e){
+                   System.out.println("Error creando el personaje: " + e.getMessage());
+               }
+           }
+           reader.close();
+        }
+        catch(IOException e){
+            System.err.println("Error al recuperar los datos" + e.getMessage());
         }
         
-
-        
-        return jugadores;
+        return inventario;
     }
 }
