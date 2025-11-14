@@ -5,23 +5,26 @@ import game.GamePanel;
 import game.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Player extends Entity{
-    GamePanel gP;
+    GamePanel gp;
     KeyHandler keyH;
     
     public final int screenX;
     public final int screenY;
     
-    public Player(GamePanel gP, KeyHandler keyH){
-        this.gP = gP;
+    public Player(GamePanel gp, KeyHandler keyH){
+        this.gp = gp;
         this.keyH = keyH;
         
-        screenX = gP.screenWidth/2 - (gP.tileSize/2);
-        screenY = gP.screenHeight/2 - (gP.tileSize/2);
+        screenX = gp.screenWidth/2 - (gp.tileSize/2);
+        screenY = gp.screenHeight/2 - (gp.tileSize/2);
+        
+        solidArea = new Rectangle(8, 16, 32, 32);
         
         setDefaultsValues();
         getPlayerImage();
@@ -29,8 +32,8 @@ public class Player extends Entity{
     }
     
     public void setDefaultsValues(){
-        worldX = gP.tileSize * 25;
-        worldY = gP.tileSize * 25;
+        worldX = gp.tileSize * 24;
+        worldY = gp.tileSize * 24;
         speed = 4;
         direction = "DOWN";
     }
@@ -88,6 +91,9 @@ public class Player extends Entity{
                 direction = "RIGHT";
                 worldX += speed;
             }
+            
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
         
             spriteCounter ++;
             if(spriteCounter > 10){
@@ -95,6 +101,12 @@ public class Player extends Entity{
                     spriteNum = 2;
                 }
                 else if(spriteNum == 2){
+                spriteNum = 3;
+                }
+                else if(spriteNum == 3){
+                spriteNum = 4;
+                }
+                else if(spriteNum == 4){
                 spriteNum = 1;
                 }
                 spriteCounter = 0;
@@ -170,6 +182,6 @@ public class Player extends Entity{
                 }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gP.tileSize, gP.tileSize, null);
+        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 }

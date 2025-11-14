@@ -9,6 +9,7 @@ public class ItemEnergia extends Item {
         
     }
     public ItemEnergia(String nombre, String descripciones, int precio, int cantidad, String rareza, int puntosEnergia, boolean temporalBoost){
+        super(nombre, descripciones, precio, cantidad, rareza);
         this.puntosEnergia=puntosEnergia;
         this.temporalBoost=temporalBoost;
     }
