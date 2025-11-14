@@ -9,6 +9,7 @@ public class ItemBuff extends Item {
         
     }
     public ItemBuff(String nombre, String descripciones, int precio, int cantidad, String rareza, String atributoMejorado, int duracion){
+        super(nombre, descripciones, precio, cantidad, rareza);
         this.atributoMejorado=atributoMejorado;
         this.duracion=duracion;
     }
