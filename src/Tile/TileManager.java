@@ -1,6 +1,5 @@
  package Tile;
 
-
 import game.GamePanel;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
@@ -23,6 +22,7 @@ public class TileManager {
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
         loadMap();
+        
     }
     
     public void getTileImage(){
