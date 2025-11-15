@@ -1,6 +1,7 @@
  package Tile;
 
 import game.GamePanel;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import javax.imageio.ImageIO;
 public class TileManager {
 
     GamePanel gp;
-    Tile[] tile;
+    public Tile[] tile;
     public int mapTileNum[][];
 
     public TileManager(GamePanel gp){

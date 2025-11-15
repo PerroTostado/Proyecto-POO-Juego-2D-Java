@@ -4,6 +4,7 @@ package Entity;
 import game.GamePanel;
 import game.KeyHandler;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -24,7 +25,7 @@ public class Player extends Entity{
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
         
-        solidArea = new Rectangle(8, 16, 32, 32);
+        solidArea = new Rectangle(17, 38, 16, 9);
         
         setDefaultsValues();
         getPlayerImage();
@@ -76,25 +77,43 @@ public class Player extends Entity{
         if(keyH.upPress == true || keyH.downPress == true || keyH.leftPress == true || keyH.rigthPress == true){
             
             if(keyH.upPress == true){
-                direction = "UP";
-                worldY -= speed;
+                direction = "UP";                
             }
             else if(keyH.downPress == true){
-                direction = "DOWN";
-                worldY += speed;
+                direction = "DOWN";                
             }
             else if(keyH.leftPress == true){
-                direction = "LEFT";
-                worldX -= speed;
+                direction = "LEFT";           
             }
             else if(keyH.rigthPress == true){
                 direction = "RIGHT";
-                worldX += speed;
             }
             
+            // Check tile collision
             collisionOn = false;
             gp.cChecker.checkTile(this);
         
+            // If collision is false, player can move
+            if(collisionOn == false){
+                switch (direction){
+                case "UP":
+                    worldY -= speed;
+                    break;
+
+                case "DOWN":
+                    worldY += speed;
+                    break;
+
+                case "LEFT":
+                    worldX -= speed;
+                    break;
+
+                case "RIGHT":
+                    worldX += speed;
+                    break;
+                }
+            }
+            
             spriteCounter ++;
             if(spriteCounter > 10){
                 if(spriteNum == 1){
@@ -117,7 +136,7 @@ public class Player extends Entity{
     
     public void draw(Graphics2D g2){
         //g2.setColor(Color.white);
-        //g2.fillRect(x, y, gP.tileSize, gP.tileSize);
+        //g2.drawRect(18, 26, 22, 22);
         
         BufferedImage image = null;
         
@@ -182,6 +201,10 @@ public class Player extends Entity{
                 }
                 break;
         }
+        // Prueba para ver la collision
+        //g2.setColor(Color.red);
+        //g2.fillRect(screenX+17, screenY+38, gp.tileSize-32, gp.tileSize-39);
+        
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 }
