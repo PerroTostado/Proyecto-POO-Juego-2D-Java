@@ -144,6 +144,10 @@ public class Player extends Entity{
         //g2.setColor(Color.white);
         //g2.drawRect(18, 26, 22, 22);
         
+        //TITLE STATE
+        if(gp.gameState == gp.titleState){
+            drawTitleScreen();
+        }
         BufferedImage image = null;
         
         switch (direction){
@@ -232,9 +236,46 @@ public class Player extends Entity{
         g2.drawImage(pausa, 0, 0, gp.tileSize*16, gp.tileSize*12, null);
     }
     
+    public void drawTitleScreen() {
+        
+       // g2.setColor(new Color(70, 120, 180));
+        //g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        
+        
+        //TITLE NAME
+    
+     
+        int y = gp.screenHeight/3;
+        
+        g2.drawImage(pausa, 0, 0, gp.tileSize*16, gp.tileSize*12, null);
+        g2.setColor(Color.white);
+        
+        
+        //MENU
+        String text;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+        
+        text = "NUEVO JUEGO";
+        int x = getXforCenteredText(text);
+        y += gp.tileSize*4;
+        g2.drawString(text, x, y);
+        
+        text = "CARGAR JUEGO";
+        x = getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        
+        text = "SALIR";
+        x = getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+    }
+    
     public int getXforCenteredText(String text){
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getHeight();
         int x = gp.screenWidth/2 - length/2;
         return x;
     }
+
+    
 }

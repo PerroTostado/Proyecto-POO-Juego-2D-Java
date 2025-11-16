@@ -40,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     //GAME STATE
     public int gameState;
+    public final int titleState = 0;
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -53,13 +54,13 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void setupGame(){
-        gameState = 1;
+        gameState = titleState;
     }
     
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
-        gameState = 1;
+        //gameState = 1;
     }
     
     @Override
@@ -147,11 +148,21 @@ public class GamePanel extends JPanel implements Runnable{
         
         Graphics2D g2 =(Graphics2D)g;
         
+        //TITLE SCREEN
+        if(gameState == titleState){
+           player.draw(g2);
+        }
+        //OTHERS
+        else{
+                    //TILE
         tileM.draw(g2);
         
         player.draw(g2);
         
         g2.dispose();
+            
+           
+        }
         
     }
 }
