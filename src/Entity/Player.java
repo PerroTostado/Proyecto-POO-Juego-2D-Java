@@ -1,6 +1,7 @@
 
 package Entity;
 
+import java.util.Scanner;
 import game.GamePanel;
 import game.KeyHandler;
 import java.awt.Color;
@@ -18,6 +19,7 @@ public class Player extends Entity{
     KeyHandler keyH;
     Graphics2D g2;
     public int commandNum = 0;
+    public int titleScreenState = 0;
     
     public final int screenX;
     public final int screenY;
@@ -239,46 +241,62 @@ public class Player extends Entity{
     
     public void drawTitleScreen() {
         
-       // g2.setColor(new Color(70, 120, 180));
-        //g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        if(titleScreenState == 0){
+           // g2.setColor(new Color(70, 120, 180));
+            //g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         
         
-        //TITLE NAME
-    
-     
-        int y = gp.screenHeight/3;
-        
-        g2.drawImage(pausa, 0, 0, gp.tileSize*16, gp.tileSize*12, null);
-        g2.setColor(Color.white);
-        
-        
-        //MENU
-        String text;
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
-        
-        text = "NUEVO JUEGO";
-        int x = getXforCenteredText(text);
-        y += gp.tileSize*3.5;
-        g2.drawString(text, x, y);
-        if(commandNum == 0){
-            g2.drawString(">", x-gp.tileSize, y);
+            //TITLE NAME
+
+
+            int y = gp.screenHeight/3;
+
+            g2.drawImage(pausa, 0, 0, gp.tileSize*16, gp.tileSize*12, null);
+            g2.setColor(Color.white);
+
+
+            //MENU
+            String text;
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+
+            text = "NUEVO JUEGO";
+            int x = getXforCenteredText(text);
+            y += gp.tileSize*3.5;
+            g2.drawString(text, x, y);
+            if(commandNum == 0){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+
+            text = "CARGAR JUEGO";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+
+            text = "SALIR";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 2){
+                g2.drawString(">", x-gp.tileSize, y);
+        }  
+      }
+        else if(titleScreenState == 1){
+            
+            //Rellenando formulario screen
+            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(42F));
+            
+            String text = "Dinos tu nombre";
+            
+
+            int x = getXforCenteredText(text);
+            int y = gp.tileSize*3;
+            g2.drawString(text, x, y);
         }
         
-        text = "CARGAR JUEGO";
-        x = getXforCenteredText(text);
-        y += gp.tileSize;
-        g2.drawString(text, x, y);
-        if(commandNum == 1){
-            g2.drawString(">", x-gp.tileSize, y);
-        }
-        
-        text = "SALIR";
-        x = getXforCenteredText(text);
-        y += gp.tileSize;
-        g2.drawString(text, x, y);
-        if(commandNum == 2){
-            g2.drawString(">", x-gp.tileSize, y);
-        }
     }
     
     public int getXforCenteredText(String text){
