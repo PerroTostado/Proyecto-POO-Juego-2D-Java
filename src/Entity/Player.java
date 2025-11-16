@@ -17,6 +17,7 @@ public class Player extends Entity{
     Font Gigi_40;
     KeyHandler keyH;
     Graphics2D g2;
+    public int commandNum = 0;
     
     public final int screenX;
     public final int screenY;
@@ -257,23 +258,32 @@ public class Player extends Entity{
         
         text = "NUEVO JUEGO";
         int x = getXforCenteredText(text);
-        y += gp.tileSize*4;
+        y += gp.tileSize*3.5;
         g2.drawString(text, x, y);
+        if(commandNum == 0){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
         
         text = "CARGAR JUEGO";
         x = getXforCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
+        if(commandNum == 1){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
         
         text = "SALIR";
         x = getXforCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
+        if(commandNum == 2){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
     }
     
     public int getXforCenteredText(String text){
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getHeight();
-        int x = gp.screenWidth/2 - length/2;
+        int x = gp.screenWidth/3 - length/4;
         return x;
     }
 
