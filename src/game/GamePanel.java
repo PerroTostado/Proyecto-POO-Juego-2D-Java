@@ -41,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
     //GAME STATE
     public int gameState;
     public final int titleState = 0;
+    public final int playState = 1;
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -60,7 +61,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
-        //gameState = 1;
+        
     }
     
     @Override
