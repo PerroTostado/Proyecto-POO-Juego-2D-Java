@@ -29,7 +29,7 @@ public class Game {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("JUEGO");
+        window.setTitle("UIS ADVENTURE");
         
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
