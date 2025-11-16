@@ -4,6 +4,7 @@ package Entity;
 import game.GamePanel;
 import game.KeyHandler;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -13,7 +14,9 @@ import javax.imageio.ImageIO;
 
 public class Player extends Entity{
     GamePanel gp;
+    Font Gigi_40;
     KeyHandler keyH;
+    Graphics2D g2;
     
     public final int screenX;
     public final int screenY;
@@ -66,6 +69,8 @@ public class Player extends Entity{
             right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(2).png"));
             right3 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(3).png"));
             right4 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(4).png"));
+            
+            pausa = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/menu.png"));
             
         }catch(IOException e){
             e.printStackTrace();
@@ -135,6 +140,7 @@ public class Player extends Entity{
     }
     
     public void draw(Graphics2D g2){
+        this.g2 = g2;
         //g2.setColor(Color.white);
         //g2.drawRect(18, 26, 22, 22);
         
@@ -206,5 +212,29 @@ public class Player extends Entity{
         //g2.fillRect(screenX+17, screenY+38, gp.tileSize-32, gp.tileSize-39);
         
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        
+        g2.setFont(Gigi_40);
+        g2.setColor(Color.white);
+        
+        if(gp.gameState == 1){
+           //algo 
+        }
+        if(gp.gameState == 2){
+            drawPauseScreen();
+        }
+    }
+    
+    public void drawPauseScreen(){
+        String text = "PAUSA";
+        int x = getXforCenteredText(text);
+        int y = gp.screenHeight/2;
+        
+        g2.drawImage(pausa, 0, 0, gp.tileSize*16, gp.tileSize*12, null);
+    }
+    
+    public int getXforCenteredText(String text){
+        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getHeight();
+        int x = gp.screenWidth/2 - length/2;
+        return x;
     }
 }

@@ -33,10 +33,13 @@ public class GamePanel extends JPanel implements Runnable{
     int FPS = 60;
     
     TileManager tileM;
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public Player player;
+    
+    //GAME STATE
+    public int gameState;
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -49,9 +52,14 @@ public class GamePanel extends JPanel implements Runnable{
         player = new Player(this,keyH);
     }
     
+    public void setupGame(){
+        gameState = 1;
+    }
+    
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
+        gameState = 1;
     }
     
     @Override
@@ -124,7 +132,13 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void update(){
-        player.update();
+        
+        if(gameState == 1){
+            player.update();
+        }
+        if(gameState == 2){
+            
+        }
     }
     
     @Override
