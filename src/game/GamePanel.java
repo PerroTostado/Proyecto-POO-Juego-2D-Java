@@ -42,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable{
     public int gameState;
     public final int titleState = 0;
     public final int playState = 1;
+    public final int pauseState = 2;
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -55,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void setupGame(){
-        gameState = titleState;
+        gameState = playState;
     }
     
     public void startGameThread(){
@@ -64,7 +65,6 @@ public class GamePanel extends JPanel implements Runnable{
         
     }
     
-    @Override
 /*  public void run(){
        
         while(gameThread != null){
@@ -128,9 +128,7 @@ public class GamePanel extends JPanel implements Runnable{
                 drawCount = 0;
                 timer = 0;
             }
-
         }
-
     }
     
     public void update(){
@@ -156,13 +154,11 @@ public class GamePanel extends JPanel implements Runnable{
         //OTHERS
         else{
                     //TILE
-        tileM.draw(g2);
+            tileM.draw(g2);
         
-        player.draw(g2);
+            player.draw(g2);
         
-        g2.dispose();
-            
-           
+            g2.dispose(); 
         }
         
     }
