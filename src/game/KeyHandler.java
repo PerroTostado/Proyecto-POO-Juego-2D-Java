@@ -23,6 +23,31 @@ public class KeyHandler implements KeyListener{
         
         int code = e.getKeyCode();
         //Title State
+        if(gp.gameState == gp.pauseState){
+              
+            if(code == KeyEvent.VK_W){
+                gp.player.commandNumPause--;
+            }
+            if(gp.player.commandNumPause < 0 ){
+                gp.player.commandNumPause = 1;
+            }
+            
+            if(code == KeyEvent.VK_S){
+                gp.player.commandNumPause++;
+                if(gp.player.commandNumPause > 1 ){
+                    gp.player.commandNumPause = 0;
+                }
+            }
+            if(code == KeyEvent.VK_ENTER){
+                if(gp.player.commandNumPause == 0){
+                    gp.gameState = 1;
+                }
+                if(gp.player.commandNumPause == 1){
+                    gp.gameState = 0;
+                }
+            }      
+        }
+            
         if(gp.gameState == gp.titleState){
             
             if(gp.player.titleScreenState == 0){

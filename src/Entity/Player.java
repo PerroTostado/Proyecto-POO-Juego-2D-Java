@@ -20,6 +20,7 @@ public class Player extends Entity{
     KeyHandler keyH;
     Graphics2D g2;
     public int commandNum = 0;
+    public int commandNumPause = 0;
     public int titleScreenState = 0;
     
     public final int screenX;
@@ -243,14 +244,30 @@ public class Player extends Entity{
     }
     
     public void drawPauseScreen(){
-        String text = "PAUSA";
-        int x = getXforCenteredText(text);
-        int y = gp.screenHeight/2;
+        
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(42F));
+            
+            String text = "REANUDAR";
+            int x = getXforCenteredText(text)-42*2;
+            int y = gp.tileSize*7;
+            g2.drawString(text, x, y);
+            if(commandNumPause == 0){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+
+            text = "SALIR";
+            x = getXforCenteredText(text)-42;
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNumPause == 1){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
         
         g2.drawImage(pausa, 0, 0, gp.tileSize*16, gp.tileSize*12, null);
     }
     
-    public void drawTitleScreen() {
+    public void drawTitleScreen(){
         
         if(titleScreenState == 0){
            // g2.setColor(new Color(70, 120, 180));
@@ -292,8 +309,8 @@ public class Player extends Entity{
             g2.drawString(text, x, y);
             if(commandNum == 2){
                 g2.drawString(">", x-gp.tileSize, y);
-        }  
-      }
+            }
+        }
         else if(titleScreenState == 1){
             
             //Rellenando formulario screen
@@ -306,15 +323,12 @@ public class Player extends Entity{
             int x = getXforCenteredText(text);
             int y = gp.tileSize*3;
             g2.drawString(text, x, y);
-        }
-        
+        }    
     }
     
     public int getXforCenteredText(String text){
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getHeight();
-        int x = gp.screenWidth/3 - length/4;
+        int x = gp.screenWidth/2 - length/2;
         return x;
-    }
-
-    
+    }   
 }
