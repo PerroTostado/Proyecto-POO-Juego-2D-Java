@@ -41,7 +41,8 @@ public class KeyHandler implements KeyListener{
                 }
                 if(code == KeyEvent.VK_ENTER){
                     if(gp.player.commandNum == 0){
-                        gp.player.titleScreenState = 1;
+                       gp.player.titleScreenState = 1;
+                        //gp.gameState = gp.playState;
                     }
                     if(gp.player.commandNum == 1){
                         //add later
@@ -49,8 +50,152 @@ public class KeyHandler implements KeyListener{
                     if(gp.player.commandNum == 2){
                         System.exit(0);
                     }
-            }
+                }
                 
+            }
+            
+            else if(gp.player.titleScreenState == 1){
+                
+                if(code == KeyEvent.VK_W){
+                gp.player.commandNum--;
+                if(gp.player.commandNum < 0 ){
+                    gp.player.commandNum = 2;
+                }
+            }
+                if(code == KeyEvent.VK_S){
+                    gp.player.commandNum++;
+                    if(gp.player.commandNum > 2 ){
+                        gp.player.commandNum = 0;
+                    }
+                }
+                if(code == KeyEvent.VK_ENTER){
+                    if(gp.player.commandNum == 0){
+                       gp.player.titleScreenState = 2;
+                        
+                    }
+                    if(gp.player.commandNum == 1){
+                        gp.player.titleScreenState = 2;
+                    }
+                    if(gp.player.commandNum == 2){
+                        gp.player.titleScreenState = 0;
+                    }
+                }
+                
+            }
+             
+            else if(gp.player.titleScreenState == 3){
+                
+                if(code == KeyEvent.VK_W){
+                gp.player.commandNum--;
+                if(gp.player.commandNum < 0 ){
+                    gp.player.commandNum = 2;
+                }
+            }
+                if(code == KeyEvent.VK_S){
+                    gp.player.commandNum++;
+                    if(gp.player.commandNum > 2 ){
+                        gp.player.commandNum = 0;
+                    }
+                }
+                if(code == KeyEvent.VK_ENTER){
+                    if(gp.player.commandNum == 0){
+                       gp.player.titleScreenState = 4;
+                        
+                    }
+                    if(gp.player.commandNum == 1){
+                        //gp.player.titleScreenState = 3;
+                        gp.gameState = gp.playState;
+                    }
+                    if(gp.player.commandNum == 2){
+                        gp.player.titleScreenState = 2;
+                    }
+                }
+                
+            } 
+            else if(gp.player.titleScreenState == 2){
+                
+                if(code == KeyEvent.VK_W){
+                gp.player.commandNum--;
+                if(gp.player.commandNum < 0 ){
+                    gp.player.commandNum = 6;
+                }
+            }
+                if(code == KeyEvent.VK_S){
+                    gp.player.commandNum++;
+                    if(gp.player.commandNum > 6 ){
+                        gp.player.commandNum = 0;
+                    }
+                }
+                if(code == KeyEvent.VK_ENTER){
+                    if(gp.player.commandNum == 0){
+                       gp.player.titleScreenState = 3;
+                       
+                    }
+                    if(gp.player.commandNum == 1){
+                        gp.player.titleScreenState = 3;
+                        
+                    }
+                    if(gp.player.commandNum == 2){
+                        gp.player.titleScreenState = 3;
+                        
+                    }
+                    
+                    if(gp.player.commandNum == 3){
+                       gp.player.titleScreenState = 3;
+                        
+                    }
+                    if(gp.player.commandNum == 4){
+                        gp.player.titleScreenState = 3;
+                        
+                    }
+                    if(gp.player.commandNum == 5){
+                        gp.player.titleScreenState = 3;
+                        
+                    }
+                    if(gp.player.commandNum == 6){
+                        gp.player.titleScreenState = 1;
+                        
+                    }
+                }
+                
+            }
+            else if (gp.player.titleScreenState == 4){
+                
+                if(code == KeyEvent.VK_W){
+                gp.player.commandNum--;
+                if(gp.player.commandNum < 0 ){
+                    gp.player.commandNum = 3;
+                    }
+                }
+                if(code == KeyEvent.VK_S){
+                    gp.player.commandNum++;
+                    if(gp.player.commandNum > 3 ){
+                        gp.player.commandNum = 0;
+                    }
+                }
+                
+                if(code == KeyEvent.VK_ENTER){
+                    if(gp.player.commandNum == 0){
+                       //gp.player.titleScreenState = 3;
+                       gp.gameState = gp.playState;
+                       
+                    }
+                    if(gp.player.commandNum == 1){
+                        gp.player.titleScreenState = 3;
+                        gp.gameState = gp.playState;
+                    }
+                    if(gp.player.commandNum == 2){
+                        gp.player.titleScreenState = 3;
+                        gp.gameState = gp.playState;
+                    }
+                    
+                    if(gp.player.commandNum == 3){
+                       gp.player.titleScreenState = 3;
+                        
+                    }
+            }
+
+            
         }
 
             

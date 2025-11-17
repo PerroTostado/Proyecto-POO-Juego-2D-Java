@@ -11,10 +11,10 @@ public class ProfesorCatedra extends Profesor {
         
     }
     
-    public ProfesorCatedra(String name, int edad, String lugarOrigen, String colorPiel, String genero, String orientacionSexual, String sexo, boolean comunidadUIS, 
-            int estratoSocial, String sisben, int horasSemanales, String asignaturaPrincipal){
+    public ProfesorCatedra(String name, int edad, String genero, boolean comunidadUIS, 
+            int estratoSocial, String nombreRol, int horasSemanales, String asignaturaPrincipal){
         
-        super(name, edad, lugarOrigen, colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben);
+        super(name, edad, genero, comunidadUIS, estratoSocial, nombreRol);
         this.setHorasSemanales(horasSemanales);
         this.setAsignaturaPrincipal(asignaturaPrincipal);
         

@@ -63,6 +63,7 @@ public final class Archivos {
     }
    
     
+    
     public static ArrayList<Jugador> readJugador(String filePath){
         
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -73,6 +74,7 @@ public final class Archivos {
         int salud = 0;
         int energia = 0;
         Persona rol;
+        
         
         
       

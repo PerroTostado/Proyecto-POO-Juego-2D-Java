@@ -11,10 +11,10 @@ public class EstudianteTec extends Estudiante{
             
         }
         
-        public EstudianteTec(String name, int edad, String lugarOrigen, String colorPiel, String genero, String orientacionSexual, String sexo, boolean comunidadUIS, 
-            int estratoSocial, String sisben, int cantidadDeCreditos, int nivel, String tecnologia, boolean practicas){
+        public EstudianteTec(String name, int edad, String genero, boolean comunidadUIS, 
+            int estratoSocial, String nombreRol, int cantidadDeCreditos, int nivel, String tecnologia, boolean practicas){
             
-            super(name, edad, lugarOrigen, colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben, cantidadDeCreditos, nivel);
+              super(name, edad, genero, comunidadUIS, estratoSocial, nombreRol, cantidadDeCreditos, nivel);
             this.setTecnologia(tecnologia);
             this.setPracticas(practicas);
         }

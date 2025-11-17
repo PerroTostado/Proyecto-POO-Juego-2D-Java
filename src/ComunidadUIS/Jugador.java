@@ -24,6 +24,7 @@ public class Jugador {
         this.setExpPersonaje(expPersonaje);
         this.setSaludPersonaje(saludPersonaje);
         this.setEnergiaPersonaje(energiaPersonaje);
+        this.rol = rol;
         this.inventario = new ArrayList<>();
         
     }
@@ -66,6 +67,9 @@ public class Jugador {
         
         public int getEnergiaPersonaje(){
             return this.energiaPersonaje;               
+        }
+        public Persona getRol(){
+            return this.rol;
         }
     
     

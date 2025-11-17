@@ -10,10 +10,10 @@ public abstract class Estudiante extends Persona {
     public Estudiante(){
         
     }
-    public Estudiante(String name, int edad, String lugarOrigen, String colorPiel, String genero, String orientacionSexual, String sexo, boolean comunidadUIS, 
-            int estratoSocial, String sisben, int cantidadDeCreditos, int nivel){
+    public Estudiante(String name, int edad, String genero, boolean comunidadUIS, 
+            int estratoSocial, String nombreRol, int cantidadDeCreditos, int nivel){
         
-        super(name, edad, lugarOrigen, colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben);
+        super(name, edad, genero, comunidadUIS, estratoSocial, nombreRol);
         this.setCantidadDeCreditos(cantidadDeCreditos);
         this.setNivel(nivel);
     }

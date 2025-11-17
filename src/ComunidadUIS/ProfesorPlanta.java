@@ -12,10 +12,10 @@ public class ProfesorPlanta extends Profesor{
             
         }
         
-        public ProfesorPlanta(String name, int edad, String lugarOrigen, String colorPiel, String genero, String orientacionSexual, String sexo, boolean comunidadUIS, 
-            int estratoSocial, String sisben, int añosTrabajo, boolean direccionTesis){
+        public ProfesorPlanta(String name, int edad, String genero, boolean comunidadUIS, 
+            int estratoSocial, String nombreRol, int añosTrabajo, boolean direccionTesis){
             
-            super(name, edad, lugarOrigen, colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben);
+            super(name, edad, genero, comunidadUIS, estratoSocial, nombreRol);
             this.setAñosTrabajo(añosTrabajo);
             this.setDireccionTesis(direccionTesis);
         }
