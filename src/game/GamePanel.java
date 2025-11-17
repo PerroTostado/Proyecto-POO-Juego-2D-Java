@@ -2,6 +2,7 @@
 package game;
 
 import Entity.Player;
+import Objects.SuperObject;
 import Tile.TileManager;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,7 +37,9 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
+    public AssetSetter aSetter = new AssetSetter(this);
     public Player player;
+    public SuperObject obj[] = new SuperObject[10];
     
     //GAME STATE
     public int gameState;

@@ -1,6 +1,7 @@
  package Tile;
 
 import game.GamePanel;
+import game.UtilityTool;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
@@ -65,6 +66,19 @@ public class TileManager {
             e.printStackTrace();
         }
     }
+    
+    public void setup(int index, String imagePath, boolean collision){
+        UtilityTool uTool = new UtilityTool();
+        
+        try{
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("res/tiles/" + imagePath + ".png"));
+            tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collision = collision;
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 
     public void loadMap(){
         
@@ -110,7 +124,13 @@ public class TileManager {
             int screenX = worldX - gp.player.worldX + gp.player.screenX;
             int screenY = worldY - gp.player.worldY + gp.player.screenY;
             
-            g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize+1, gp.tileSize, null);
+            if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
+                worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+                worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
+                worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+
+                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize+1, gp.tileSize, null);
+            }
             worldCol++;
 
             if (worldCol == gp.maxWorldCol){

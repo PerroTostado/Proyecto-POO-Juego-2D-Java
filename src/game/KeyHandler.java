@@ -41,7 +41,8 @@ public class KeyHandler implements KeyListener{
                 }
                 if(code == KeyEvent.VK_ENTER){
                     if(gp.player.commandNum == 0){
-                        gp.player.titleScreenState = 1;
+                        //gp.player.titleScreenState = 1;
+                        gp.gameState = 1;
                     }
                     if(gp.player.commandNum == 1){
                         //add later
