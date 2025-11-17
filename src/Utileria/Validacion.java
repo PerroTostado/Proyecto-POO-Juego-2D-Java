@@ -22,9 +22,19 @@ public class Validacion {
             throw new IllegalArgumentException("El numero debe ser positivo");
         }
     }
-        public static void validateName(String name){
-            if(!name.matches("[a-z A-Z]+ [0-9]")){
-                throw new IllegalArgumentException("El nombre no es valido");
-            }
+        public static String validateName(String name){
+        if(name == null){
+            throw new IllegalArgumentException("El nombre no puede estar vacio...");
         }
+        if(name.isBlank()){
+            throw new IllegalArgumentException("El nombre no puede estar vacio...");
+        }
+        if(!name.matches("[A-Z a-z]+")){
+            throw new IllegalArgumentException("El nombre solo puede contener letras...");
+        }
+        if(name.length() > 20){
+            throw new IllegalArgumentException("Digita un nombre mas corto...");
+        }
+        return name;
+    }
 }

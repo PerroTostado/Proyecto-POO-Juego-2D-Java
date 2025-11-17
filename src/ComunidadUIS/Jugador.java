@@ -61,7 +61,7 @@ public class Jugador {
             return this.expPersonaje;
         }
         
-        public int getSaludaPersonaje(){
+        public int getSaludPersonaje(){
             return this.saludPersonaje;
         }
         
