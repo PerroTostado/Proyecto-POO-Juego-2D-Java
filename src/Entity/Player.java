@@ -4,6 +4,7 @@ package Entity;
 import java.util.Scanner;
 import game.GamePanel;
 import game.KeyHandler;
+import game.UtilityTool;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -47,37 +48,47 @@ public class Player extends Entity{
     
     public void getPlayerImage(){
         
-        try{
             
             // Sprite player arriba
-            up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(1).png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(2).png"));
-            up3 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(3).png"));
-            up4 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkUp_(4).png"));
+            up1 = setup("walkUp_(1)");
+            up2 = setup("walkUp_(2)");
+            up3 = setup("walkUp_(3)");
+            up4 = setup("walkUp_(4)");
             
             // Sprite player abajo
-            down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(1).png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(2).png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(3).png"));
-            down4 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkDown_(4).png"));
+            down1 = setup("walkDown_(1)");
+            down2 = setup("walkDown_(2)");
+            down3 = setup("walkDown_(3)");
+            down4 = setup("walkDown_(4)");
            
             // Sprite player izquierda
-            left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(1).png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(2).png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(3).png"));
-            left4 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkLeft_(4).png"));
+            left1 = setup("walkLeft_(1)");
+            left2 = setup("walkLeft_(2)");
+            left3 = setup("walkLeft_(3)");
+            left4 = setup("walkLeft_(4)");
              
             // Sprite player derecha
-            right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(1).png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(2).png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(3).png"));
-            right4 = ImageIO.read(getClass().getResourceAsStream("/res/player/walkRight_(4).png"));
+            right1 = setup("walkRight_(1)");
+            right2 = setup("walkRight_(2)");
+            right3 = setup("walkRight_(3)");
+            right4 = setup("walkRight_(4)");
             
-            pausa = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/menu.png"));
-            
-        }catch(IOException e){
+            pausa = setup("menu");
+    }
+    
+    public BufferedImage setup (String imageName) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        try {
+            image = ImageIO.read(getClass().getResourceAsStream("res/player/" + imageName + ".png"));
+            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+
+        } catch(IOException e) {
             e.printStackTrace();
         }
+        return image;
     }
     
     public void update(){
@@ -218,7 +229,7 @@ public class Player extends Entity{
         //g2.setColor(Color.red);
         //g2.fillRect(screenX+17, screenY+38, gp.tileSize-32, gp.tileSize-39);
         
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
         
         g2.setFont(Gigi_40);
         g2.setColor(Color.white);
