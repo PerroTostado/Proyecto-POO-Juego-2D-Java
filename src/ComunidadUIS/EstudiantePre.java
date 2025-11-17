@@ -8,10 +8,10 @@ public class EstudiantePre extends Estudiante {
     private boolean comedoresA;
     private boolean comedoresC;
     
-    public EstudiantePre(String name, int edad, String lugarOrigen, String colorPiel, String genero, String orientacionSexual, String sexo, boolean comunidadUIS, 
-            int estratoSocial, String sisben, int cantidadDeCreditos, int nivel, boolean comedoresD, boolean comedoresA, boolean comedoresC){
+    public EstudiantePre(String name, int edad, String genero, boolean comunidadUIS, 
+            int estratoSocial, String nombreRol, int cantidadDeCreditos, int nivel, boolean comedoresD, boolean comedoresA, boolean comedoresC){
             
-         super(name, edad, lugarOrigen, colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben, cantidadDeCreditos, nivel);
+           super(name, edad, genero, comunidadUIS, estratoSocial, nombreRol, cantidadDeCreditos, nivel);
          this.setComedoresD(comedoresD);
          this.setComedoresA(comedoresA);
          this.setComedoresC(comedoresC);

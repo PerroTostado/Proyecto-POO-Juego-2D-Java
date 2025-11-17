@@ -10,9 +10,9 @@ public class Visitantes extends Persona{
      public Visitantes(){
         
     }
-    public Visitantes(String name, int edad, String lugarOrigen, String colorPiel, String genero, String orientacionSexual, String sexo, boolean comunidadUIS, 
-            int estratoSocial, String sisben, String horaDeVisita, boolean presencia){
-        super(name, edad, lugarOrigen, colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben);
+    public Visitantes(String name, int edad, String genero, boolean comunidadUIS, 
+            int estratoSocial, String nombreRol, String horaDeVisita, boolean presencia){
+        super(name, edad, genero, comunidadUIS, estratoSocial, nombreRol);
         this.setHoraDeVisita(horaDeVisita);
         this.setPresencia(presencia);
     }

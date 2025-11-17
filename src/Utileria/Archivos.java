@@ -23,46 +23,12 @@ public final class Archivos {
     
     private Archivos(){}
      
-    public static void menuInicio(){
-    
-        System.out.println("|||PokeUIS|||");
-        System.out.println("Crear");
-        System.out.println("Cargar partida");
-        System.out.println("Cerrar");
+    public static ArrayList<Persona> readPersona(String filePath){
         
+        ArrayList<Persona> personas = new ArrayList<>();
+        
+        return personas;
     }
-    
-    public static void escogerRol(){
-        System.out.println("Bienvenido, que rol deseas tomas?");
-        System.out.println("1.Estudiante");
-        System.out.println("2.Profesor");
-        System.out.println("3.Administrativo");
-        System.out.println("4.Visitante");
-    }
-    
-    public static void escogeEstu(){
-        System.out.println("Podras tener cualquiera de los siguientes estudiantes:");
-        System.out.println("1.Estudiante Pregrado");
-        System.out.println("2.Estudiante Tecnico");
-        System.out.println("3.Estudiante Especializacion");
-        System.out.println("4.Estudiante Maestria");
-        System.out.println("5.Estudiante Doctorado");
-        System.out.println("6.Estudiante Posgrado");
-    }
-    
-    public static void escogeProfe(){
-        System.out.println("Podras tener cualquiera de los siguientes profesores:");
-        System.out.println("1.Profesor planta");
-        System.out.println("2.Profesor catedra");
-    }
-    
-    public static void escogeGen(){
-        System.out.println("Que genero tienes: ");
-        System.out.println("1.Masculino");
-        System.out.println("2.Femenino");
-    }
-   
-    
     public static ArrayList<Jugador> readJugador(String filePath){
         
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -73,6 +39,7 @@ public final class Archivos {
         int salud = 0;
         int energia = 0;
         Persona rol;
+        
         
         
       
@@ -107,6 +74,7 @@ public final class Archivos {
         }
         return jugadores;
     }
+    
     
     public static ArrayList<ItemOfensivo> readItemOf(String filePath){
         ArrayList<ItemOfensivo>inventarioOf = new ArrayList<>();

@@ -9,10 +9,10 @@ public class EstudianteDoc extends Estudiante{
     
     public EstudianteDoc(){
     }
-    public EstudianteDoc(String name, int edad, String lugarOrigen, String colorPiel, String genero, String orientacionSexual, String sexo, boolean comunidadUIS, 
-            int estratoSocial, String sisben,int cantidadDeCreditos, int nivel, int publicaciones, String temaInvestigacion){
+    public EstudianteDoc(String name, int edad, String genero, boolean comunidadUIS, 
+            int estratoSocial, String nombreRol, int cantidadDeCreditos, int nivel, int publicaciones, String temaInvestigacion){
         
-       super(name, edad, lugarOrigen, colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben, cantidadDeCreditos, nivel);
+       super(name, edad, genero, comunidadUIS, estratoSocial, nombreRol, cantidadDeCreditos, nivel);
         this.setPublicaciones(publicaciones);
         this.setTemaInvestigacion(temaInvestigacion);
         

@@ -10,9 +10,9 @@ public class Administrativo extends Persona {
     public Administrativo(){
         
     }
-    public Administrativo(String name, int edad, String lugarOrigen, String colorPiel, String genero, String orientacionSexual, String sexo, boolean comunidadUIS, 
-            int estratoSocial, String sisben, String edificioDeTrabajo, String oficina){
-        super(name, edad, lugarOrigen, colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben);
+    public Administrativo(String name, int edad, String genero, boolean comunidadUIS, 
+            int estratoSocial, String nombreRol, String edificioDeTrabajo, String oficina){
+        super(name, edad, genero, comunidadUIS, estratoSocial, nombreRol);
         this.setEdificioDeTrabajo(edificioDeTrabajo);
         this.setOficina(oficina);
     }

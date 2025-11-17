@@ -22,6 +22,12 @@ public class Player extends Entity{
     public int commandNum = 0;
     public int commandNumPause = 0;
     public int titleScreenState = 0;
+    public String tempName = "Jugador UIS";
+    public int tempEdad = 16;
+    public String tempGenero;
+    public boolean tempComunidadUIS;
+    public int tempEstratoSocial;
+    public String tempRol;
     
     public final int screenX;
     public final int screenY;
@@ -51,39 +57,40 @@ public class Player extends Entity{
         
             
             // Sprite player arriba
-            up1 = setup("walkUp_(1)");
-            up2 = setup("walkUp_(2)");
-            up3 = setup("walkUp_(3)");
-            up4 = setup("walkUp_(4)");
+            up1 = setupMov("/res/player/walkUp_(1).png");
+            up2 = setupMov("/res/player/walkUp_(2).png");
+            up3 = setupMov("/res/player/walkUp_(3).png");
+            up4 = setupMov("/res/player/walkUp_(4).png");
             
             // Sprite player abajo
-            down1 = setup("walkDown_(1)");
-            down2 = setup("walkDown_(2)");
-            down3 = setup("walkDown_(3)");
-            down4 = setup("walkDown_(4)");
+            down1 = setupMov("/res/player/walkDown_(1).png");
+            down2 = setupMov("/res/player/walkDown_(2).png");
+            down3 = setupMov("/res/player/walkDown_(3).png");
+            down4 = setupMov("/res/player/walkDown_(4).png");
            
             // Sprite player izquierda
-            left1 = setup("walkLeft_(1)");
-            left2 = setup("walkLeft_(2)");
-            left3 = setup("walkLeft_(3)");
-            left4 = setup("walkLeft_(4)");
+            left1 = setupMov("/res/player/walkLeft_(1).png");
+            left2 = setupMov("/res/player/walkLeft_(2).png");
+            left3 = setupMov("/res/player/walkLeft_(3).png");
+            left4 = setupMov("/res/player/walkLeft_(4).png");
              
             // Sprite player derecha
-            right1 = setup("walkRight_(1)");
-            right2 = setup("walkRight_(2)");
-            right3 = setup("walkRight_(3)");
-            right4 = setup("walkRight_(4)");
+            right1 = setupMov("/res/player/walkRight_(1).png");
+            right2 = setupMov("/res/player/walkRight_(2).png");
+            right3 = setupMov("/res/player/walkRight_(3).png");
+            right4 = setupMov("/res/player/walkRight_(4).png");
             
-            pausa = setup("menu");
+            //Pausa
+            pausa = setupMov("/res/Tiles/menu.png");
     }
     
-    public BufferedImage setup (String imageName) {
+    public BufferedImage setupMov(String imageName) {
 
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("res/player/" + imageName + ".png"));
+            image = ImageIO.read(getClass().getResourceAsStream(imageName));
             image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
 
         } catch(IOException e) {
@@ -270,13 +277,11 @@ public class Player extends Entity{
     public void drawTitleScreen(){
         
         if(titleScreenState == 0){
-           // g2.setColor(new Color(70, 120, 180));
-            //g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+            g2.setColor(new Color(70, 120, 180));
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         
         
             //TITLE NAME
-
-
             int y = gp.screenHeight/3;
 
             g2.drawImage(pausa, 0, 0, gp.tileSize*16, gp.tileSize*12, null);
@@ -317,13 +322,264 @@ public class Player extends Entity{
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(42F));
             
-            String text = "Dinos tu nombre";
-            
-
+            String text = "Escoge tú genero";
             int x = getXforCenteredText(text);
             int y = gp.tileSize*3;
             g2.drawString(text, x, y);
-        }    
+            
+            text = "Masculino";
+            x = getXforCenteredText(text);
+            y += gp.tileSize*3;
+            g2.drawString(text, x, y);
+            if(commandNum == 0){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "Femenino";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "Volver";
+            x = getXforCenteredText(text);
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+            if(commandNum == 2){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+        }
+        
+        else if(titleScreenState == 3){
+            
+            //Rellenando formulario screen
+            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(42F));
+            
+            String text = "Eres comunidad UIS?";
+            int x = getXforCenteredText(text);
+            int y = gp.tileSize*3;
+            g2.drawString(text, x, y);
+            
+            text = "Si";
+            x = getXforCenteredText(text);
+            y += gp.tileSize*3;
+            g2.drawString(text, x, y);
+            if(commandNum == 0){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "No";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "Volver";
+            x = getXforCenteredText(text);
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+            if(commandNum == 2){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+        }
+        else if(titleScreenState == 2){
+            
+            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(42F));
+            
+            String text = "Estrato Social";
+            int x = getXforCenteredText(text);
+            int y = gp.tileSize*3;
+            g2.drawString(text, x, y);
+            
+            text = "1";
+            x = getXforCenteredText(text);
+            y += gp.tileSize*3;
+            g2.drawString(text, x, y);
+            if(commandNum == 0){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "2";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "3";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 2){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+            text = "4";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 3){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "5";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 4){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "6";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 5){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            text = "Volver";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 6){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+        }
+        
+        else if (titleScreenState == 4){
+            
+            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(42F));
+            
+            String text = "Qué rol posees?";
+            int x = getXforCenteredText(text);
+            int y = gp.tileSize*3;
+            g2.drawString(text, x, y);
+            
+            text = "Estudiante";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 0){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "Profesor";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "Administrativo";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 2){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            text = "Volver";
+            x = getXforCenteredText(text);
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+            if(commandNum == 3){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+        }
+        
+        else if (titleScreenState == 5){
+            
+            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(42F));
+            
+            String text = "Qué tipo de estudiante eres?";
+            int x = getXforCenteredText(text);
+            int y = gp.tileSize*3;
+            g2.drawString(text, x, y);
+            
+            text = "Pregrado";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 0){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "Posgrado";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "Tecnológico";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 2){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            text = "Maestría";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 3){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            text = "Especialización";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 4){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "Doctorado";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 5){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+        }
+        else if(titleScreenState == 6){
+            
+            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(42F));
+            
+            String text = "Qué tipo de profesor eres?";
+            int x = getXforCenteredText(text);
+            int y = gp.tileSize*3;
+            g2.drawString(text, x, y);
+            
+            text = "Planta";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 0){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
+             text = "Cátedra";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+        }
     }
     
     public int getXforCenteredText(String text){

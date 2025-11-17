@@ -12,10 +12,10 @@ public abstract class Profesor extends Persona {
         
     }
     
-    public Profesor(String name, int edad, String lugarOrigen, String colorPiel, String genero, String orientacionSexual, String sexo, boolean comunidadUIS, 
-            int estratoSocial, String sisben){
+    public Profesor(String name, int edad, String genero, boolean comunidadUIS, 
+            int estratoSocial, String nombreRol){
         
-        super(name, edad, lugarOrigen, colorPiel, genero, orientacionSexual, sexo, comunidadUIS, estratoSocial, sisben);
+        super(name, edad, genero, comunidadUIS, estratoSocial, nombreRol);
         this.cursos = new ArrayList<>();
         this.materias = new ArrayList<>();
     }
