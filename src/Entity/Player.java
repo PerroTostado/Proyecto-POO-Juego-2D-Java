@@ -1,6 +1,7 @@
 
 package Entity;
 
+import Entity.Entity;
 import java.util.Scanner;
 import game.GamePanel;
 import game.KeyHandler;
@@ -56,6 +57,7 @@ public class Player extends Entity{
     public void getPlayerImage(){
         
             
+        try {
             // Sprite player arriba
             up1 = setupMov("/res/player/walkUp_(1).png");
             up2 = setupMov("/res/player/walkUp_(2).png");
@@ -81,7 +83,12 @@ public class Player extends Entity{
             right4 = setupMov("/res/player/walkRight_(4).png");
             
             //Pausa
-            pausa = setupMov("/res/Tiles/menu.png");
+            pausa = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/menu.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+            
+            
     }
 
     public BufferedImage setupMov(String imageName) {
