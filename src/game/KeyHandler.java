@@ -1,12 +1,14 @@
 
 package game;
 
+import Entity.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
     
     GamePanel gp;
+    
     public boolean upPress, downPress, leftPress, rigthPress;
     
     public KeyHandler(GamePanel gp){
@@ -29,12 +31,12 @@ public class KeyHandler implements KeyListener{
                 gp.player.commandNumPause--;
             }
             if(gp.player.commandNumPause < 0 ){
-                gp.player.commandNumPause = 1;
+                gp.player.commandNumPause = 2;
             }
             
             if(code == KeyEvent.VK_S){
                 gp.player.commandNumPause++;
-                if(gp.player.commandNumPause > 1 ){
+                if(gp.player.commandNumPause > 2 ){
                     gp.player.commandNumPause = 0;
                 }
             }
@@ -43,8 +45,15 @@ public class KeyHandler implements KeyListener{
                     gp.gameState = 1;
                 }
                 if(gp.player.commandNumPause == 1){
-                    gp.gameState = 0;
+                    gp.gameState = 1;
+                    gp.savePlayerPosition(gp.player);
                 }
+                if(gp.player.commandNumPause == 2){
+                    gp.gameState = gp.titleState;
+                    gp.player.titleScreenState = 0;
+                    gp.player.commandNum = 3;
+                }
+                
             }      
         }
             
@@ -53,11 +62,11 @@ public class KeyHandler implements KeyListener{
             if(gp.player.titleScreenState == 0){
                 
                 if(code == KeyEvent.VK_W){
-                gp.player.commandNum--;
-                if(gp.player.commandNum < 0 ){
-                    gp.player.commandNum = 2;
+                    gp.player.commandNum--;
+                    if(gp.player.commandNum < 0 ){
+                        gp.player.commandNum = 2;
+                    }
                 }
-            }
                 if(code == KeyEvent.VK_S){
                     gp.player.commandNum++;
                     if(gp.player.commandNum > 2 ){
@@ -70,11 +79,14 @@ public class KeyHandler implements KeyListener{
                         //gp.gameState = gp.playState;
                     }
                     if(gp.player.commandNum == 1){
-                        //add later
+                        gp.loadPlayerPosition();
+                        gp.gameState = gp.playState;
+                        
                     }
                     if(gp.player.commandNum == 2){
                         System.exit(0);
                     }
+                    
                 }
                 
             }

@@ -8,9 +8,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.FileWriter;
 import javax.swing.JPanel;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable{
+    
+    
     
     // Screen Settings
     final int originalTileSize = 16; // 16 x 16 Tile
@@ -32,10 +39,10 @@ public class GamePanel extends JPanel implements Runnable{
     
     // FPS
     int FPS = 60;
-    
+   
     TileManager tileM;
-    KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
+    KeyHandler keyH;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public Player player;
@@ -47,7 +54,10 @@ public class GamePanel extends JPanel implements Runnable{
     public final int playState = 1;
     public final int pauseState = 2;
     
-    public GamePanel(){
+    public GamePanel() {
+
+        keyH = new KeyHandler(this);
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -55,8 +65,10 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
          
         tileM = new TileManager(this);
-        player = new Player(this,keyH);
-    }
+
+        //AQUÍ SE CARGA LA PARTIDA
+        player = loadPlayerPosition();
+}
     
     public void setupGame(){
         gameState = playState;
@@ -165,4 +177,53 @@ public class GamePanel extends JPanel implements Runnable{
         }
         
     }
+    
+    
+
+
+    public void savePlayerPosition(Player player) {
+    try {
+        File file = new File("player_position.txt");
+
+        // Si el archivo no existe, lo crea
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        // Escribir posición
+        FileWriter writer = new FileWriter(file);
+        writer.write(player.worldX + "," + player.worldY);
+        writer.close();
+
+        // Mostrar la ubicación real del archivo
+        System.out.println("Archivo guardado en: " + file.getAbsolutePath());
+        System.out.println("Posición guardada X=" + player.worldX + " Y=" + player.worldY);
+        
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+
+
+    public Player loadPlayerPosition() {
+
+    try (BufferedReader reader = new BufferedReader(new FileReader("player_position.txt"))) {
+        String line = reader.readLine(); 
+
+        if (line != null) {
+            String[] parts = line.split(",");
+            int x = Integer.parseInt(parts[0]);
+            int y = Integer.parseInt(parts[1]);
+
+            return new Player(this, keyH, x, y);
+        }
+    } 
+    catch (IOException e) {
+        System.out.println("No existe archivo, usando posición por defecto.");
+    }
+
+    return new Player(this, keyH, screenWidth/2 - tileSize/2, screenHeight/2 - tileSize/2);
+}
+
 }

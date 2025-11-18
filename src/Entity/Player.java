@@ -13,10 +13,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.io.FileWriter;
 
 public class Player extends Entity{
     GamePanel gp;
-    Font Gigi_40;
     KeyHandler keyH;
     Graphics2D g2;
     public int commandNum = 0;
@@ -32,7 +32,7 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
     
-    public Player(GamePanel gp, KeyHandler keyH){
+    public Player(GamePanel gp, KeyHandler keyH,int screenx,int screeny){                                                                                           
         this.gp = gp;
         this.keyH = keyH;
         
@@ -41,14 +41,14 @@ public class Player extends Entity{
         
         solidArea = new Rectangle(17, 38, 16, 9);
         
-        setDefaultsValues();
+        setValues(screenx,screeny);
         getPlayerImage();
         
     }
     
-    public void setDefaultsValues(){
-        worldX = gp.tileSize * 24;
-        worldY = gp.tileSize * 24;
+    public void setValues(int x,int y){
+        worldX = x;
+        worldY = y;
         speed = 4;
         direction = "DOWN";
     }
@@ -83,7 +83,7 @@ public class Player extends Entity{
             //Pausa
             pausa = setupMov("/res/Tiles/menu.png");
     }
-    
+
     public BufferedImage setupMov(String imageName) {
 
         UtilityTool uTool = new UtilityTool();
@@ -158,7 +158,6 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
-        
     }
     
     public void draw(Graphics2D g2){
@@ -232,15 +231,14 @@ public class Player extends Entity{
                     image = right4;
                 }
                 break;
-        }
+            }
         // Prueba para ver la collision
         //g2.setColor(Color.red);
         //g2.fillRect(screenX+17, screenY+38, gp.tileSize-32, gp.tileSize-39);
         
         g2.drawImage(image, screenX, screenY, null);
         
-        g2.setFont(Gigi_40);
-        g2.setColor(Color.white);
+        
         
         if(gp.gameState == 1){
            //algo 
@@ -255,21 +253,29 @@ public class Player extends Entity{
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(42F));
             
-            String text = "REANUDAR";
-            int x = getXforCenteredText(text)-42*2;
-            int y = gp.tileSize*7;
-            g2.drawString(text, x, y);
-            if(commandNumPause == 0){
-                g2.drawString(">", x-gp.tileSize, y);
-            }
+        String text = "REANUDAR";
+        int x = getXforCenteredText(text)-42*2;
+        int y = gp.tileSize*7;
+        g2.drawString(text, x, y);
+        if(commandNumPause == 0){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
 
-            text = "SALIR";
-            x = getXforCenteredText(text)-42;
-            y += gp.tileSize;
-            g2.drawString(text, x, y);
-            if(commandNumPause == 1){
-                g2.drawString(">", x-gp.tileSize, y);
-            }
+        text = "GUARDAR";
+        x = getXforCenteredText(text)-42;
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(commandNumPause == 1){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+        
+        text = "SALIR";
+        x = getXforCenteredText(text)-42;
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(commandNumPause == 2){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
         
         g2.drawImage(pausa, 0, 0, gp.tileSize*16, gp.tileSize*12, null);
     }
@@ -335,7 +341,7 @@ public class Player extends Entity{
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
-             text = "Femenino";
+            text = "Femenino";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
@@ -343,7 +349,7 @@ public class Player extends Entity{
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
-             text = "Volver";
+            text = "Volver";
             x = getXforCenteredText(text);
             y += gp.tileSize*2;
             g2.drawString(text, x, y);
@@ -372,7 +378,7 @@ public class Player extends Entity{
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
-             text = "No";
+            text = "No";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
@@ -380,7 +386,7 @@ public class Player extends Entity{
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
-             text = "Volver";
+            text = "Volver";
             x = getXforCenteredText(text);
             y += gp.tileSize*2;
             g2.drawString(text, x, y);
@@ -407,7 +413,7 @@ public class Player extends Entity{
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
-             text = "2";
+            text = "2";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
@@ -415,7 +421,7 @@ public class Player extends Entity{
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
-             text = "3";
+            text = "3";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
@@ -431,7 +437,7 @@ public class Player extends Entity{
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
-             text = "5";
+            text = "5";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
@@ -439,7 +445,7 @@ public class Player extends Entity{
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
-             text = "6";
+            text = "6";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
@@ -586,5 +592,5 @@ public class Player extends Entity{
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getHeight();
         int x = gp.screenWidth/2 - length/2;
         return x;
-    }   
+    }
 }
