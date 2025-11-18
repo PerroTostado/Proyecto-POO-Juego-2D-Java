@@ -128,6 +128,9 @@ public class Player extends Entity{
             gp.i = 0;
         }
         
+        //CHECK EVENT
+        gp.eHandler.checkEvent();
+        
         if(keyH.upPress == true || keyH.downPress == true || keyH.leftPress == true || keyH.rigthPress == true){
             
             if(keyH.upPress == true){

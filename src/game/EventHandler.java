@@ -22,19 +22,10 @@ public class EventHandler {
     }
 
     public void checkEvent () {
-        // El daño debe ocurrir SÓLO si el evento no ha sido tocado recientemente
-        if (canTouchEvent) {
-             // Evento en columna 13, fila 9
-            if(hit(13,9,"any") == true){ // Cambié a "any" para que se active sin importar la dirección
-                damagePit();
-                canTouchEvent = false; // Bloquea el evento temporalmente
-            }
-        }
-        
-        // Si el jugador se aleja del evento, lo desbloqueamos
-        // Es un ejemplo simple, puedes hacer que se desbloquee con un timer.
-        if(hit(13,9,"any") == false){
-            canTouchEvent = true;
+ 
+        if(hit(24,24,"any") == true){ // Cambié a "any" para que se active sin importar la dirección
+            damagePit(gp.dialogueState);
+                
         }
 
     }
@@ -61,19 +52,9 @@ public class EventHandler {
         return hit;
     }
     
-    public void damagePit(){
-        if (gp.player.invincible == false) {
-            
-            // 1. Reducir la vida
-            gp.player.life -= 1; 
-            
-            // 2. Establecer invulnerabilidad
-            gp.player.invincible = true;
-            gp.player.invincibleCounter = 0; // Asume que tienes un contador en la clase Player/Entity
-            
-            // 3. (Opcional) Notificar o hacer algún sonido
-            System.out.println("¡Daño recibido! Vida actual: " + gp.player.life);
-        }
-
+    public void damagePit(int gameState){
+        gp.gameState=gameState;
+        gp.ui.currentDialogue = "Haz caido en una trampa";
+        gp.player.life -= 1;
     }
 }
