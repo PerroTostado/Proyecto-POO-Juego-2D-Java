@@ -51,6 +51,7 @@ public class GamePanel extends JPanel implements Runnable{
     public EventHandler eHandler = new EventHandler(this);
     
     //GAME STATE
+    public int i = 0;
     public int gameState;
     public final int titleState = 0;
     public final int playState = 1;
@@ -206,7 +207,28 @@ public class GamePanel extends JPanel implements Runnable{
     }
 }
 
+public void playerNewPosition(Player player) {
+    try {
+        File file = new File("player_position.txt");
 
+        // Si el archivo no existe, lo crea
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        // Escribir posición
+        FileWriter writer1 = new FileWriter(file);
+        writer1.write(player.worldStartX + "," + player.worldStartY);
+        writer1.close();
+
+        // Mostrar la ubicación real del archivo
+        System.out.println("Archivo guardado en: " + file.getAbsolutePath());
+        System.out.println("Posición guardada X=" + player.worldStartX + " Y=" + player.worldStartY);
+        
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 
     public Player loadPlayerPosition() {
 
@@ -227,5 +249,4 @@ public class GamePanel extends JPanel implements Runnable{
 
     return new Player(this, keyH, screenWidth/2 - tileSize/2, screenHeight/2 - tileSize/2);
 }
-
 }
