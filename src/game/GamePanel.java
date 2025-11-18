@@ -47,7 +47,8 @@ public class GamePanel extends JPanel implements Runnable{
     public AssetSetter aSetter = new AssetSetter(this);
     public Player player;
     public SuperObject obj[] = new SuperObject[10];
-    UI ui = new UI(this);
+    public UI ui = new UI(this);
+    public EventHandler eHandler = new EventHandler(this);
     
     //GAME STATE
     public int i = 0;
