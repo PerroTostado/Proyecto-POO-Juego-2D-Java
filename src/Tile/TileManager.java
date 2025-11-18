@@ -58,7 +58,7 @@ public class TileManager {
             tile[8] = new Tile();
             tile[8].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/roca1.png"));
             tile[8].collision = true;
-
+          
             tile[10] = new Tile();
             tile[10].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/CENTIC0.png"));
             tile[10].collision = true;
@@ -212,12 +212,39 @@ public class TileManager {
             
             tile[55] = new Tile();
             tile[55].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(centraltd).png"));
-            
+           
             tile[56] = new Tile();
             tile[56].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(centralti).png"));
             
             tile[57] = new Tile();
             tile[57].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(centraltt).png"));
+            
+            tile[58] = new Tile();
+            tile[58].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(pastoi).png"));
+            
+            tile[59] = new Tile();
+            tile[59].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(pastoe).png"));
+            
+            tile[60] = new Tile();
+            tile[60].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(pastod).png"));
+            
+            tile[61] = new Tile();
+            tile[61].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(pastociar1).png"));
+            
+            tile[62] = new Tile();
+            tile[62].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(pastociab1).png"));
+            
+            tile[63] = new Tile();
+            tile[63].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(pastocen).png"));
+            
+            tile[64] = new Tile();
+            tile[64].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(pastocdar1).png"));
+            
+            tile[65] = new Tile();
+            tile[65].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(pastocdab1).png"));
+            
+            tile[66] = new Tile();
+            tile[66].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(pastoa).png"));
             
             
         }catch(IOException e){
@@ -287,7 +314,7 @@ public class TileManager {
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 
-                g2.drawImage(tile[tileNum].image, screenX, screenY, null);
+                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize+1, gp.tileSize, null);
             }
             worldCol++;
 

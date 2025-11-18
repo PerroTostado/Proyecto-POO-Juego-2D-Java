@@ -26,7 +26,7 @@ public class KeyHandler implements KeyListener{
         int code = e.getKeyCode();
         //Title State
         if(gp.gameState == gp.pauseState){
-              
+            
             if(code == KeyEvent.VK_W){
                 gp.player.commandNumPause--;
             }
