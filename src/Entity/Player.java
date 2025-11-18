@@ -273,6 +273,27 @@ public class Player extends Entity{
         if(gp.gameState == 2){
             drawPauseScreen();
         }
+        if(gp.gameState == 3){
+            drawInfoScreen();
+        }
+    }
+    
+    public void drawInfoScreen(){
+        
+        String text = gp.player.tempGenero;
+        int x = 20;
+        int y = 20;
+        g2.drawString(text, x, y);
+        
+        text = Integer.toString(gp.player.tempEstratoSocial);
+        x = 20;
+        y += 20;
+        g2.drawString(text, x, y);
+        
+        text = Boolean.toString(gp.player.tempComunidadUIS);
+        x = 20;
+        y += 20;
+        g2.drawString(text, x, y);
     }
     
     public void drawPauseScreen(){
