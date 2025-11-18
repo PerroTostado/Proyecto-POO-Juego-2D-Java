@@ -50,12 +50,16 @@ public class GamePanel extends JPanel implements Runnable{
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
     
+    
+    
     //GAME STATE
     public int i = 0;
     public int gameState;
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int dialogueState = 3;
+    public final int gameOverState = 4;
     
     public GamePanel() {
 
@@ -150,35 +154,50 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void update(){
-        
-        if(gameState == 1){
+
+        if(gameState == playState){ // Usamos 'playState' en lugar de 1
             player.update();
         }
-        if(gameState == 2){
+        if(gameState == pauseState){ // Usamos 'pauseState' en lugar de 2
+            // No hacer nada en pause
         }
+        if(gameState == dialogueState){ // <-- Nuevo caso para dialogueState
+            // No hacer nada en dialogueState
+        }
+
     }
     
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        
+
         Graphics2D g2 =(Graphics2D)g;
-        
+
         //TITLE SCREEN
         if(gameState == titleState){
            player.draw(g2);
+           ui.draw(g2); // Llama a UI.draw en titleState para dibujar la pantalla de título
         }
         else{
             //TILE
             tileM.draw(g2);
-        
-            // UI drawing:
-            ui.draw(g2); // <--- All UI elements should be drawn here
+
+            // OBJECTS (No se usa por ahora, pero se deja el espacio)
+            // for(int i = 0; i < obj.length; i++){
+            //    if(obj[i] != null){
+            //        obj[i].draw(g2, this);
+            //    }
+            // }
+
+            // PLAYER
             player.draw(g2);
-        
+
+            // UI drawing:
+            ui.draw(g2); // <--- Llama a UI.draw en play/pause/dialogue states
+
             g2.dispose(); 
         }
-        
+
     }
     
     

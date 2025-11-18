@@ -19,6 +19,9 @@ public class UI {
     Font arial_40;
     BufferedImage menuImage;
     
+    // DIALOGUE
+    public String currentDialogue = "";
+    
     public UI(GamePanel gp){
         this.gp = gp;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
@@ -33,24 +36,37 @@ public class UI {
     
     public void draw(Graphics2D g2){
         this.g2 = g2;
-         
-        
+
+
         //TITLE STATE
         if(gp.gameState == gp.titleState){
             drawTitleScreen();
-        //g2.setFont(arial_40);
-        //g2.setColor(Color.white);
-        }else{
-            //TILE
-            gp.tileM.draw(g2);
+        } 
+        // PLAY STATE (También incluye PAUSE y DIALOGUE)
+        else {
 
-            gp.player.draw(g2);
+            // UI drawing: drawPlayerLife should be here too 
+            drawPlayerLife(); 
 
-            // UI drawing: drawPlayerLife should be here too (inside the else block for play/pause states)
-            drawPlayerLife(); // <--- This line is missing in your GamePanel, but UI.draw handles it now.
+            // PAUSE STATE
+            if(gp.gameState == gp.pauseState){
+                drawPauseScreen(); // Asumiendo que existe un método para la pantalla de pausa
+            }
 
-            g2.dispose(); 
+            // DIALOGUE STATE
+            if(gp.gameState == gp.dialogueState){
+                drawDialogueScreen(); // <-- Llamada al nuevo método de diálogo
+            }
         }
+    }
+    
+    public void drawPauseScreen(){
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
+        String text = "PAUSA";
+        int x = getXforCenteredText(text);
+        int y = gp.screenHeight/2;
+
+        g2.drawString(text, x, y);
     }
         
     public void drawPlayerLife(){
@@ -81,6 +97,45 @@ public class UI {
             i++;
             x += gp.tileSize;
         }
+    }
+    
+    public void drawDialogueScreen(){
+
+        // VENTANA
+        int x = gp.tileSize*2;
+        int y = gp.screenHeight - gp.tileSize*4;
+        int width = gp.screenWidth - gp.tileSize*4;
+        int height = gp.tileSize*3;
+
+        drawSubWindow(x, y, width, height);
+
+        // TEXTO
+        g2.setFont(arial_40.deriveFont(Font.PLAIN, 28F));
+        x += gp.tileSize; // Ajuste para que el texto no toque el borde de la ventana
+        y += gp.tileSize;
+
+        // Aquí se dibuja el texto del diálogo
+        // Dividimos el texto para que quepa en la ventana
+        for(String line : currentDialogue.split("\n")){
+            g2.drawString(line, x, y);
+            y += 40; // Espaciado entre líneas
+        }
+
+    }
+
+    // Método auxiliar para dibujar la sub-ventana (caja de diálogo)
+    public void drawSubWindow(int x, int y, int width, int height){
+
+        // Fondo semi-transparente
+        Color c = new Color(0, 0, 0, 210);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+
+        // Borde
+        c = new Color(255, 255, 255);
+        g2.setColor(c);
+        g2.setStroke(new java.awt.BasicStroke(5)); // Grosor del borde
+        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
     }
 
         public void drawTitleScreen() {
