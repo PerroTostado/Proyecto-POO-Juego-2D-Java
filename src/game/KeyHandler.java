@@ -347,11 +347,19 @@ public class KeyHandler implements KeyListener{
         }
         //Pause State
         if(code == KeyEvent.VK_P){
-            if(gp.gameState == 1){
-                gp.gameState = 2;
+            if(gp.gameState == gp.playState){
+                gp.gameState = gp.pauseState;
             }
-            else if(gp.gameState == 2){
-                gp.gameState = 1;
+            else if(gp.gameState == gp.pauseState){
+                gp.gameState = gp.playState;
+            }
+        }
+
+        // DIALOGUE STATE: Se usa ENTER para cerrar/avanzar el diálogo
+        if(code == KeyEvent.VK_ENTER){ // <-- Nuevo manejo para ENTER
+            if(gp.gameState == gp.dialogueState){
+                // Por ahora, solo volvemos al estado de juego (playState). 
+                gp.gameState = gp.playState;
             }
         }
         
