@@ -30,6 +30,10 @@ public class Player extends Entity{
     public boolean tempComunidadUIS;
     public int tempEstratoSocial;
     public String tempRol;
+    public int solidAreaDefaultX;
+    public int solidAreaDefaultY;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
     
     public final int screenX;
     public final int screenY;
@@ -42,6 +46,8 @@ public class Player extends Entity{
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
         
         solidArea = new Rectangle(17, 38, 16, 9);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY =solidArea.y;
         
         setValues(screenx,screeny);
         getPlayerImage();
