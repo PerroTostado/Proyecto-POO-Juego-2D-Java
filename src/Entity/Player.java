@@ -5,6 +5,7 @@ import Entity.Entity;
 import java.util.Scanner;
 import game.GamePanel;
 import game.KeyHandler;
+import game.UI;
 import game.UtilityTool;
 import java.awt.Color;
 import java.awt.Font;
@@ -52,6 +53,11 @@ public class Player extends Entity{
         worldY = gp.tileSize * 24;
         speed = 4;
         direction = "DOWN";
+        
+        // PLAYER STATUS
+        maxLife = 6;
+        life = maxLife;
+        
     }
     
     public void getPlayerImage(){
