@@ -55,7 +55,6 @@ public class Player extends Entity{
     
     public void getPlayerImage(){
         
-            
             // Sprite player arriba
             up1 = setupMov("/res/player/walkUp_(1).png");
             up2 = setupMov("/res/player/walkUp_(2).png");
