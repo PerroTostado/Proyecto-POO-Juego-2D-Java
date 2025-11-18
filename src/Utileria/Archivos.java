@@ -18,6 +18,7 @@ import Consumibles.ItemEnergia;
 import Consumibles.ItemBuff;
 import Consumibles.ItemUtilidad;
 import Consumibles.ItemRemedio;
+import java.io.File;
 
 public final class Archivos {
     
@@ -394,4 +395,7 @@ public final class Archivos {
         
         return inventarioOf;
     }
+    
+    
+
 }

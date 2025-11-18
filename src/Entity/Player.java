@@ -31,6 +31,8 @@ public class Player extends Entity{
     
     public final int screenX;
     public final int screenY;
+    public final int worldStartX = 48*24;
+    public final int worldStartY = 48*24;
     
     public Player(GamePanel gp, KeyHandler keyH,int screenx,int screeny){                                                                                           
         this.gp = gp;
@@ -99,6 +101,12 @@ public class Player extends Entity{
     }
     
     public void update(){
+        
+        if(gp.i==1){
+            worldX = worldStartX;
+            worldY = worldStartY;
+            gp.i = 0;
+        }
         
         if(keyH.upPress == true || keyH.downPress == true || keyH.leftPress == true || keyH.rigthPress == true){
             
@@ -592,4 +600,6 @@ public class Player extends Entity{
         int x = gp.screenWidth/2 - length/2;
         return x;
     }
+    
+    
 }

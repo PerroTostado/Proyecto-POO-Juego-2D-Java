@@ -4,11 +4,13 @@ package game;
 import Entity.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import Utileria.Archivos;
 
 public class KeyHandler implements KeyListener{
     
+    Player player;
     GamePanel gp;
-    
+    Archivos ar;
     public boolean upPress, downPress, leftPress, rigthPress;
     
     public KeyHandler(GamePanel gp){
@@ -76,6 +78,7 @@ public class KeyHandler implements KeyListener{
                 if(code == KeyEvent.VK_ENTER){
                     if(gp.player.commandNum == 0){
                        gp.player.titleScreenState = 1;
+                       gp.i = 1;
                         //gp.gameState = gp.playState;
                     }
                     if(gp.player.commandNum == 1){
@@ -256,29 +259,29 @@ public class KeyHandler implements KeyListener{
                 if(code == KeyEvent.VK_ENTER){
                     if(gp.player.commandNum == 0){
                        gp.gameState = gp.playState;
-                       
+                       gp.loadPlayerPosition();
                     }
                     if(gp.player.commandNum == 1){
                         gp.gameState = gp.playState;
-                        
+                        gp.loadPlayerPosition();
                     }
                     if(gp.player.commandNum == 2){
-                   
+                        gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
                     }
                     
                     if(gp.player.commandNum == 3){
                        gp.gameState = gp.playState;
-                        
+                       gp.loadPlayerPosition(); 
                     }
                     if(gp.player.commandNum == 4){
-                   
+                        gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
                     }
                     
                     if(gp.player.commandNum == 5){
                        gp.gameState = gp.playState;
-                        
+                       gp.loadPlayerPosition(); 
                     }
             }
         }
@@ -351,5 +354,7 @@ public class KeyHandler implements KeyListener{
             rigthPress = false;
         }
     }
+    
+    
     
 }
