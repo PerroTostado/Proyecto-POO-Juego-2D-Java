@@ -47,6 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
     public AssetSetter aSetter = new AssetSetter(this);
     public Player player;
     public SuperObject obj[] = new SuperObject[10];
+    UI ui = new UI(this);
     
     //GAME STATE
     public int gameState;
@@ -152,7 +153,6 @@ public class GamePanel extends JPanel implements Runnable{
             player.update();
         }
         if(gameState == 2){
-            
         }
     }
     
@@ -166,11 +166,12 @@ public class GamePanel extends JPanel implements Runnable{
         if(gameState == titleState){
            player.draw(g2);
         }
-        //OTHERS
         else{
-                    //TILE
+            //TILE
             tileM.draw(g2);
         
+            // UI drawing:
+            ui.draw(g2); // <--- All UI elements should be drawn here
             player.draw(g2);
         
             g2.dispose(); 
