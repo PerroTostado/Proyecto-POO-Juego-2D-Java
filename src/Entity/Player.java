@@ -21,6 +21,7 @@ public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
     Graphics2D g2;
+    UI ui;
     public int commandNum = 0;
     public int commandNumPause = 0;
     public int titleScreenState = 0;
@@ -33,7 +34,7 @@ public class Player extends Entity{
     public int solidAreaDefaultX;
     public int solidAreaDefaultY;
     public boolean invincible = false;
-    public int invincibleCounter = 0;
+    public int invincibleCounter = 0; 
     
     public final int screenX;
     public final int screenY;
@@ -55,6 +56,8 @@ public class Player extends Entity{
         getPlayerImage();
         
     }
+    
+    
     
     public void setValues(int x,int y){
         worldX = x;
@@ -276,27 +279,38 @@ public class Player extends Entity{
         if(gp.gameState == 2){
             drawPauseScreen();
         }
-        if(gp.gameState == 3){
+        if(gp.gameState == 5){
             drawInfoScreen();
         }
     }
     
     public void drawInfoScreen(){
         
-        String text = gp.player.tempGenero;
-        int x = 20;
-        int y = 20;
+        int xBox = 450;
+        int yBox = 10;
+        int width = 300;
+        int height = 200;
+        
+        drawSubWindow(xBox, yBox, width, height);
+        
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(20F));
+        
+        String text = "Genero:" + gp.player.tempGenero;
+        int x = 470;
+        int y = 40;
         g2.drawString(text, x, y);
         
-        text = Integer.toString(gp.player.tempEstratoSocial);
-        x = 20;
-        y += 20;
+        text = "Estrato:" + Integer.toString(gp.player.tempEstratoSocial);
+        x = 470;
+        y += 30;
         g2.drawString(text, x, y);
         
-        text = Boolean.toString(gp.player.tempComunidadUIS);
-        x = 20;
-        y += 20;
+        text = "Rol:" + gp.player.tempRol;
+        x = 470;
+        y += 30;
         g2.drawString(text, x, y);
+        
     }
     
     public void drawPauseScreen(){
@@ -645,5 +659,17 @@ public class Player extends Entity{
         return x;
     }
     
-    
+    public void drawSubWindow(int x, int y, int width, int height){
+
+        // Fondo semi-transparente
+        Color c = new Color(0, 0, 0, 210);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+
+        // Borde
+        c = new Color(255, 255, 255);
+        g2.setColor(c);
+        g2.setStroke(new java.awt.BasicStroke(5)); // Grosor del borde
+        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+    }
 }

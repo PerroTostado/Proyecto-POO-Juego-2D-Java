@@ -344,10 +344,10 @@ public class KeyHandler implements KeyListener{
         
         if(code == KeyEvent.VK_I){
             if(gp.gameState == 1){
-                gp.gameState = 3;
+                gp.gameState = 5;
                 gp.loadPlayerInfo();
             }
-            else if(gp.gameState == 3){
+            else if(gp.gameState == 5){
                 gp.gameState = 1;
             }
         }

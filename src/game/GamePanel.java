@@ -301,8 +301,6 @@ public void playerNewPosition(Player player) {
 
             return new Player(this, keyH, x, y);
         }
-        
-        
     } 
     catch (IOException e) {
         System.out.println("No existe archivo, usando posición por defecto.");
