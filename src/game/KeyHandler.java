@@ -4,12 +4,15 @@ package game;
 import Entity.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import Utileria.Archivos;
 
 public class KeyHandler implements KeyListener{
     
+    Player player;
     GamePanel gp;
-    
+    Archivos ar;
     public boolean upPress, downPress, leftPress, rigthPress;
+    public boolean enterPress = false; 
     
     public KeyHandler(GamePanel gp){
         this.gp = gp;
@@ -24,7 +27,8 @@ public class KeyHandler implements KeyListener{
     public void keyPressed(KeyEvent e) {
         
         int code = e.getKeyCode();
-        //Title State
+
+        //Pause State
         if(gp.gameState == gp.pauseState){
             
             if(code == KeyEvent.VK_W){
@@ -47,6 +51,7 @@ public class KeyHandler implements KeyListener{
                 if(gp.player.commandNumPause == 1){
                     gp.gameState = 1;
                     gp.savePlayerPosition(gp.player);
+                    gp.savePlayerInfo(gp.player);
                 }
                 if(gp.player.commandNumPause == 2){
                     gp.gameState = gp.titleState;
@@ -76,6 +81,7 @@ public class KeyHandler implements KeyListener{
                 if(code == KeyEvent.VK_ENTER){
                     if(gp.player.commandNum == 0){
                        gp.player.titleScreenState = 1;
+                       gp.i = 1;
                         //gp.gameState = gp.playState;
                     }
                     if(gp.player.commandNum == 1){
@@ -256,29 +262,35 @@ public class KeyHandler implements KeyListener{
                 if(code == KeyEvent.VK_ENTER){
                     if(gp.player.commandNum == 0){
                        gp.gameState = gp.playState;
-                       
+                       gp.loadPlayerPosition();
+                       gp.player.tempRol = "Estudiante Pregrado";
                     }
                     if(gp.player.commandNum == 1){
                         gp.gameState = gp.playState;
-                        
+                        gp.loadPlayerPosition();
+                        gp.player.tempRol = "Estudiante Posgrado";
                     }
                     if(gp.player.commandNum == 2){
-                   
+                        gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
+                        gp.player.tempRol = "Estudiante Tecnologo";
                     }
                     
                     if(gp.player.commandNum == 3){
                        gp.gameState = gp.playState;
-                        
+                       gp.loadPlayerPosition(); 
+                       gp.player.tempRol = "Estudiante de Maestria";
                     }
                     if(gp.player.commandNum == 4){
-                   
+                        gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
+                        gp.player.tempRol = "Estudiante de Espeliacizacion";
                     }
                     
                     if(gp.player.commandNum == 5){
                        gp.gameState = gp.playState;
-                        
+                       gp.loadPlayerPosition(); 
+                       gp.player.tempRol = "Estudiante de Doctorado";
                     }
             }
         }
@@ -300,10 +312,12 @@ public class KeyHandler implements KeyListener{
                 if(code == KeyEvent.VK_ENTER){
                     if(gp.player.commandNum == 0){
                        gp.gameState = gp.playState;
+                       gp.player.tempRol = "Profesor Planta";
                        
                     }
                     if(gp.player.commandNum == 1){
                        gp.gameState = gp.playState;
+                       gp.player.tempRol = "Profesor Catedra";
                         
                     }
                 }
@@ -323,14 +337,39 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_D){
             rigthPress = true;
         }
-        if(code == KeyEvent.VK_P){
+        
+        if(code == KeyEvent.VK_ENTER){
+            enterPress = true; 
+        }
+        
+        if(code == KeyEvent.VK_I){
             if(gp.gameState == 1){
-                gp.gameState = 2;
+                gp.gameState = 5;
+                gp.loadPlayerInfo();
             }
-            else if(gp.gameState == 2){
+            else if(gp.gameState == 5){
                 gp.gameState = 1;
             }
         }
+        //Pause State
+        if(code == KeyEvent.VK_P){
+            if(gp.gameState == gp.playState){
+                gp.gameState = gp.pauseState;
+            }
+            else if(gp.gameState == gp.pauseState){
+                gp.gameState = gp.playState;
+            }
+        }
+
+        // DIALOGUE STATE: Se usa ENTER para cerrar/avanzar el diálogo
+        if(gp.gameState == gp.dialogueState){
+            if(code == KeyEvent.VK_ENTER){
+                // Al presionar ENTER en el diálogo, volvemos al juego.
+                gp.gameState = gp.playState;
+                // NOTA IMPORTANTE: NO desactivamos enterPress aquí. Se desactivará en la lógica del evento/diálogo.
+            }
+        }
+        
     }
 
     @Override
@@ -351,5 +390,7 @@ public class KeyHandler implements KeyListener{
             rigthPress = false;
         }
     }
+    
+    
     
 }

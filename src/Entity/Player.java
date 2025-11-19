@@ -21,6 +21,7 @@ public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
     Graphics2D g2;
+    UI ui;
     public int commandNum = 0;
     public int commandNumPause = 0;
     public int titleScreenState = 0;
@@ -30,9 +31,15 @@ public class Player extends Entity{
     public boolean tempComunidadUIS;
     public int tempEstratoSocial;
     public String tempRol;
+    public int solidAreaDefaultX;
+    public int solidAreaDefaultY;
+    public boolean invincible = false;
+    public int invincibleCounter = 0; 
     
     public final int screenX;
     public final int screenY;
+    public final int worldStartX = 48*24;
+    public final int worldStartY = 48*24;
     
     public Player(GamePanel gp, KeyHandler keyH,int screenx,int screeny){                                                                                           
         this.gp = gp;
@@ -42,11 +49,15 @@ public class Player extends Entity{
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
         
         solidArea = new Rectangle(17, 38, 16, 9);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY =solidArea.y;
         
         setValues(screenx,screeny);
         getPlayerImage();
         
     }
+    
+    
     
     public void setValues(int x,int y){
         worldX = x;
@@ -113,6 +124,15 @@ public class Player extends Entity{
     }
     
     public void update(){
+        
+        if(gp.i==1){
+            worldX = worldStartX;
+            worldY = worldStartY;
+            gp.i = 0;
+        }
+        
+        //CHECK EVENT
+        gp.eHandler.checkEvent();
         
         if(keyH.upPress == true || keyH.downPress == true || keyH.leftPress == true || keyH.rigthPress == true){
             
@@ -259,6 +279,53 @@ public class Player extends Entity{
         if(gp.gameState == 2){
             drawPauseScreen();
         }
+        if(gp.gameState == 5){
+            drawInfoScreen();
+        }
+    }
+    
+    public void drawInfoScreen(){
+        
+        int xBox = 450;
+        int yBox = 10;
+        int width = 300;
+        int height = 200;
+        
+        drawSubWindow(xBox, yBox, width, height);
+        
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(20F));
+        
+        String text = "Informacion del Jugador";
+        int x = 470;
+        int y = 40;
+        g2.drawString(text, x, y);
+        
+        text = "Nombre:" + gp.player.tempName;
+        x = 470;
+        y += 30;
+        g2.drawString(text, x, y);
+        
+        text = "Edad:" + gp.player.tempEdad;
+        x = 470;
+        y += 30;
+        g2.drawString(text, x, y);
+        
+        text = "Genero:" + gp.player.tempGenero;
+        x = 470;
+        y += 30;
+        g2.drawString(text, x, y);
+        
+        text = "Estrato:" + Integer.toString(gp.player.tempEstratoSocial);
+        x = 470;
+        y += 30;
+        g2.drawString(text, x, y);
+        
+        text = "Rol:" + gp.player.tempRol;
+        x = 470;
+        y += 30;
+        g2.drawString(text, x, y);
+        
     }
     
     public void drawPauseScreen(){
@@ -314,25 +381,25 @@ public class Player extends Entity{
             text = "NUEVO JUEGO";
             int x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*3.5;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+50, y);
             if(commandNum == 0){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
 
             text = "CARGAR JUEGO";
             x = getXforCenteredText(text)-50*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+50, y);
             if(commandNum == 1){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
 
             text = "SALIR";
             x = getXforCenteredText(text);
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+50, y);
             if(commandNum == 2){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
         }
         else if(titleScreenState == 1){
@@ -344,30 +411,30 @@ public class Player extends Entity{
             String text = "Escoge tú genero";
             int x = getXforCenteredText(text)-42*2;
             int y = gp.tileSize*3;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+175, y);
             
             text = "Masculino";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*3;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 0){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
             text = "Femenino";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
             text = "Volver";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*2;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 2){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
         }
@@ -381,30 +448,30 @@ public class Player extends Entity{
             String text = "Eres comunidad UIS?";
             int x = getXforCenteredText(text)-42*2;
             int y = gp.tileSize*3;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+130, y);
             
             text = "Si";
             x = getXforCenteredText(text);
             y += gp.tileSize*3;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 0){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
             text = "No";
             x = getXforCenteredText(text);
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
             text = "Volver";
             x = getXforCenteredText(text);
             y += gp.tileSize*2;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 2){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
         }
@@ -416,61 +483,61 @@ public class Player extends Entity{
             String text = "Estrato Social";
             int x = getXforCenteredText(text)-42*2;
             int y = gp.tileSize*3;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+200, y);
             
             text = "1";
             x = getXforCenteredText(text)-4;
             y += gp.tileSize*2;
             g2.drawString(text, x, y);
             if(commandNum == 0){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
             text = "2";
             x = getXforCenteredText(text)-4;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
             text = "3";
             x = getXforCenteredText(text)-4;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 2){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
             text = "4";
             x = getXforCenteredText(text)-4;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 3){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
             text = "5";
             x = getXforCenteredText(text)-4;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 4){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
             text = "6";
             x = getXforCenteredText(text)-4;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 5){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             text = "Volver";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 6){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
         }
@@ -483,37 +550,37 @@ public class Player extends Entity{
             String text = "Qué rol posees?";
             int x = getXforCenteredText(text)-42*2;
             int y = gp.tileSize*3;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+170, y);
             
             text = "Estudiante";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*2;
             g2.drawString(text, x, y);
             if(commandNum == 0){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
              text = "Profesor";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
              text = "Administrativo";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 2){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             text = "Volver";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*2;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 3){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
         }
         
@@ -525,52 +592,52 @@ public class Player extends Entity{
             String text = "Qué tipo de estudiante eres?";
             int x = getXforCenteredText(text)-42*4;
             int y = gp.tileSize*3;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+70, y);
             
             text = "Pregrado";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*2;
             g2.drawString(text, x, y);
             if(commandNum == 0){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
              text = "Posgrado";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">",gp.tileSize, y);
             }
             
              text = "Tecnológico";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 2){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             text = "Maestría";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 3){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             text = "Especialización";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 4){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
              text = "Doctorado";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 5){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
         }
         else if(titleScreenState == 6){
@@ -581,22 +648,22 @@ public class Player extends Entity{
             String text = "Qué tipo de profesor eres?";
             int x = getXforCenteredText(text)-42*4;
             int y = gp.tileSize*3;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+80, y);
             
             text = "Planta";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, x, y);
             if(commandNum == 0){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
             
              text = "Cátedra";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", gp.tileSize, y);
             }
         }
     }
@@ -605,5 +672,19 @@ public class Player extends Entity{
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getHeight();
         int x = gp.screenWidth/2 - length/2;
         return x;
+    }
+    
+    public void drawSubWindow(int x, int y, int width, int height){
+
+        // Fondo semi-transparente
+        Color c = new Color(0, 0, 0, 210);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+
+        // Borde
+        c = new Color(255, 255, 255);
+        g2.setColor(c);
+        g2.setStroke(new java.awt.BasicStroke(5)); // Grosor del borde
+        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
     }
 }

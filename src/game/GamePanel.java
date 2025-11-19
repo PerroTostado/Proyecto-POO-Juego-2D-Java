@@ -47,13 +47,20 @@ public class GamePanel extends JPanel implements Runnable{
     public AssetSetter aSetter = new AssetSetter(this);
     public Player player;
     public SuperObject obj[] = new SuperObject[10];
-    UI ui = new UI(this);
+    public UI ui = new UI(this);
+    public EventHandler eHandler = new EventHandler(this);
+    
+    
     
     //GAME STATE
+    public int i = 0;
     public int gameState;
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int infoState = 5;
+    public final int dialogueState = 3;
+    public final int gameOverState = 4;
     
     public GamePanel() {
 
@@ -148,35 +155,50 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void update(){
-        
-        if(gameState == 1){
+
+        if(gameState == playState){ // Usamos 'playState' en lugar de 1
             player.update();
         }
-        if(gameState == 2){
+        if(gameState == pauseState){ // Usamos 'pauseState' en lugar de 2
+            // No hacer nada en pause
         }
+        if(gameState == dialogueState){ // <-- Nuevo caso para dialogueState
+            // No hacer nada en dialogueState
+        }
+
     }
     
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        
+
         Graphics2D g2 =(Graphics2D)g;
-        
+
         //TITLE SCREEN
         if(gameState == titleState){
            player.draw(g2);
+           ui.draw(g2); // Llama a UI.draw en titleState para dibujar la pantalla de título
         }
         else{
             //TILE
             tileM.draw(g2);
-        
-            // UI drawing:
-            ui.draw(g2); // <--- All UI elements should be drawn here
+
+            // OBJECTS (No se usa por ahora, pero se deja el espacio)
+            // for(int i = 0; i < obj.length; i++){
+            //    if(obj[i] != null){
+            //        obj[i].draw(g2, this);
+            //    }
+            // }
+
+            // PLAYER
             player.draw(g2);
-        
+
+            // UI drawing:
+            ui.draw(g2); // <--- Llama a UI.draw en play/pause/dialogue states
+
             g2.dispose(); 
         }
-        
+
     }
     
     
@@ -205,7 +227,28 @@ public class GamePanel extends JPanel implements Runnable{
     }
 }
 
+public void playerNewPosition(Player player) {
+    try {
+        File file = new File("player_position.txt");
 
+        // Si el archivo no existe, lo crea
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        // Escribir posición
+        FileWriter writer1 = new FileWriter(file);
+        writer1.write(player.worldStartX + "," + player.worldStartY);
+        writer1.close();
+
+        // Mostrar la ubicación real del archivo
+        System.out.println("Archivo guardado en: " + file.getAbsolutePath());
+        System.out.println("Posición guardada X=" + player.worldStartX + " Y=" + player.worldStartY);
+        
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 
     public Player loadPlayerPosition() {
 
@@ -226,5 +269,44 @@ public class GamePanel extends JPanel implements Runnable{
 
     return new Player(this, keyH, screenWidth/2 - tileSize/2, screenHeight/2 - tileSize/2);
 }
+    
+    public void savePlayerInfo(Player player) {
+    try {
+        File file = new File("player_info.txt");
 
+        // Si el archivo no existe, lo crea
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        // Escribir atributos
+        FileWriter writer = new FileWriter(file);
+        writer.write(player.tempGenero + "," + player.tempEstratoSocial + "," + player.tempComunidadUIS + "," + player.tempRol);
+        writer.close();
+        
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+    
+    public Player loadPlayerInfo() {
+
+    try (BufferedReader reader = new BufferedReader(new FileReader("player_Info.txt"))) {
+        String line = reader.readLine(); 
+
+        if (line != null) {
+            String[] parts = line.split(",");
+            int x = Integer.parseInt(parts[0]);
+            int y = Integer.parseInt(parts[1]);
+
+            return new Player(this, keyH, x, y);
+        }
+    } 
+    catch (IOException e) {
+        System.out.println("No existe archivo, usando posición por defecto.");
+    }
+
+    return new Player(this, keyH, screenWidth/2 - tileSize/2, screenHeight/2 - tileSize/2);
+}
+    
 }
