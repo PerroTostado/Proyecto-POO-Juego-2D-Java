@@ -379,7 +379,7 @@ public class Player extends Entity{
             g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
 
             text = "NUEVO JUEGO";
-            int x = getXforCenteredText(text);
+            int x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*3.5;
             g2.drawString(text, gp.tileSize+50, y);
             if(commandNum == 0){
@@ -387,7 +387,7 @@ public class Player extends Entity{
             }
 
             text = "CARGAR JUEGO";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-50*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+50, y);
             if(commandNum == 1){
@@ -409,12 +409,12 @@ public class Player extends Entity{
             g2.setFont(g2.getFont().deriveFont(42F));
             
             String text = "Escoge tú genero";
-            int x = getXforCenteredText(text);
+            int x = getXforCenteredText(text)-42*2;
             int y = gp.tileSize*3;
             g2.drawString(text, gp.tileSize+175, y);
             
             text = "Masculino";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*3;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 0){
@@ -422,7 +422,7 @@ public class Player extends Entity{
             }
             
             text = "Femenino";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){
@@ -430,7 +430,7 @@ public class Player extends Entity{
             }
             
             text = "Volver";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*2;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 2){
@@ -445,8 +445,8 @@ public class Player extends Entity{
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(42F));
             
-            String text = "¿Eres comunidad UIS?";
-            int x = getXforCenteredText(text);
+            String text = "Eres comunidad UIS?";
+            int x = getXforCenteredText(text)-42*2;
             int y = gp.tileSize*3;
             g2.drawString(text, gp.tileSize+130, y);
             
@@ -481,20 +481,20 @@ public class Player extends Entity{
             g2.setFont(g2.getFont().deriveFont(42F));
             
             String text = "Estrato Social";
-            int x = getXforCenteredText(text);
+            int x = getXforCenteredText(text)-42*2;
             int y = gp.tileSize*3;
             g2.drawString(text, gp.tileSize+200, y);
             
             text = "1";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-4;
             y += gp.tileSize*2;
-            g2.drawString(text, gp.tileSize+30, y);
+            g2.drawString(text, x, y);
             if(commandNum == 0){
                 g2.drawString(">", gp.tileSize, y);
             }
             
             text = "2";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-4;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){
@@ -502,7 +502,7 @@ public class Player extends Entity{
             }
             
             text = "3";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-4;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 2){
@@ -510,7 +510,7 @@ public class Player extends Entity{
             }
             
             text = "4";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-4;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 3){
@@ -518,7 +518,7 @@ public class Player extends Entity{
             }
             
             text = "5";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-4;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 4){
@@ -526,14 +526,14 @@ public class Player extends Entity{
             }
             
             text = "6";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-4;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 5){
                 g2.drawString(">", gp.tileSize, y);
             }
             text = "Volver";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 6){
@@ -547,21 +547,21 @@ public class Player extends Entity{
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(42F));
             
-            String text = "¿Qué rol posees?";
-            int x = getXforCenteredText(text);
+            String text = "Qué rol posees?";
+            int x = getXforCenteredText(text)-42*2;
             int y = gp.tileSize*3;
             g2.drawString(text, gp.tileSize+170, y);
             
             text = "Estudiante";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*2;
-            g2.drawString(text, gp.tileSize+30, y);
+            g2.drawString(text, x, y);
             if(commandNum == 0){
                 g2.drawString(">", gp.tileSize, y);
             }
             
              text = "Profesor";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){
@@ -569,14 +569,14 @@ public class Player extends Entity{
             }
             
              text = "Administrativo";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 2){
                 g2.drawString(">", gp.tileSize, y);
             }
             text = "Volver";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*2;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 3){
@@ -589,21 +589,21 @@ public class Player extends Entity{
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(42F));
             
-            String text = "¿Qué tipo de estudiante eres?";
-            int x = getXforCenteredText(text);
+            String text = "Qué tipo de estudiante eres?";
+            int x = getXforCenteredText(text)-42*4;
             int y = gp.tileSize*3;
             g2.drawString(text, gp.tileSize+70, y);
             
             text = "Pregrado";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*2;
-            g2.drawString(text, gp.tileSize+30, y);
+            g2.drawString(text, x, y);
             if(commandNum == 0){
                 g2.drawString(">", gp.tileSize, y);
             }
             
              text = "Posgrado";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){
@@ -611,21 +611,21 @@ public class Player extends Entity{
             }
             
              text = "Tecnológico";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 2){
                 g2.drawString(">", gp.tileSize, y);
             }
             text = "Maestría";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 3){
                 g2.drawString(">", gp.tileSize, y);
             }
             text = "Especialización";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 4){
@@ -633,7 +633,7 @@ public class Player extends Entity{
             }
             
              text = "Doctorado";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 5){
@@ -645,21 +645,21 @@ public class Player extends Entity{
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(42F));
             
-            String text = "¿Qué tipo de profesor eres?";
-            int x = getXforCenteredText(text);
+            String text = "Qué tipo de profesor eres?";
+            int x = getXforCenteredText(text)-42*4;
             int y = gp.tileSize*3;
             g2.drawString(text, gp.tileSize+80, y);
             
             text = "Planta";
-            x = getXforCenteredText(text);
-            y += gp.tileSize*2;
-            g2.drawString(text, gp.tileSize+30, y);
+            x = getXforCenteredText(text)-42*2;
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
             if(commandNum == 0){
                 g2.drawString(">", gp.tileSize, y);
             }
             
              text = "Cátedra";
-            x = getXforCenteredText(text);
+            x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
             g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 1){

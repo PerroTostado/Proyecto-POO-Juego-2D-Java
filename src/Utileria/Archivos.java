@@ -22,7 +22,7 @@ import java.io.File;
 
 public final class Archivos {
     
-    private Archivos(){}
+ private Archivos(){}
      
     public static ArrayList<Persona> readPersona(String filePath){
         
@@ -107,11 +107,11 @@ public final class Archivos {
                             
                         }
                         else{
-                            System.out.println("No se pudo crear el personaje por falta de atributos");
+                            System.out.println("No se pudo crear el objeto ofensivo por falta de atributos");
                         }
                }
                catch(Exception e){
-                   System.out.println("Error creando el personaje: " + e.getMessage());
+                   System.out.println("Error creando el item ofensivo: " + e.getMessage());
                }
            }
            reader.close();
@@ -152,11 +152,11 @@ public final class Archivos {
                             
                         }
                         else{
-                            System.out.println("No se pudo crear el personaje por falta de atributos");
+                            System.out.println("No se pudo crear el item curativo por falta de atributos");
                         }
                }
                catch(Exception e){
-                   System.out.println("Error creando el personaje: " + e.getMessage());
+                   System.out.println("Error creando el item curativo: " + e.getMessage());
                }
            }
            reader.close();
@@ -199,11 +199,11 @@ public final class Archivos {
                             
                         }
                         else{
-                            System.out.println("No se pudo crear el personaje por falta de atributos");
+                            System.out.println("No se pudo crear el item especial por falta de atributos");
                         }
                }
                catch(Exception e){
-                   System.out.println("Error creando el personaje: " + e.getMessage());
+                   System.out.println("Error creando el item especial: " + e.getMessage());
                }
            }
            reader.close();
@@ -214,8 +214,8 @@ public final class Archivos {
         
         return inventarioEs;
     }
-    public static ArrayList<ItemOfensivo> readItemEner(String filePath){
-        ArrayList<ItemOfensivo>inventarioOf = new ArrayList<>();
+    public static ArrayList<ItemEnergia> readItemEner(String filePath){
+        ArrayList<ItemEnergia>inventarioEner = new ArrayList<>();
         
         String line = "";
         String nombre = "";
@@ -223,8 +223,8 @@ public final class Archivos {
         int precio = 0;
         int cantidad = 0;
         String rareza = "";
-        int poderAtaque = 0;
-        double probabilidadCritico = 0;
+        int puntosEnergía = 0;
+        boolean boostTemp = false;
                 try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
            reader.readLine();
            
@@ -237,18 +237,18 @@ public final class Archivos {
                             precio = Integer.parseInt(parts[2].trim());
                             cantidad = Integer.parseInt(parts[3].trim());
                             rareza = parts[4].trim();
-                            poderAtaque = Integer.parseInt(parts[5].trim());
-                            probabilidadCritico = Double.parseDouble(parts[6].trim());
+                            puntosEnergía = Integer.parseInt(parts[5].trim());
+                            boostTemp =  Boolean.parseBoolean(parts[6].trim());
                             
-                            inventarioOf.add(new ItemOfensivo(nombre, descripcion, precio, cantidad, rareza, poderAtaque, probabilidadCritico));
+                            inventarioEner.add(new ItemEnergia(nombre, descripcion, precio, cantidad, rareza, puntosEnergía, boostTemp));
                             
                         }
                         else{
-                            System.out.println("No se pudo crear el personaje por falta de atributos");
+                            System.out.println("No se pudo crear el item energético por falta de atributos");
                         }
                }
                catch(Exception e){
-                   System.out.println("Error creando el personaje: " + e.getMessage());
+                   System.out.println("Error creando el item energético: " + e.getMessage());
                }
            }
            reader.close();
@@ -257,10 +257,10 @@ public final class Archivos {
             System.err.println("Error al recuperar los datos" + e.getMessage());
         }
         
-        return inventarioOf;
+        return inventarioEner;
     }
-    public static ArrayList<ItemOfensivo> readItemBuff(String filePath){
-        ArrayList<ItemOfensivo>inventarioOf = new ArrayList<>();
+    public static ArrayList<ItemBuff> readItemBuff(String filePath){
+        ArrayList<ItemBuff>inventarioBuff = new ArrayList<>();
         
         String line = "";
         String nombre = "";
@@ -268,8 +268,8 @@ public final class Archivos {
         int precio = 0;
         int cantidad = 0;
         String rareza = "";
-        int poderAtaque = 0;
-        double probabilidadCritico = 0;
+        String atributoMejorado = "";
+        int duracion = 0;
                 try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
            reader.readLine();
            
@@ -282,18 +282,18 @@ public final class Archivos {
                             precio = Integer.parseInt(parts[2].trim());
                             cantidad = Integer.parseInt(parts[3].trim());
                             rareza = parts[4].trim();
-                            poderAtaque = Integer.parseInt(parts[5].trim());
-                            probabilidadCritico = Double.parseDouble(parts[6].trim());
+                            atributoMejorado = parts[5].trim();
+                            duracion = Integer.parseInt(parts[6].trim());
                             
-                            inventarioOf.add(new ItemOfensivo(nombre, descripcion, precio, cantidad, rareza, poderAtaque, probabilidadCritico));
+                            inventarioBuff.add(new ItemBuff(nombre, descripcion, precio, cantidad, rareza, atributoMejorado, duracion));
                             
                         }
                         else{
-                            System.out.println("No se pudo crear el personaje por falta de atributos");
+                            System.out.println("No se pudo crear el item buffer por falta de atributos");
                         }
                }
                catch(Exception e){
-                   System.out.println("Error creando el personaje: " + e.getMessage());
+                   System.out.println("Error creando el item de buff: " + e.getMessage());
                }
            }
            reader.close();
@@ -302,10 +302,10 @@ public final class Archivos {
             System.err.println("Error al recuperar los datos" + e.getMessage());
         }
         
-        return inventarioOf;
+        return inventarioBuff;
     }
-    public static ArrayList<ItemOfensivo> readItemUtil(String filePath){
-        ArrayList<ItemOfensivo>inventarioOf = new ArrayList<>();
+    public static ArrayList<ItemUtilidad> readItemUtil(String filePath){
+        ArrayList<ItemUtilidad>inventarioUtil = new ArrayList<>();
         
         String line = "";
         String nombre = "";
@@ -313,8 +313,8 @@ public final class Archivos {
         int precio = 0;
         int cantidad = 0;
         String rareza = "";
-        int poderAtaque = 0;
-        double probabilidadCritico = 0;
+        String tipoUso = "";
+        int durabilidad = 0;
                 try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
            reader.readLine();
            
@@ -327,18 +327,18 @@ public final class Archivos {
                             precio = Integer.parseInt(parts[2].trim());
                             cantidad = Integer.parseInt(parts[3].trim());
                             rareza = parts[4].trim();
-                            poderAtaque = Integer.parseInt(parts[5].trim());
-                            probabilidadCritico = Double.parseDouble(parts[6].trim());
+                            tipoUso = parts[5].trim();
+                            durabilidad = Integer.parseInt(parts[6].trim());
                             
-                            inventarioOf.add(new ItemOfensivo(nombre, descripcion, precio, cantidad, rareza, poderAtaque, probabilidadCritico));
+                            inventarioUtil.add(new ItemUtilidad(nombre, descripcion, precio, cantidad, rareza, tipoUso, durabilidad));
                             
                         }
                         else{
-                            System.out.println("No se pudo crear el personaje por falta de atributos");
+                            System.out.println("No se pudo crear el item de utilidad por falta de atributos");
                         }
                }
                catch(Exception e){
-                   System.out.println("Error creando el personaje: " + e.getMessage());
+                   System.out.println("Error creando el item de utilidad: " + e.getMessage());
                }
            }
            reader.close();
@@ -347,55 +347,54 @@ public final class Archivos {
             System.err.println("Error al recuperar los datos" + e.getMessage());
         }
         
-        return inventarioOf;
-    }
-    
-    public static ArrayList<ItemOfensivo> readItemRe(String filePath){
-        ArrayList<ItemOfensivo>inventarioOf = new ArrayList<>();
-        
-        String line = "";
-        String nombre = "";
-        String descripcion= "";
-        int precio = 0;
-        int cantidad = 0;
-        String rareza = "";
-        int poderAtaque = 0;
-        double probabilidadCritico = 0;
-                try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
-           reader.readLine();
-           
-           while((line = reader.readLine())!=null){
-               String[] parts = line.split(",");
-               try{
-                        if(parts.length>=5){
-                            nombre = parts[0].trim();
-                            descripcion = parts[1].trim();
-                            precio = Integer.parseInt(parts[2].trim());
-                            cantidad = Integer.parseInt(parts[3].trim());
-                            rareza = parts[4].trim();
-                            poderAtaque = Integer.parseInt(parts[5].trim());
-                            probabilidadCritico = Double.parseDouble(parts[6].trim());
-                            
-                            inventarioOf.add(new ItemOfensivo(nombre, descripcion, precio, cantidad, rareza, poderAtaque, probabilidadCritico));
-                            
-                        }
-                        else{
-                            System.out.println("No se pudo crear el personaje por falta de atributos");
-                        }
-               }
-               catch(Exception e){
-                   System.out.println("Error creando el personaje: " + e.getMessage());
-               }
-           }
-           reader.close();
-        }
-        catch(IOException e){
-            System.err.println("Error al recuperar los datos" + e.getMessage());
-        }
-        
-        return inventarioOf;
+        return inventarioUtil;
     }
     
-    
-
+    public static ArrayList<ItemRemedio> readItemRe(String filePath){
+        ArrayList<ItemRemedio>inventarioRe = new ArrayList<>();
+        
+        String line = "";
+        String nombre = "";
+        String descripcion= "";
+        int precio = 0;
+        int cantidad = 0;
+        String rareza = "";
+        String estadoCurado = "";
+        int efectividad = 0;
+        boolean suceso = false;
+                try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+           reader.readLine();
+           
+           while((line = reader.readLine())!=null){
+               String[] parts = line.split(",");
+               try{
+                        if(parts.length>=5){
+                            nombre = parts[0].trim();
+                            descripcion = parts[1].trim();
+                            precio = Integer.parseInt(parts[2].trim());
+                            cantidad = Integer.parseInt(parts[3].trim());
+                            rareza = parts[4].trim();
+                            estadoCurado = parts[5].trim();
+                            efectividad = Integer.parseInt(parts[6].trim());
+                            suceso = Boolean.parseBoolean(parts[7].trim());
+                            inventarioRe.add(new ItemRemedio(nombre, descripcion, precio, cantidad, rareza, estadoCurado, efectividad, suceso));
+                            
+                        }
+                        else{
+                            System.out.println("No se pudo crear el objeto de remedio por falta de atributos");
+                        }
+               }
+               catch(Exception e){
+                   System.out.println("Error creando el objeto de remedio: " + e.getMessage());
+               }
+           }
+           reader.close();
+        }
+        catch(IOException e){
+            System.err.println("Error al recuperar los datos" + e.getMessage());
+        }
+        
+        return inventarioRe;
+    }
+       
 }
