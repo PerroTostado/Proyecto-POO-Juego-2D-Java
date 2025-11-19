@@ -1,0 +1,3 @@
+nombre,descripcion,precio,cantidad,rareza,poderAtaque,probabilidadCritico
+Libro Pesado,Manual de 1000 páginas perfecto para lanzar,45,3,Común,30,0.1
+Tinta Manchante,Bolígrafo que explota al golpear,25,5,Común,15,0.05

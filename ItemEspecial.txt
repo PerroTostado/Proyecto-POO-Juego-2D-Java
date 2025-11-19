@@ -1,0 +1,3 @@
+nombre,descripcion,precio,cantidad,rareza,habEspecial,poder
+Proyector Portátil,Equipo para presentaciones impactantes,120,1,Épico,Ciega al rival,80
+Altavoz Bluetooth,Dispositivo que distrae con música alta,65,2,Raro,Interrumpe concentración,45

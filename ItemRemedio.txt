@@ -1,0 +1,3 @@
+nombre,descripcion,precio,cantidad,rareza,estadoCurado,efectividad,suceso
+Aspirina Forte,Analgésico para dolores de cabeza post-estudio,20,12,Común,Dolor de cabeza,85,false
+Jarabe para la Tos,Medicamento que permite recuperar la voz,35,5,Raro,Afonía,75,true

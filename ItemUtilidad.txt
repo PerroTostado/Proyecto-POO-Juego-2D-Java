@@ -1,0 +1,3 @@
+nombre,descripcion,precio,cantidad,rareza,tipoUso,durabilidad
+Calculadora Científica,Herramienta para cálculos complejos,80,1,Común,Exámenes,100
+USB de 1TB,Almacenamiento masivo para proyectos,95,1,Raro,Almacenamiento,150

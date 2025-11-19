@@ -1,0 +1,3 @@
+nombre,descripcion,precio,cantidad,rareza,puntosEnergia,temporalBoost
+SpeedMax,Bebida energética de acción inmediata,35,8,Común,60,false
+ViveCien,Suplemento vitamínico con efecto prolongado,55,4,Raro,40,true

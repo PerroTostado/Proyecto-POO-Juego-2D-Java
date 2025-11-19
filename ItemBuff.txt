@@ -1,0 +1,3 @@
+nombre,descripcion,precio,cantidad,rareza,atributoMejorado,duracion
+Café Premium,Bebida que aumenta temporalmente la concentración,40,6,Común,Concentración,60
+Gafas de Estudio,Lentes que mejoran la retención de información,75,2,Raro,Memoria,90
