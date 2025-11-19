@@ -27,7 +27,8 @@ public class KeyHandler implements KeyListener{
     public void keyPressed(KeyEvent e) {
         
         int code = e.getKeyCode();
-        //Title State
+
+        //Pause State
         if(gp.gameState == gp.pauseState){
             
             if(code == KeyEvent.VK_W){
@@ -50,6 +51,7 @@ public class KeyHandler implements KeyListener{
                 if(gp.player.commandNumPause == 1){
                     gp.gameState = 1;
                     gp.savePlayerPosition(gp.player);
+                    gp.savePlayerInfo(gp.player);
                 }
                 if(gp.player.commandNumPause == 2){
                     gp.gameState = gp.titleState;
@@ -261,28 +263,34 @@ public class KeyHandler implements KeyListener{
                     if(gp.player.commandNum == 0){
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition();
+                       gp.player.tempRol = "Estudiante Pregrado";
                     }
                     if(gp.player.commandNum == 1){
                         gp.gameState = gp.playState;
                         gp.loadPlayerPosition();
+                        gp.player.tempRol = "Estudiante Posgrado";
                     }
                     if(gp.player.commandNum == 2){
                         gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
+                        gp.player.tempRol = "Estudiante Tecnologo";
                     }
                     
                     if(gp.player.commandNum == 3){
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition(); 
+                       gp.player.tempRol = "Estudiante de Maestria";
                     }
                     if(gp.player.commandNum == 4){
                         gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
+                        gp.player.tempRol = "Estudiante de Espeliacizacion";
                     }
                     
                     if(gp.player.commandNum == 5){
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition(); 
+                       gp.player.tempRol = "Estudiante de Doctorado";
                     }
             }
         }
@@ -304,10 +312,12 @@ public class KeyHandler implements KeyListener{
                 if(code == KeyEvent.VK_ENTER){
                     if(gp.player.commandNum == 0){
                        gp.gameState = gp.playState;
+                       gp.player.tempRol = "Profesor Planta";
                        
                     }
                     if(gp.player.commandNum == 1){
                        gp.gameState = gp.playState;
+                       gp.player.tempRol = "Profesor Catedra";
                         
                     }
                 }
@@ -332,6 +342,16 @@ public class KeyHandler implements KeyListener{
             enterPress = true; 
         }
         
+        if(code == KeyEvent.VK_I){
+            if(gp.gameState == 1){
+                gp.gameState = 3;
+                gp.loadPlayerInfo();
+            }
+            else if(gp.gameState == 3){
+                gp.gameState = 1;
+            }
+        }
+        //Pause State
         if(code == KeyEvent.VK_P){
             if(gp.gameState == gp.playState){
                 gp.gameState = gp.pauseState;
@@ -349,6 +369,7 @@ public class KeyHandler implements KeyListener{
                 // NOTA IMPORTANTE: NO desactivamos enterPress aquí. Se desactivará en la lógica del evento/diálogo.
             }
         }
+        
     }
 
     @Override

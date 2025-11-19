@@ -58,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int infoState = 5;
     public final int dialogueState = 3;
     public final int gameOverState = 4;
     
@@ -268,4 +269,46 @@ public void playerNewPosition(Player player) {
 
     return new Player(this, keyH, screenWidth/2 - tileSize/2, screenHeight/2 - tileSize/2);
 }
+    
+    public void savePlayerInfo(Player player) {
+    try {
+        File file = new File("player_info.txt");
+
+        // Si el archivo no existe, lo crea
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        // Escribir atributos
+        FileWriter writer = new FileWriter(file);
+        writer.write(player.tempGenero + "," + player.tempEstratoSocial + "," + player.tempComunidadUIS + "," + player.tempRol);
+        writer.close();
+        
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+    
+    public Player loadPlayerInfo() {
+
+    try (BufferedReader reader = new BufferedReader(new FileReader("player_Info.txt"))) {
+        String line = reader.readLine(); 
+
+        if (line != null) {
+            String[] parts = line.split(",");
+            int x = Integer.parseInt(parts[0]);
+            int y = Integer.parseInt(parts[1]);
+
+            return new Player(this, keyH, x, y);
+        }
+        
+        
+    } 
+    catch (IOException e) {
+        System.out.println("No existe archivo, usando posición por defecto.");
+    }
+
+    return new Player(this, keyH, screenWidth/2 - tileSize/2, screenHeight/2 - tileSize/2);
+}
+    
 }
