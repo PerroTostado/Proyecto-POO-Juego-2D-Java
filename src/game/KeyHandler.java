@@ -12,6 +12,7 @@ public class KeyHandler implements KeyListener{
     GamePanel gp;
     Archivos ar;
     public boolean upPress, downPress, leftPress, rigthPress;
+    public boolean enterPress = false; 
     
     public KeyHandler(GamePanel gp){
         this.gp = gp;
@@ -336,6 +337,11 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_D){
             rigthPress = true;
         }
+        
+        if(code == KeyEvent.VK_ENTER){
+            enterPress = true; 
+        }
+        
         if(code == KeyEvent.VK_I){
             if(gp.gameState == 1){
                 gp.gameState = 3;
@@ -356,10 +362,11 @@ public class KeyHandler implements KeyListener{
         }
 
         // DIALOGUE STATE: Se usa ENTER para cerrar/avanzar el diálogo
-        if(code == KeyEvent.VK_ENTER){ // <-- Nuevo manejo para ENTER
-            if(gp.gameState == gp.dialogueState){
-                // Por ahora, solo volvemos al estado de juego (playState). 
+        if(gp.gameState == gp.dialogueState){
+            if(code == KeyEvent.VK_ENTER){
+                // Al presionar ENTER en el diálogo, volvemos al juego.
                 gp.gameState = gp.playState;
+                // NOTA IMPORTANTE: NO desactivamos enterPress aquí. Se desactivará en la lógica del evento/diálogo.
             }
         }
         
