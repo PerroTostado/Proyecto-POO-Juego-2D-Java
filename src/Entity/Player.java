@@ -296,9 +296,24 @@ public class Player extends Entity{
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(20F));
         
-        String text = "Genero:" + gp.player.tempGenero;
+        String text = "Informacion del Jugador";
         int x = 470;
         int y = 40;
+        g2.drawString(text, x, y);
+        
+        text = "Nombre:" + gp.player.tempName;
+        x = 470;
+        y += 30;
+        g2.drawString(text, x, y);
+        
+        text = "Edad:" + gp.player.tempEdad;
+        x = 470;
+        y += 30;
+        g2.drawString(text, x, y);
+        
+        text = "Genero:" + gp.player.tempGenero;
+        x = 470;
+        y += 30;
         g2.drawString(text, x, y);
         
         text = "Estrato:" + Integer.toString(gp.player.tempEstratoSocial);
