@@ -15,17 +15,31 @@ public class EventHandler {
         eventRect = new Rectangle();
         eventRect.x = 23;
         eventRect.y = 23;
-        eventRect.width = 2;
-        eventRect.height = 2;
+        eventRect.width = 10;
+        eventRect.height = 10;
         eventRectDefaultX = eventRect.x;
         eventRectDefaultY = eventRect.y;
     }
 
     public void checkEvent () {
  
-        if(hit(24,24,"any") == true){ // Cambié a "any" para que se active sin importar la dirección
-            damagePit(gp.dialogueState);
-                
+        // Lógica para resetear la bandera de evento
+        if(canTouchEvent == false){
+            if(hit(23, 23, "any") == false){
+                canTouchEvent = true; // El jugador ha salido de la casilla, puede volver a tocar el evento
+            }
+        }
+        
+        // Ejecución del evento solo si puede ser tocado
+        if(canTouchEvent == true) {
+            if(hit(23,23,"any") == true){
+                damagePit(gp.dialogueState);
+                canTouchEvent = false; // Bloquea el evento después de activarlo
+            }
+        }
+        
+        if(hit(24, 24, "any") == true){ 
+            healingPool(gp.dialogueState);
         }
 
     }
@@ -56,5 +70,31 @@ public class EventHandler {
         gp.gameState=gameState;
         gp.ui.currentDialogue = "Haz caido en una trampa";
         gp.player.life -= 1;
+    }
+    
+    public void healingPool(int gameState){
+        // Verifica si la tecla ENTER fue presionada Y la vida no está al máximo.
+        if (gp.keyH.enterPress == true) { 
+            
+            if (gp.player.life < gp.player.maxLife) {
+                
+                // 1. Establece el estado de DIÁLOGO
+                gp.gameState=gameState; 
+                
+                // 2. Establece el texto del diálogo
+                gp.ui.currentDialogue = "Bebes el agua. \nTu vida ha sido recuperada.";
+
+                // 3. Aplica la curación
+                gp.player.life = gp.player.maxLife; // Curación completa según el video
+                
+            } else {
+                
+                // 1. Establece el estado de DIÁLOGO
+                gp.gameState=gameState; 
+
+                // 2. Mensaje si la vida ya está completa
+                gp.ui.currentDialogue = "Tu vida ya está al máximo. No necesitas curarte.";
+            }
+        }
     }
 }

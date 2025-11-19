@@ -146,7 +146,7 @@ public class UI {
         
         //TITLE NAME
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
-        String text = "Uis Adventure";
+        String text = "";
         int x = getXforCenteredText(text);
         int y = gp.screenHeight;
         
