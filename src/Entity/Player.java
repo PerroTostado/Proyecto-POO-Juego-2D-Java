@@ -345,7 +345,7 @@ public class Player extends Entity{
         y += gp.tileSize;
         g2.drawString(text, gp.tileSize+30, y);
         if(commandNumPause == 1){
-            g2.drawString(">", x-gp.tileSize, y);
+            g2.drawString(">", gp.tileSize, y);
         }
         
         text = "SALIR";
@@ -652,7 +652,7 @@ public class Player extends Entity{
             text = "Planta";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 0){
                 g2.drawString(">", gp.tileSize, y);
             }
