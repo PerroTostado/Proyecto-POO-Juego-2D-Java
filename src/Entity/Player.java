@@ -23,7 +23,8 @@ public class Player extends Entity{
     public final int worldStartX = 48*24;
     public final int worldStartY = 48*24;
     
-    public Player(GamePanel gp, KeyHandler keyH,int screenx,int screeny){                                                                                           
+    public Player(GamePanel gp, KeyHandler keyH,int screenx,int screeny){  
+        super(gp);
         this.gp = gp;
         this.keyH = keyH;
         
@@ -120,7 +121,12 @@ public class Player extends Entity{
             // Check tile collision
             collisionOn = false;
             gp.cChecker.checkTile(this);
-        
+            
+            // Check NPC collision
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
+            
+            
             // If collision is false, player can move
             if(collisionOn == false){
                 switch (direction){

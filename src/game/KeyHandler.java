@@ -241,6 +241,7 @@ public class KeyHandler implements KeyListener{
                     if(ui.commandNum == 2){
                    
                         gp.gameState = gp.playState;
+                        gp.player.tempRol = "Administrativo";
                     }
                     
                     if(ui.commandNum == 3){
@@ -373,7 +374,7 @@ public class KeyHandler implements KeyListener{
             if(code == KeyEvent.VK_ENTER){
                 // Al presionar ENTER en el diálogo, volvemos al juego.
                 gp.gameState = gp.playState;
-                // NOTA IMPORTANTE: NO desactivamos enterPress aquí. Se desactivará en la lógica del evento/diálogo.
+                enterPress = true;
             }
         }
         

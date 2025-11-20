@@ -571,7 +571,7 @@ public class UI {
         g2.setFont(arial_40.deriveFont(Font.PLAIN, 28F));
         x += gp.tileSize; // Ajuste para que el texto no toque el borde de la ventana
         y += gp.tileSize;
-
+        
         // Aquí se dibuja el texto del diálogo
         // Dividimos el texto para que quepa en la ventana
         for(String line : currentDialogue.split("\n")){

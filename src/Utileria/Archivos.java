@@ -4,6 +4,14 @@ package Utileria;
 import ComunidadUIS.Jugador;
 import ComunidadUIS.Persona;
 import ComunidadUIS.EstudiantePre;
+import ComunidadUIS.EstudiantePos;
+import ComunidadUIS.EstudianteMas;
+import ComunidadUIS.EstudianteEspez;
+import ComunidadUIS.EstudianteTec;
+import ComunidadUIS.EstudianteDoc;
+import ComunidadUIS.ProfesorPlanta;
+import ComunidadUIS.ProfesorCatedra;
+import noComunidadUIS.Visitantes;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -19,15 +27,144 @@ import Consumibles.ItemBuff;
 import Consumibles.ItemUtilidad;
 import Consumibles.ItemRemedio;
 import java.io.File;
-
+import Entity.Player;
 public final class Archivos {
     
+    
  private Archivos(){}
-     
+    
     public static ArrayList<Persona> readPersona(String filePath){
         
         ArrayList<Persona> personas = new ArrayList<>();
         
+        String line = "";
+        String nombre = "";
+        int edad = 0;
+        String genero = "";
+        boolean comunidadUIS = false;
+        int estratoSocial = 0;
+        String nombreRol = "";
+        Player player = null;
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+            reader.readLine();
+            
+            while((line = reader.readLine())!=null){
+                String[] parts = line.split(",");
+                try{
+                        if(parts.length>=7){
+                            nombre = parts[0].trim();
+                            edad = Integer.parseInt(parts[1].trim());
+                            genero = parts[2].trim();
+                            comunidadUIS = Boolean.parseBoolean(parts[3].trim());
+                            estratoSocial = Integer.parseInt(parts[4].trim());
+                            nombreRol = parts[5];
+                            if(player.tempRol == "Estudiante Pregrado"){
+                                int cantidadCreditos = 0;
+                                int nivel = 0;
+                                boolean comedoresD = false;
+                                boolean comedoresA = false;
+                                boolean comedoresC = false;
+                                
+                                cantidadCreditos = Integer.parseInt(parts[6].trim());
+                                nivel = Integer.parseInt(parts[7].trim());
+                                comedoresD = Boolean.parseBoolean(parts[8].trim());
+                                comedoresA = Boolean.parseBoolean(parts[9].trim());
+                                comedoresC = Boolean.parseBoolean(parts[10].trim());
+                                personas.add(new EstudiantePre(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, cantidadCreditos, nivel, comedoresD, comedoresA, comedoresC));
+                            }
+                            else if(player.tempRol == "Estudiante Posgrado"){
+                                int cantidadCreditos = 0;
+                                int nivel = 0;
+                                String tipoPos = "";
+                                String area = "";
+                                
+                                cantidadCreditos = Integer.parseInt(parts[6].trim());
+                                nivel = Integer.parseInt(parts[7].trim());
+                                tipoPos = parts[8].trim();
+                                area = parts[9].trim();
+                                personas.add(new EstudiantePos(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, cantidadCreditos, nivel, tipoPos, area));
+                            }
+                            else if(player.tempRol == "Estudiante Tecnologo"){
+                                int cantidadCreditos = 0;
+                                int nivel = 0;
+                                String tecnologias = "";
+                                boolean practicas = false;
+                                cantidadCreditos = Integer.parseInt(parts[6].trim());
+                                nivel = Integer.parseInt(parts[7].trim());
+                                tecnologias = parts[8].trim();
+                                practicas = Boolean.parseBoolean(parts[9].trim());
+                                personas.add(new EstudianteTec(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, cantidadCreditos, nivel, tecnologias, practicas));
+                            }
+                            else if(player.tempRol == "Estudiante de Maestria"){
+                                int cantidadCreditos = 0;
+                                int nivel = 0;
+                                boolean clases = false;
+                                String temaTesis = "";
+                                String directorTesis = "";
+                                cantidadCreditos = Integer.parseInt(parts[6].trim());
+                                nivel = Integer.parseInt(parts[7].trim());
+                                clases = Boolean.parseBoolean(parts[8].trim());
+                                temaTesis = parts[9].trim();
+                                directorTesis = parts[10].trim();
+                                personas.add(new EstudianteMas(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, cantidadCreditos, nivel, clases, temaTesis, directorTesis));
+                            }
+                            else if(player.tempRol == "Estudiante de Especializacion"){
+                                int cantidadCreditos = 0;
+                                int nivel = 0;
+                                String campo = "";
+                                double horas = 0.0;
+                                cantidadCreditos = Integer.parseInt(parts[6].trim());
+                                nivel = Integer.parseInt(parts[7].trim());
+                                campo = parts[8].trim();
+                                horas = Double.parseDouble(parts[9].trim());
+                                personas.add(new EstudianteEspez(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, cantidadCreditos, nivel, campo, horas));
+                            }
+                            else if(player.tempRol == "Estudiante de Doctorado"){
+                                int cantidadCreditos = 0;
+                                int nivel = 0;
+                                int publicaciones = 0;
+                                String temaInvestigacion = "";
+                                cantidadCreditos = Integer.parseInt(parts[6].trim());
+                                nivel = Integer.parseInt(parts[7].trim());
+                                publicaciones = Integer.parseInt(parts[8].trim());
+                                temaInvestigacion = parts[9].trim();
+                                personas.add(new EstudianteDoc(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, cantidadCreditos, nivel, publicaciones, temaInvestigacion));
+                            }
+                            else if(player.tempRol == "Administrativo"){
+                                String edificioTrabajo = "";
+                                String oficina = "";
+                                edificioTrabajo = parts[6].trim();
+                                oficina = parts[7].trim();
+                            }
+                            else if(player.tempRol == "Profesor Planta"){
+                                int añosTrabajo = 0;
+                                boolean direccionTesis = false;
+                                añosTrabajo = Integer.parseInt(parts[6].trim());
+                                direccionTesis = Boolean.parseBoolean(parts[7].trim());
+                                personas.add(new ProfesorPlanta(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, añosTrabajo, direccionTesis));
+                             }
+                            else if(player.tempRol == "Profesor Catedra"){
+                                int horasSemanales;
+                                String AsignaturaPrincipal;
+                                horasSemanales = Integer.parseInt(parts[6].trim());
+                                AsignaturaPrincipal = parts[7].trim();
+                                personas.add(new ProfesorCatedra(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, horasSemanales, AsignaturaPrincipal));
+                            }
+                            else if(player.tempRol == "Visitante"){
+                                String horaVisita;
+                                boolean presencia;
+                                horaVisita = parts[6].trim();
+                                presencia = Boolean.parseBoolean(parts[7].trim());
+                                personas.add(new Visitantes(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, horaVisita, presencia));
+                            }
+                        }
+                }catch(Exception e){
+                    System.out.println("Error al crear el rol: " + e.getMessage());
+                }
+            }        
+        }catch(Exception e){
+            
+        }
         return personas;
     }
     public static ArrayList<Jugador> readJugador(String filePath){
@@ -41,9 +178,6 @@ public final class Archivos {
         int energia = 0;
         Persona rol;
         
-        
-        
-      
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
            reader.readLine();
            
@@ -94,7 +228,7 @@ public final class Archivos {
            while((line = reader.readLine())!=null){
                String[] parts = line.split(",");
                try{
-                        if(parts.length>=5){
+                        if(parts.length>=7){
                             nombre = parts[0].trim();
                             descripcion = parts[1].trim();
                             precio = Integer.parseInt(parts[2].trim());
@@ -139,7 +273,7 @@ public final class Archivos {
            while((line = reader.readLine())!=null){
                String[] parts = line.split(",");
                try{
-                        if(parts.length>=5){
+                        if(parts.length>=7){
                             nombre = parts[0].trim();
                             descripcion = parts[1].trim();
                             precio = Integer.parseInt(parts[2].trim());
@@ -186,7 +320,7 @@ public final class Archivos {
            while((line = reader.readLine())!=null){
                String[] parts = line.split(",");
                try{
-                        if(parts.length>=5){
+                        if(parts.length>=7){
                             nombre = parts[0].trim();
                             descripcion = parts[1].trim();
                             precio = Integer.parseInt(parts[2].trim());
@@ -231,7 +365,7 @@ public final class Archivos {
            while((line = reader.readLine())!=null){
                String[] parts = line.split(",");
                try{
-                        if(parts.length>=5){
+                        if(parts.length>=7){
                             nombre = parts[0].trim();
                             descripcion = parts[1].trim();
                             precio = Integer.parseInt(parts[2].trim());
@@ -276,7 +410,7 @@ public final class Archivos {
            while((line = reader.readLine())!=null){
                String[] parts = line.split(",");
                try{
-                        if(parts.length>=5){
+                        if(parts.length>=7){
                             nombre = parts[0].trim();
                             descripcion = parts[1].trim();
                             precio = Integer.parseInt(parts[2].trim());
@@ -321,7 +455,7 @@ public final class Archivos {
            while((line = reader.readLine())!=null){
                String[] parts = line.split(",");
                try{
-                        if(parts.length>=5){
+                        if(parts.length>=7){
                             nombre = parts[0].trim();
                             descripcion = parts[1].trim();
                             precio = Integer.parseInt(parts[2].trim());
@@ -368,7 +502,7 @@ public final class Archivos {
            while((line = reader.readLine())!=null){
                String[] parts = line.split(",");
                try{
-                        if(parts.length>=5){
+                        if(parts.length>=8){
                             nombre = parts[0].trim();
                             descripcion = parts[1].trim();
                             precio = Integer.parseInt(parts[2].trim());
