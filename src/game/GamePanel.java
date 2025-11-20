@@ -17,8 +17,6 @@ import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable{
     
-    
-    
     // Screen Settings
     final int originalTileSize = 16; // 16 x 16 Tile
     final int scale = 3;
@@ -35,8 +33,6 @@ public class GamePanel extends JPanel implements Runnable{
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
     
-    
-    
     // FPS
     int FPS = 60;
    
@@ -49,18 +45,17 @@ public class GamePanel extends JPanel implements Runnable{
     public SuperObject obj[] = new SuperObject[10];
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
-    
-    
-    
+   
     //GAME STATE
     public int i = 0;
     public int gameState;
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
-    public final int infoState = 5;
     public final int dialogueState = 3;
     public final int gameOverState = 4;
+    public final int infoState = 5;
+    public final int inventaryState = 6;
     
     public GamePanel() {
 
@@ -76,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         //AQUÍ SE CARGA LA PARTIDA
         player = loadPlayerPosition();
-}
+    }
     
     public void setupGame(){
         gameState = playState;
@@ -84,11 +79,10 @@ public class GamePanel extends JPanel implements Runnable{
     
     public void startGameThread(){
         gameThread = new Thread(this);
-        gameThread.start();
-        
+        gameThread.start(); 
     }
     
-/*  public void run(){
+  /*public void run(){
        
         while(gameThread != null){
                         
@@ -165,7 +159,6 @@ public class GamePanel extends JPanel implements Runnable{
         if(gameState == dialogueState){ // <-- Nuevo caso para dialogueState
             // No hacer nada en dialogueState
         }
-
     }
     
     @Override
@@ -198,115 +191,100 @@ public class GamePanel extends JPanel implements Runnable{
 
             g2.dispose(); 
         }
-
     }
     
     
 
 
     public void savePlayerPosition(Player player) {
-    try {
-        File file = new File("player_position.txt");
+        try {
+            File file = new File("player_position.txt");
 
-        // Si el archivo no existe, lo crea
-        if (!file.exists()) {
-            file.createNewFile();
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(player.worldX + "," + player.worldY);
+            writer.close();
         }
-
-        // Escribir posición
-        FileWriter writer = new FileWriter(file);
-        writer.write(player.worldX + "," + player.worldY);
-        writer.close();
-
-        // Mostrar la ubicación real del archivo
-        System.out.println("Archivo guardado en: " + file.getAbsolutePath());
-        System.out.println("Posición guardada X=" + player.worldX + " Y=" + player.worldY);
-        
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-}
-
-public void playerNewPosition(Player player) {
-    try {
-        File file = new File("player_position.txt");
-
-        // Si el archivo no existe, lo crea
-        if (!file.exists()) {
-            file.createNewFile();
+        catch (IOException e) {
+            e.printStackTrace();
         }
-
-        // Escribir posición
-        FileWriter writer1 = new FileWriter(file);
-        writer1.write(player.worldStartX + "," + player.worldStartY);
-        writer1.close();
-
-        // Mostrar la ubicación real del archivo
-        System.out.println("Archivo guardado en: " + file.getAbsolutePath());
-        System.out.println("Posición guardada X=" + player.worldStartX + " Y=" + player.worldStartY);
-        
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
+
+    public void playerNewPosition(Player player) {
+        try {
+            File file = new File("player_position.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(player.worldStartX + "," + player.worldStartY);
+            writer.close(); 
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Player loadPlayerPosition() {
 
-    try (BufferedReader reader = new BufferedReader(new FileReader("player_position.txt"))) {
-        String line = reader.readLine(); 
+        try (BufferedReader reader = new BufferedReader(new FileReader("player_position.txt"))) {
+            String line = reader.readLine(); 
 
-        if (line != null) {
-            String[] parts = line.split(",");
-            int x = Integer.parseInt(parts[0]);
-            int y = Integer.parseInt(parts[1]);
+            if (line != null) {
+                String[] parts = line.split(",");
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
 
-            return new Player(this, keyH, x, y);
+                return new Player(this, keyH, x, y);
+            }
+        } 
+        catch (IOException e) {
         }
-    } 
-    catch (IOException e) {
-        System.out.println("No existe archivo, usando posición por defecto.");
+        return new Player(this, keyH, screenWidth/2 - tileSize/2, screenHeight/2 - tileSize/2);
     }
-
-    return new Player(this, keyH, screenWidth/2 - tileSize/2, screenHeight/2 - tileSize/2);
-}
     
     public void savePlayerInfo(Player player) {
-    try {
-        File file = new File("player_info.txt");
+        try {
+            File file = new File("player_info.txt");
 
-        // Si el archivo no existe, lo crea
-        if (!file.exists()) {
-            file.createNewFile();
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir atributos
+            FileWriter writer = new FileWriter(file);
+            writer.write(player.tempGenero + "," + player.tempEstratoSocial + "," + player.tempComunidadUIS + "," + player.tempRol);
+            writer.close(); 
+        } 
+        catch (IOException e) {
         }
-
-        // Escribir atributos
-        FileWriter writer = new FileWriter(file);
-        writer.write(player.tempGenero + "," + player.tempEstratoSocial + "," + player.tempComunidadUIS + "," + player.tempRol);
-        writer.close();
-        
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
     
     public Player loadPlayerInfo() {
 
-    try (BufferedReader reader = new BufferedReader(new FileReader("player_Info.txt"))) {
-        String line = reader.readLine(); 
+        try (BufferedReader reader = new BufferedReader(new FileReader("player_Info.txt"))) {
+            String line = reader.readLine(); 
 
-        if (line != null) {
-            String[] parts = line.split(",");
-            int x = Integer.parseInt(parts[0]);
-            int y = Integer.parseInt(parts[1]);
+            if (line != null) {
+                String[] parts = line.split(",");
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
 
-            return new Player(this, keyH, x, y);
+                return new Player(this, keyH, x, y);
+            }
+        } 
+        catch (IOException e) {
         }
-    } 
-    catch (IOException e) {
-        System.out.println("No existe archivo, usando posición por defecto.");
-    }
-
-    return new Player(this, keyH, screenWidth/2 - tileSize/2, screenHeight/2 - tileSize/2);
-}
-    
+        return new Player(this, keyH, screenWidth/2 - tileSize/2, screenHeight/2 - tileSize/2);
+    }   
 }
