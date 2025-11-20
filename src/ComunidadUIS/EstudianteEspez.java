@@ -7,7 +7,7 @@ public class EstudianteEspez extends Estudiante {
     
     private String campo;
     private double horas;
-    
+    public String dialogo;
     public EstudianteEspez(){
         
     }
@@ -50,7 +50,7 @@ public class EstudianteEspez extends Estudiante {
         return mess;
     }
     public String descripcion(){
-        String mess = "Has logrado obtener obtener tu título y ahora vas en busca de más conocimiento";
-        return mess;
+        dialogo = "Has logrado obtener obtener tu título y ahora vas en busca de más conocimiento";
+        return dialogo;
     }
 }

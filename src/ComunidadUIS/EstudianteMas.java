@@ -7,6 +7,7 @@ public class EstudianteMas extends Estudiante {
     private boolean clases;
     private String temaTesis;
     private String directorTesis;
+    public String dialogo;
     
     public EstudianteMas(){
         
@@ -61,7 +62,7 @@ public class EstudianteMas extends Estudiante {
         return mess;
     }
     public String descripcion(){
-        String mess = "Estarás a una elección de unirte a la gran sociedad docente";
-        return mess;
+        dialogo = "Estarás a una elección de unirte a la gran sociedad docente";
+        return dialogo;
     }
 }

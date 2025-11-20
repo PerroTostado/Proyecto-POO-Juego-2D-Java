@@ -6,6 +6,7 @@ public class EstudianteDoc extends Estudiante{
     
     private int publicaciones;
     private String temaInvestigacion;
+    public String dialogo;
     
     public EstudianteDoc(){
     }
@@ -49,8 +50,9 @@ public class EstudianteDoc extends Estudiante{
         String mess = "hla;";
         return mess;        
     }
+    @Override
     public String descripcion(){
-        String mess = "Has sobrevivido a arduas y batallas y has llegado hasta aquí";
-        return mess;
+        dialogo = "Has sobrevivido a arduas y batallas y has llegado hasta aquí";
+        return dialogo;
     }
 }

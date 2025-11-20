@@ -6,7 +6,7 @@ public class EstudiantePos extends Estudiante {
     
     private String tipoPos;
     private String area;
-    
+    public String dialogo;
         public EstudiantePos(){
             
         }
@@ -50,7 +50,7 @@ public class EstudiantePos extends Estudiante {
         return mess;
     }
     public String descripcion(){
-        String mess = "Eres un formidable guerrero que sobrevivió a las pruebas del pregrado";
-        return mess;
+        dialogo = "Eres un formidable guerrero que sobrevivió a las pruebas del pregrado";
+        return dialogo;
     }
 }

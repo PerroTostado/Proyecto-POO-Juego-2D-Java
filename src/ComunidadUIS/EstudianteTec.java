@@ -6,6 +6,7 @@ public class EstudianteTec extends Estudiante{
     
     private String tecnologia;
     private boolean practicas;
+    public String dialogo;
     
         public EstudianteTec(){
             
@@ -50,7 +51,7 @@ public class EstudianteTec extends Estudiante{
                 return mess;
             }
             public String descripcion(){
-            String mess = "Eres lo suficientemente valiente para estudiar pero también lo suficientemente perezoso para no ser profesional";
-            return mess;
+            dialogo = "Eres lo suficientemente valiente para estudiar pero también lo suficientemente perezoso para no ser profesional";
+            return dialogo;
     }
 }

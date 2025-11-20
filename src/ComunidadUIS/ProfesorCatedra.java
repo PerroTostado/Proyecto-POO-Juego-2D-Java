@@ -6,6 +6,7 @@ public class ProfesorCatedra extends Profesor {
     
     private int horasSemanales;
     private String asignaturaPrincipal;
+    public String dialogo;
     
     public ProfesorCatedra(){
         
@@ -52,7 +53,7 @@ public class ProfesorCatedra extends Profesor {
             return mess;
         }
         public String descripcion(){
-        String mess = "Estás a un paso de lograr un sueldo fijo, falta poco";
-        return mess;
+        dialogo = "Estás a un paso de lograr un sueldo fijo, falta poco";
+        return dialogo;
     }
 }
