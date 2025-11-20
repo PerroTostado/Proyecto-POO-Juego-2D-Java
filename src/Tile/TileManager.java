@@ -24,7 +24,7 @@ public class TileManager {
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
         loadMap("/res/Maps/map01.txt", 0);
-        loadMap("/res/Maps/interiorCentic.txt", 1);
+        //loadMap("/res/Maps/interiorCentic.txt", 1);
     }
     
     public void getTileImage(){
@@ -250,7 +250,7 @@ public class TileManager {
             tile[67].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/floor.png"));
             
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
         }
     }
     
@@ -294,9 +294,9 @@ public class TileManager {
             }
             br.close();
             
-        }catch(Exception e){
-            
+        }catch(Exception e){  
         }
+        System.out.println(filePath);
     }
     
     public void draw(Graphics2D g2){

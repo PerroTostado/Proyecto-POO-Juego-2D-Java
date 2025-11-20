@@ -241,7 +241,7 @@ public class KeyHandler implements KeyListener{
                     if(ui.commandNum == 2){
                    
                         gp.gameState = gp.playState;
-                        gp.player.tempRol = "Administrativo";
+                        ui.tempRol = "Administrativo";
                     }
                     
                     if(ui.commandNum == 3){
