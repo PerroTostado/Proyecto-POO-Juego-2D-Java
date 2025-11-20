@@ -160,6 +160,7 @@ public class TileManager {
             
             tile[38] = new Tile();
             tile[38].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/CENTIC31.png"));
+            tile[38].collision = true;
             
             tile[39] = new Tile();
             tile[39].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/CENTIC39.png"));
