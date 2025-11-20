@@ -278,10 +278,9 @@ public class GamePanel extends JPanel implements Runnable{
 
             if (line != null) {
                 String[] parts = line.split(",");
-                int x = Integer.parseInt(parts[0]);
-                int y = Integer.parseInt(parts[1]);
-
-                return new Player(this, keyH, x, y);
+                player.tempGenero = parts[0];
+                player.tempEstratoSocial = Integer.parseInt(parts[1]);
+                player.tempRol = parts[3];
             }
         } 
         catch (IOException e) {
