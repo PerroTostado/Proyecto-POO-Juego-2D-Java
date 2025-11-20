@@ -73,28 +73,28 @@ public class EventHandler {
     }
     
     public void healingPool(int gameState){
-        // Verifica si la tecla ENTER fue presionada Y la vida no está al máximo.
+    // Verifica si la tecla ENTER fue presionada
         if (gp.keyH.enterPress == true) { 
+
+            // Resetear la bandera inmediatamente para evitar la activación instantánea
+            gp.keyH.enterPress = false; 
             
+            // Si la vida no está al máximo, curar
             if (gp.player.life < gp.player.maxLife) {
-                
+
                 // 1. Establece el estado de DIÁLOGO
                 gp.gameState=gameState; 
-                
+
                 // 2. Establece el texto del diálogo
                 gp.ui.currentDialogue = "Bebes el agua. \nTu vida ha sido recuperada.";
 
                 // 3. Aplica la curación
-                gp.player.life = gp.player.maxLife; // Curación completa según el video
+                gp.player.life = gp.player.maxLife;
                 
-            } else {
-                
-                // 1. Establece el estado de DIÁLOGO
-                gp.gameState=gameState; 
-
-                // 2. Mensaje si la vida ya está completa
-                gp.ui.currentDialogue = "Tu vida ya está al máximo. No necesitas curarte.";
+                gp.keyH.enterPress = true; 
             }
+
         }
+
     }
 }

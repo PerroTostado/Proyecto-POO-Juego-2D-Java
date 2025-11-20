@@ -221,16 +221,16 @@ public class Player extends Entity{
                 
             case "DOWN":
                 if (spriteNum == 1){
-                    image = down1;
-                }
-                if (spriteNum == 2){
                     image = down2;
                 }
+                if (spriteNum == 2){
+                    image = down1;
+                }
                 if (spriteNum == 3){
-                    image = down3;
+                    image = down4;
                 }
                 if (spriteNum == 4){
-                    image = down4;
+                    image = down3;
                 }
                 break;
                 
