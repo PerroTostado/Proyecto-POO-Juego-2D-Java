@@ -162,13 +162,16 @@ public class Archivos{
                                 presencia = Boolean.parseBoolean(parts[7].trim());
                                 personas.add(new Visitantes(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, horaVisita, presencia));
                             }
+                            else{
+                            System.out.println("No se pudo crear el objeto ofensivo por falta de atributos");
+                            }
                         }
                 }catch(Exception e){
                     System.out.println("Error al crear el rol: " + e.getMessage());
                 }
             }        
         }catch(Exception e){
-            
+            System.err.println("Error al recuperar los datos" + e.getMessage());
         }
         return personas;
     }
