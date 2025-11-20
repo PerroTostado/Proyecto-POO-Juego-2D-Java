@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 import Utileria.Archivos;
 public class UI {
     
+    Archivos ar;
     Player player;
     GamePanel gp;
     KeyHandler keyH;
@@ -58,6 +59,7 @@ public class UI {
         }  
         // PLAY STATE
         if(gp.gameState == gp.playState){
+            ar.savePlayeRol(this);
             drawPlayerScreen(g2);
             drawPlayerLife();
         }
