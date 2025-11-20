@@ -21,7 +21,6 @@ public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
     Graphics2D g2;
-    UI ui;
     public int commandNum = 0;
     public int commandNumPause = 0;
     public int titleScreenState = 0;
