@@ -1,6 +1,7 @@
 
 package game;
 
+import Entity.Entity;
 import Entity.Player;
 import Objects.SuperObject;
 import Tile.TileManager;
@@ -47,6 +48,8 @@ public class GamePanel extends JPanel implements Runnable{
     public AssetSetter aSetter = new AssetSetter(this);
     public Player player;
     public SuperObject obj[] = new SuperObject[10];
+    public Entity monster[] = new Entity[20];
+    public Entity npc[] = new Entity[10];
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
     
@@ -79,6 +82,7 @@ public class GamePanel extends JPanel implements Runnable{
 }
     
     public void setupGame(){
+        aSetter.setNPC();
         gameState = playState;
     }
     
@@ -158,6 +162,12 @@ public class GamePanel extends JPanel implements Runnable{
 
         if(gameState == playState){ // Usamos 'playState' en lugar de 1
             player.update();
+            //NPC
+            for(int i = 0; i < npc.length; i++){
+                if(npc[i] != null){
+                    npc[i].update();
+                }
+            }
         }
         if(gameState == pauseState){ // Usamos 'pauseState' en lugar de 2
             // No hacer nada en pause
@@ -189,7 +199,12 @@ public class GamePanel extends JPanel implements Runnable{
             //        obj[i].draw(g2, this);
             //    }
             // }
-
+            //NPC
+            for(int i = 0; i< npc.length; i++){
+                if(npc[i] != null){
+                    npc[i].draw(g2);
+                }
+            }
             // PLAYER
             player.draw(g2);
 

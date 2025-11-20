@@ -61,12 +61,12 @@ public class UI {
     }
     
     public void drawPauseScreen(){
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));
         String text = "PAUSA";
         int x = getXforCenteredText(text);
         int y = gp.screenHeight/2;
 
-        g2.drawString(text, x, y);
+        g2.drawString(text, gp.tileSize+30, y);
     }
         
     public void drawPlayerLife(){
@@ -113,7 +113,7 @@ public class UI {
         g2.setFont(arial_40.deriveFont(Font.PLAIN, 28F));
         x += gp.tileSize; // Ajuste para que el texto no toque el borde de la ventana
         y += gp.tileSize;
-
+        
         // Aquí se dibuja el texto del diálogo
         // Dividimos el texto para que quepa en la ventana
         for(String line : currentDialogue.split("\n")){
