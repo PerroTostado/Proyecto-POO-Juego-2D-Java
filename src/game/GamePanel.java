@@ -1,8 +1,7 @@
 
 package game;
 
-import Entity.Entity;
-import Entity.Player;
+import Entity.*;
 import Objects.SuperObject;
 import Tile.TileManager;
 import java.awt.Color;
@@ -40,6 +39,9 @@ public class GamePanel extends JPanel implements Runnable{
     TileManager tileM;
     Thread gameThread;
     KeyHandler keyH;
+    Graphics2D g2;
+    Entity ent;
+    UI ui;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public Player player;
@@ -61,8 +63,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int inventaryState = 6;
     
     public GamePanel() {
-
-        keyH = new KeyHandler(this);
+        
+        keyH = new KeyHandler(this,ui);
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -74,6 +76,8 @@ public class GamePanel extends JPanel implements Runnable{
 
         //AQUÍ SE CARGA LA PARTIDA
         player = loadPlayerPosition();
+        ui = new UI(this,keyH,player);
+        keyH.setUI(ui);
     }
     
     public void setupGame(){
@@ -175,42 +179,27 @@ public class GamePanel extends JPanel implements Runnable{
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-
+        
         Graphics2D g2 =(Graphics2D)g;
 
         //TITLE SCREEN
         if(gameState == titleState){
-           player.draw(g2);
-           ui.draw(g2); // Llama a UI.draw en titleState para dibujar la pantalla de título
+            try {
+                ui.draw(g2);
+            } catch (IOException ex) {
+                System.getLogger(GamePanel.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
         }
         else{
-            //TILE
-            tileM.draw(g2);
-
-            // OBJECTS (No se usa por ahora, pero se deja el espacio)
-            // for(int i = 0; i < obj.length; i++){
-            //    if(obj[i] != null){
-            //        obj[i].draw(g2, this);
-            //    }
-            // }
-            //NPC
-            for(int i = 0; i< npc.length; i++){
-                if(npc[i] != null){
-                    npc[i].draw(g2);
-                }
+            try {
+                tileM.draw(g2);
+                ui.draw(g2); 
+                g2.dispose();
+            } catch (IOException ex) {
+                System.getLogger(GamePanel.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }
-            // PLAYER
-            player.draw(g2);
-
-            // UI drawing:
-            ui.draw(g2); // <--- Llama a UI.draw en play/pause/dialogue states
-
-            g2.dispose(); 
         }
     }
-    
-    
-
 
     public void savePlayerPosition(Player player) {
         try {
@@ -279,7 +268,7 @@ public class GamePanel extends JPanel implements Runnable{
 
             // Escribir atributos
             FileWriter writer = new FileWriter(file);
-            writer.write(player.tempGenero + "," + player.tempEstratoSocial + "," + player.tempComunidadUIS + "," + player.tempRol);
+            writer.write(ui.tempGenero + "," + ui.tempEstratoSocial + "," + ui.tempComunidadUIS + "," + ui.tempRol);
             writer.close(); 
         } 
         catch (IOException e) {
@@ -293,9 +282,9 @@ public class GamePanel extends JPanel implements Runnable{
 
             if (line != null) {
                 String[] parts = line.split(",");
-                player.tempGenero = parts[0];
-                player.tempEstratoSocial = Integer.parseInt(parts[1]);
-                player.tempRol = parts[3];
+                ui.tempGenero = parts[0];
+                ui.tempEstratoSocial = Integer.parseInt(parts[1]);
+                ui.tempRol = parts[3];
             }
         } 
         catch (IOException e) {

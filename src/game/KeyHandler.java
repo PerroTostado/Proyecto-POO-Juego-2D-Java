@@ -8,15 +8,22 @@ import Utileria.Archivos;
 
 public class KeyHandler implements KeyListener{
     
+    UI ui;
     Player player;
     GamePanel gp;
     Archivos ar;
     public boolean upPress, downPress, leftPress, rigthPress;
     public boolean enterPress = false; 
     
-    public KeyHandler(GamePanel gp){
+    public KeyHandler(GamePanel gp,UI ui){
         this.gp = gp;
+        this.ui = ui;
     }
+    
+    public void setUI(UI ui) {
+        this.ui = ui;
+    }
+
     
     @Override
     public void keyTyped(KeyEvent e) {
@@ -32,31 +39,31 @@ public class KeyHandler implements KeyListener{
         if(gp.gameState == gp.pauseState){
             
             if(code == KeyEvent.VK_W){
-                gp.player.commandNumPause--;
+                ui.commandNumPause--;
             }
-            if(gp.player.commandNumPause < 0 ){
-                gp.player.commandNumPause = 2;
+            if(ui.commandNumPause < 0 ){
+                ui.commandNumPause = 2;
             }
             
             if(code == KeyEvent.VK_S){
-                gp.player.commandNumPause++;
-                if(gp.player.commandNumPause > 2 ){
-                    gp.player.commandNumPause = 0;
+                ui.commandNumPause++;
+                if(ui.commandNumPause > 2 ){
+                    ui.commandNumPause = 0;
                 }
             }
             if(code == KeyEvent.VK_ENTER){
-                if(gp.player.commandNumPause == 0){
+                if(ui.commandNumPause == 0){
                     gp.gameState = 1;
                 }
-                if(gp.player.commandNumPause == 1){
+                if(ui.commandNumPause == 1){
                     gp.gameState = 1;
                     gp.savePlayerPosition(gp.player);
                     gp.savePlayerInfo(gp.player);
                 }
-                if(gp.player.commandNumPause == 2){
+                if(ui.commandNumPause == 2){
                     gp.gameState = gp.titleState;
-                    gp.player.titleScreenState = 0;
-                    gp.player.commandNum = 3;
+                    ui.titleScreenState = 0;
+                    ui.commandNum = 3;
                 }
                 
             }      
@@ -64,32 +71,32 @@ public class KeyHandler implements KeyListener{
             
         if(gp.gameState == gp.titleState){
             
-            if(gp.player.titleScreenState == 0){
+            if(ui.titleScreenState == 0){
                 
                 if(code == KeyEvent.VK_W){
-                    gp.player.commandNum--;
-                    if(gp.player.commandNum < 0 ){
-                        gp.player.commandNum = 2;
+                    ui.commandNum--;
+                    if(ui.commandNum < 0 ){
+                        ui.commandNum = 2;
                     }
                 }
                 if(code == KeyEvent.VK_S){
-                    gp.player.commandNum++;
-                    if(gp.player.commandNum > 2 ){
-                        gp.player.commandNum = 0;
+                    ui.commandNum++;
+                    if(ui.commandNum > 2 ){
+                        ui.commandNum = 0;
                     }
                 }
                 if(code == KeyEvent.VK_ENTER){
-                    if(gp.player.commandNum == 0){
-                       gp.player.titleScreenState = 1;
+                    if(ui.commandNum == 0){
+                       ui.titleScreenState = 1;
                        gp.i = 1;
                         //gp.gameState = gp.playState;
                     }
-                    if(gp.player.commandNum == 1){
+                    if(ui.commandNum == 1){
                         gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
                         
                     }
-                    if(gp.player.commandNum == 2){
+                    if(ui.commandNum == 2){
                         System.exit(0);
                     }
                     
@@ -97,228 +104,228 @@ public class KeyHandler implements KeyListener{
                 
             }
             
-            else if(gp.player.titleScreenState == 1){
+            else if(ui.titleScreenState == 1){
                 
                 if(code == KeyEvent.VK_W){
-                gp.player.commandNum--;
-                if(gp.player.commandNum < 0 ){
-                    gp.player.commandNum = 2;
+                ui.commandNum--;
+                if(ui.commandNum < 0 ){
+                    ui.commandNum = 2;
                 }
             }
                 if(code == KeyEvent.VK_S){
-                    gp.player.commandNum++;
-                    if(gp.player.commandNum > 2 ){
-                        gp.player.commandNum = 0;
+                    ui.commandNum++;
+                    if(ui.commandNum > 2 ){
+                        ui.commandNum = 0;
                     }
                 }
                 if(code == KeyEvent.VK_ENTER){
-                    if(gp.player.commandNum == 0){
-                       gp.player.titleScreenState = 2;
-                       gp.player.tempGenero = "Masculino";
+                    if(ui.commandNum == 0){
+                       ui.titleScreenState = 2;
+                       ui.tempGenero = "Masculino";
                         
                     }
-                    if(gp.player.commandNum == 1){
-                        gp.player.titleScreenState = 2;
-                        gp.player.tempGenero = "Femenino";
+                    if(ui.commandNum == 1){
+                        ui.titleScreenState = 2;
+                        ui.tempGenero = "Femenino";
                     }
-                    if(gp.player.commandNum == 2){
-                        gp.player.titleScreenState = 0;
+                    if(ui.commandNum == 2){
+                        ui.titleScreenState = 0;
                     }
                 }
                 
             }
              
-            else if(gp.player.titleScreenState == 3){
+            else if(ui.titleScreenState == 3){
                 
                 if(code == KeyEvent.VK_W){
-                gp.player.commandNum--;
-                if(gp.player.commandNum < 0 ){
-                    gp.player.commandNum = 2;
+                ui.commandNum--;
+                if(ui.commandNum < 0 ){
+                    ui.commandNum = 2;
                 }
             }
                 if(code == KeyEvent.VK_S){
-                    gp.player.commandNum++;
-                    if(gp.player.commandNum > 2 ){
-                        gp.player.commandNum = 0;
+                    ui.commandNum++;
+                    if(ui.commandNum > 2 ){
+                        ui.commandNum = 0;
                     }
                 }
                 if(code == KeyEvent.VK_ENTER){
-                    if(gp.player.commandNum == 0){
-                       gp.player.titleScreenState = 4;
-                       gp.player.tempComunidadUIS = true;
+                    if(ui.commandNum == 0){
+                       ui.titleScreenState = 4;
+                       ui.tempComunidadUIS = true;
                         
                     }
-                    if(gp.player.commandNum == 1){
-                        //gp.player.titleScreenState = 3;
+                    if(ui.commandNum == 1){
+                        //ui.titleScreenState = 3;
                         gp.gameState = gp.playState;
-                        gp.player.tempComunidadUIS = false;
-                        gp.player.tempRol = "Visitante";
+                        ui.tempComunidadUIS = false;
                     }
-                    if(gp.player.commandNum == 2){
-                        gp.player.titleScreenState = 2;
+                    if(ui.commandNum == 2){
+                        ui.titleScreenState = 2;
                     }
                 }
                 
             } 
-            else if(gp.player.titleScreenState == 2){
+            else if(ui.titleScreenState == 2){
                 
                 if(code == KeyEvent.VK_W){
-                gp.player.commandNum--;
-                if(gp.player.commandNum < 0 ){
-                    gp.player.commandNum = 6;
+                ui.commandNum--;
+                if(ui.commandNum < 0 ){
+                    ui.commandNum = 6;
                 }
             }
                 if(code == KeyEvent.VK_S){
-                    gp.player.commandNum++;
-                    if(gp.player.commandNum > 6 ){
-                        gp.player.commandNum = 0;
+                    ui.commandNum++;
+                    if(ui.commandNum > 6 ){
+                        ui.commandNum = 0;
                         
                     }
                 }
                 if(code == KeyEvent.VK_ENTER){
-                    if(gp.player.commandNum == 0){
-                       gp.player.titleScreenState = 3;
-                       gp.player.tempEstratoSocial = 1;
+                    if(ui.commandNum == 0){
+                       ui.titleScreenState = 3;
+                       ui.tempEstratoSocial = 1;
                     }
-                    if(gp.player.commandNum == 1){
-                        gp.player.titleScreenState = 3;
-                        gp.player.tempEstratoSocial = 2;
+                    if(ui.commandNum == 1){
+                        ui.titleScreenState = 3;
+                        ui.tempEstratoSocial = 2;
                     }
-                    if(gp.player.commandNum == 2){
-                        gp.player.titleScreenState = 3;
-                        gp.player.tempEstratoSocial = 3;
+                    if(ui.commandNum == 2){
+                        ui.titleScreenState = 3;
+                        ui.tempEstratoSocial = 3;
                     }
                     
-                    if(gp.player.commandNum == 3){
-                       gp.player.titleScreenState = 3;
-                        gp.player.tempEstratoSocial = 4;
+                    if(ui.commandNum == 3){
+                       ui.titleScreenState = 3;
+                        ui.tempEstratoSocial = 4;
                     }
-                    if(gp.player.commandNum == 4){
-                        gp.player.titleScreenState = 3;
-                        gp.player.tempEstratoSocial = 5;
+                    if(ui.commandNum == 4){
+                        ui.titleScreenState = 3;
+                        ui.tempEstratoSocial = 5;
                     }
-                    if(gp.player.commandNum == 5){
-                        gp.player.titleScreenState = 3;
-                        gp.player.tempEstratoSocial = 6;
+                    if(ui.commandNum == 5){
+                        ui.titleScreenState = 3;
+                        ui.tempEstratoSocial = 6;
                     }
-                    if(gp.player.commandNum == 6){
-                        gp.player.titleScreenState = 1;
+                    if(ui.commandNum == 6){
+                        ui.titleScreenState = 1;
                         
                     }
                 }
                 
             }
-            else if (gp.player.titleScreenState == 4){
+            else if (ui.titleScreenState == 4){
                 
                 if(code == KeyEvent.VK_W){
-                gp.player.commandNum--;
-                if(gp.player.commandNum < 0 ){
-                    gp.player.commandNum = 3;
+                ui.commandNum--;
+                if(ui.commandNum < 0 ){
+                    ui.commandNum = 3;
                     }
                 }
                 if(code == KeyEvent.VK_S){
-                    gp.player.commandNum++;
-                    if(gp.player.commandNum > 3 ){
-                        gp.player.commandNum = 0;
+                    ui.commandNum++;
+                    if(ui.commandNum > 3 ){
+                        ui.commandNum = 0;
                     }
                 }
                 
                 if(code == KeyEvent.VK_ENTER){
-                    if(gp.player.commandNum == 0){
-                       gp.player.titleScreenState = 5;
+                    if(ui.commandNum == 0){
+                       ui.titleScreenState = 5;
                        
                     }
-                    if(gp.player.commandNum == 1){
-                        gp.player.titleScreenState = 6;
+                    if(ui.commandNum == 1){
+                        ui.titleScreenState = 6;
                         
                     }
-                    if(gp.player.commandNum == 2){
+                    if(ui.commandNum == 2){
+                   
                         gp.gameState = gp.playState;
                         gp.player.tempRol = "Administrativo";
                     }
                     
-                    if(gp.player.commandNum == 3){
-                       gp.player.titleScreenState = 3;
+                    if(ui.commandNum == 3){
+                       ui.titleScreenState = 3;
                         
                     }
             }
 
             
         }
-                else if (gp.player.titleScreenState == 5){
+                else if (ui.titleScreenState == 5){
                 
                 if(code == KeyEvent.VK_W){
-                gp.player.commandNum--;
-                if(gp.player.commandNum < 0 ){
-                    gp.player.commandNum = 5;
+                ui.commandNum--;
+                if(ui.commandNum < 0 ){
+                    ui.commandNum = 5;
                     }
                 }
                 if(code == KeyEvent.VK_S){
-                    gp.player.commandNum++;
-                    if(gp.player.commandNum > 5 ){
-                        gp.player.commandNum = 0;
+                    ui.commandNum++;
+                    if(ui.commandNum > 5 ){
+                        ui.commandNum = 0;
                     }
                 }
                 
                 if(code == KeyEvent.VK_ENTER){
-                    if(gp.player.commandNum == 0){
+                    if(ui.commandNum == 0){
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition();
-                       gp.player.tempRol = "Estudiante Pregrado";
+                       ui.tempRol = "Estudiante Pregrado";
                     }
-                    if(gp.player.commandNum == 1){
+                    if(ui.commandNum == 1){
                         gp.gameState = gp.playState;
                         gp.loadPlayerPosition();
-                        gp.player.tempRol = "Estudiante Posgrado";
+                        ui.tempRol = "Estudiante Posgrado";
                     }
-                    if(gp.player.commandNum == 2){
+                    if(ui.commandNum == 2){
                         gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
-                        gp.player.tempRol = "Estudiante Tecnologo";
+                        ui.tempRol = "Estudiante Tecnologo";
                     }
                     
-                    if(gp.player.commandNum == 3){
+                    if(ui.commandNum == 3){
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition(); 
-                       gp.player.tempRol = "Estudiante de Maestria";
+                       ui.tempRol = "Estudiante de Maestria";
                     }
-                    if(gp.player.commandNum == 4){
+                    if(ui.commandNum == 4){
                         gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
-                        gp.player.tempRol = "Estudiante de Espeliacizacion";
+                        ui.tempRol = "Estudiante de Espeliacizacion";
                     }
                     
-                    if(gp.player.commandNum == 5){
+                    if(ui.commandNum == 5){
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition(); 
-                       gp.player.tempRol = "Estudiante de Doctorado";
+                       ui.tempRol = "Estudiante de Doctorado";
                     }
             }
         }
-            else if (gp.player.titleScreenState == 6){
+            else if (ui.titleScreenState == 6){
                 
                 if(code == KeyEvent.VK_W){
-                gp.player.commandNum--;
-                if(gp.player.commandNum < 0 ){
-                    gp.player.commandNum = 1;
+                ui.commandNum--;
+                if(ui.commandNum < 0 ){
+                    ui.commandNum = 1;
                     }
                 }
                 if(code == KeyEvent.VK_S){
-                    gp.player.commandNum++;
-                    if(gp.player.commandNum > 1 ){
-                        gp.player.commandNum = 0;
+                    ui.commandNum++;
+                    if(ui.commandNum > 1 ){
+                        ui.commandNum = 0;
                     }
                 }
                 
                 if(code == KeyEvent.VK_ENTER){
-                    if(gp.player.commandNum == 0){
+                    if(ui.commandNum == 0){
                        gp.gameState = gp.playState;
-                       gp.player.tempRol = "Profesor Planta";
+                       ui.tempRol = "Profesor Planta";
                        
                     }
-                    if(gp.player.commandNum == 1){
+                    if(ui.commandNum == 1){
                        gp.gameState = gp.playState;
-                       gp.player.tempRol = "Profesor Catedra";
+                       ui.tempRol = "Profesor Catedra";
                         
                     }
                 }
