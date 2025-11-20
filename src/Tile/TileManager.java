@@ -1,4 +1,4 @@
- package Tile;
+package Tile;
 
 import game.GamePanel;
 import game.UtilityTool;
@@ -15,16 +15,16 @@ public class TileManager {
 
     GamePanel gp;
     public Tile[] tile;
-    public int mapTileNum[][];
+    public int mapTileNum[][][];
 
     public TileManager(GamePanel gp){
 
         this.gp = gp;
         tile = new Tile[1000000];
-        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap();
-        
+        loadMap("/res/Maps/map01.txt", 0);
+        loadMap("/res/Maps/interiorCentic.txt", 1);
     }
     
     public void getTileImage(){
@@ -246,6 +246,8 @@ public class TileManager {
             tile[66] = new Tile();
             tile[66].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/carretera(pastoa).png"));
             
+            tile[67] = new Tile();
+            tile[67].image = ImageIO.read(getClass().getResourceAsStream("/res/Tiles/floor.png"));
             
         }catch(IOException e){
             e.printStackTrace();
@@ -265,10 +267,10 @@ public class TileManager {
         }
     }
 
-    public void loadMap(){
+    public void loadMap(String filePath, int map){
         
         try{
-            InputStream is = getClass().getResourceAsStream("/res/Maps/map01.txt");
+            InputStream is = getClass().getResourceAsStream(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             
             int col = 0;
@@ -282,7 +284,7 @@ public class TileManager {
                     
                     String numbers[] = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
-                    mapTileNum[col][row] = num;
+                    mapTileNum[map][col][row] = num;
                     col++;
                 }
                 if (col == gp.maxWorldCol){
@@ -303,7 +305,7 @@ public class TileManager {
         int worldRow = 0; 
         
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow){
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
             
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;

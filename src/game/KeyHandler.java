@@ -369,7 +369,18 @@ public class KeyHandler implements KeyListener{
             }
         }
 
-        // DIALOGUE STATE: Se usa ENTER para cerrar/avanzar el diálogo
+        if(code == KeyEvent.VK_R){
+            switch(gp.currentMap){
+                case 0:
+                    gp.tileM.loadMap("/res/Maps/map01.txt", 0);
+                    break;
+                case 1:
+                    gp.tileM.loadMap("/res/Maps/interiorCentic.txt", 1);
+                    break;
+            }
+        }
+        
+        // DIALOGUE STATE
         if(gp.gameState == gp.dialogueState){
             if(code == KeyEvent.VK_ENTER){
                 // Al presionar ENTER en el diálogo, volvemos al juego.
