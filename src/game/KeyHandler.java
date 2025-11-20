@@ -5,7 +5,17 @@ import Entity.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import Utileria.Archivos;
-
+import ComunidadUIS.Persona;
+import ComunidadUIS.EstudiantePre;
+import ComunidadUIS.EstudiantePos;
+import ComunidadUIS.EstudianteMas;
+import ComunidadUIS.EstudianteEspez;
+import ComunidadUIS.EstudianteTec;
+import ComunidadUIS.EstudianteDoc;
+import ComunidadUIS.ProfesorPlanta;
+import ComunidadUIS.ProfesorCatedra;
+import noComunidadUIS.Visitantes;
+import java.util.ArrayList;
 public class KeyHandler implements KeyListener{
     
     UI ui;
@@ -159,6 +169,8 @@ public class KeyHandler implements KeyListener{
                         //ui.titleScreenState = 3;
                         gp.gameState = gp.playState;
                         ui.tempComunidadUIS = false;
+                        ui.tempRol = "Visitante";
+                        ArrayList<Persona> personas = Utileria.Archivos.readPersona("./Visitante.txt");
                     }
                     if(ui.commandNum == 2){
                         ui.titleScreenState = 2;
@@ -242,6 +254,7 @@ public class KeyHandler implements KeyListener{
                    
                         gp.gameState = gp.playState;
                         ui.tempRol = "Administrativo";
+                        ArrayList<Persona> personas = Utileria.Archivos.readPersona("./Administrativo.txt");
                     }
                     
                     if(ui.commandNum == 3){
@@ -272,33 +285,39 @@ public class KeyHandler implements KeyListener{
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition();
                        ui.tempRol = "Estudiante Pregrado";
+                       ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudiantePre.txt");
                     }
                     if(ui.commandNum == 1){
                         gp.gameState = gp.playState;
                         gp.loadPlayerPosition();
                         ui.tempRol = "Estudiante Posgrado";
+                        ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudiantePos.txt");
                     }
                     if(ui.commandNum == 2){
                         gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
                         ui.tempRol = "Estudiante Tecnologo";
+                        ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudianteTec.txt");
                     }
                     
                     if(ui.commandNum == 3){
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition(); 
                        ui.tempRol = "Estudiante de Maestria";
+                       ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudianteMas.txt");
                     }
                     if(ui.commandNum == 4){
                         gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
                         ui.tempRol = "Estudiante de Espeliacizacion";
+                        ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudianteEspez.txt");
                     }
                     
                     if(ui.commandNum == 5){
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition(); 
                        ui.tempRol = "Estudiante de Doctorado";
+                       ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudianteDoc.txt");
                     }
             }
         }
@@ -321,11 +340,13 @@ public class KeyHandler implements KeyListener{
                     if(ui.commandNum == 0){
                        gp.gameState = gp.playState;
                        ui.tempRol = "Profesor Planta";
+                       ArrayList<Persona> personas = Utileria.Archivos.readPersona("./ProfesorPlanta.txt");
                        
                     }
                     if(ui.commandNum == 1){
                        gp.gameState = gp.playState;
                        ui.tempRol = "Profesor Catedra";
+                       ArrayList<Persona> personas = Utileria.Archivos.readPersona("./ProfesorCatedra.txt");
                         
                     }
                 }

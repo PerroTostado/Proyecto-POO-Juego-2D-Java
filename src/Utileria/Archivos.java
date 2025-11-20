@@ -32,6 +32,145 @@ import game.*;
 
 public class Archivos{
     
+    public void playerNewPosition(UI ui) {
+        try {
+            if(ui.tempRol == "Estudiante Pregrado"){
+            File file = new File("./EstudiantePre.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(ui.tempName + "," + ui.tempEdad + "," + ui.tempGenero + "," + ui.tempComunidadUIS + "," + ui.tempEstratoSocial + "," + ui.tempRol + "," + 0 + "," + 0 + "," + false + "," +  false + "," + false);
+            writer.close(); 
+        } 
+            if(ui.tempRol == "Estudiante Posgrado"){
+            File file = new File("./EstudiantePos.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(ui.tempName + "," + ui.tempEdad + "," + ui.tempGenero + "," + ui.tempComunidadUIS + "," + ui.tempEstratoSocial + "," + ui.tempRol + "," + 0 + "," + 0 + "," + "Ninguna" + "," +  "Ninguna");
+            writer.close(); 
+        } 
+            if(ui.tempRol == "Estudiante Tecnologo"){
+            File file = new File("./EstudianteTec.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(ui.tempName + "," + ui.tempEdad + "," + ui.tempGenero + "," + ui.tempComunidadUIS + "," + ui.tempEstratoSocial + "," + ui.tempRol + "," + 0 + "," + 0 + "," + "Ninguna" + "," +  false);
+            writer.close(); 
+        } 
+            if(ui.tempRol == "Estudiante de Maestria"){
+            File file = new File("./EstudianteMas.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(ui.tempName + "," + ui.tempEdad + "," + ui.tempGenero + "," + ui.tempComunidadUIS + "," + ui.tempEstratoSocial + "," + ui.tempRol + "," + 0 + "," + 0 + "," + false + "," +  "Ninguno" + "," + "Ninguno");
+            writer.close(); 
+        } 
+            if(ui.tempRol == "Estudiante de Especializacion"){
+            File file = new File("./EstudianteEspez.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(ui.tempName + "," + ui.tempEdad + "," + ui.tempGenero + "," + ui.tempComunidadUIS + "," + ui.tempEstratoSocial + "," + ui.tempRol + "," + 0 + "," + 0 + "," + "Ninguno" + "," +  0.0);
+            writer.close(); 
+        } 
+            if(ui.tempRol == "Estudiante de Doctorado"){
+            File file = new File("./EstudianteDoc.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(ui.tempName + "," + ui.tempEdad + "," + ui.tempGenero + "," + ui.tempComunidadUIS + "," + ui.tempEstratoSocial + "," + ui.tempRol + "," + 0 + "," + 0 + "," + 0 + "," + "Ninguno");
+            writer.close(); 
+        } 
+            if(ui.tempRol == "Profesor Planta"){
+            File file = new File("./ProfesorPlanta.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(ui.tempName + "," + ui.tempEdad + "," + ui.tempGenero + "," + ui.tempComunidadUIS + "," + ui.tempEstratoSocial + "," + ui.tempRol + "," + 0 + "," + 0 + "," + 0 + "," + "Ninguno");
+            writer.close(); 
+        } 
+            if(ui.tempRol == "Profesor Catedra"){
+            File file = new File("./ProfesorCatedra.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(ui.tempName + "," + ui.tempEdad + "," + ui.tempGenero + "," + ui.tempComunidadUIS + "," + ui.tempEstratoSocial + "," + ui.tempRol + "," + 0 + "," + 0 + "," + 0 + "," +  "Ninguno");
+            writer.close(); 
+        } 
+            if(ui.tempRol == "Administrativo"){
+            File file = new File("./Administrativo.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(ui.tempName + "," + ui.tempEdad + "," + ui.tempGenero + "," + ui.tempComunidadUIS + "," + ui.tempEstratoSocial + "," + ui.tempRol + "," + 0 + "," + 0 + "," + "Ninguno" + "," +  "Ninguno");
+            writer.close(); 
+        } 
+            if(ui.tempRol == "Visitante"){
+            File file = new File("./Visitante.txt");
+
+            // Si el archivo no existe, lo crea
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Escribir posición
+            FileWriter writer = new FileWriter(file);
+            writer.write(ui.tempName + "," + ui.tempEdad + "," + ui.tempGenero + "," + ui.tempComunidadUIS + "," + ui.tempEstratoSocial + "," + ui.tempRol + "," + 0 + "," + 0 + "," + "Ninguno" + "," +  false);
+            writer.close(); 
+        } 
+            
+        }    
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static ArrayList<Persona> readPersona(String filePath){
         
         ArrayList<Persona> personas = new ArrayList<>();
@@ -162,13 +301,16 @@ public class Archivos{
                                 presencia = Boolean.parseBoolean(parts[7].trim());
                                 personas.add(new Visitantes(nombre, edad, genero, comunidadUIS, estratoSocial, nombreRol, horaVisita, presencia));
                             }
+                            else{
+                            System.out.println("No se pudo crear el objeto ofensivo por falta de atributos");
+                            }
                         }
                 }catch(Exception e){
                     System.out.println("Error al crear el rol: " + e.getMessage());
                 }
             }        
         }catch(Exception e){
-            
+            System.err.println("Error al recuperar los datos" + e.getMessage());
         }
         return personas;
     }
