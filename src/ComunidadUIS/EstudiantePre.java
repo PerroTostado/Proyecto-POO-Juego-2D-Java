@@ -7,6 +7,7 @@ public class EstudiantePre extends Estudiante {
     private boolean comedoresD;
     private boolean comedoresA;
     private boolean comedoresC;
+    public String dialogo;
     
     public EstudiantePre(String name, int edad, String genero, boolean comunidadUIS, 
             int estratoSocial, String nombreRol, int cantidadDeCreditos, int nivel, boolean comedoresD, boolean comedoresA, boolean comedoresC){
@@ -57,7 +58,7 @@ public class EstudiantePre extends Estudiante {
                 return mess;
             }
             public String descripcion(){
-            String mess = "Apenas comienzas tu camino, eres considerado un primíparo";
-            return mess;
+            dialogo = "Apenas comienzas tu camino, eres considerado un primíparo";
+            return dialogo;
     }
 }

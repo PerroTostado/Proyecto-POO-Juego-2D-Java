@@ -100,7 +100,7 @@ public class Archivos{
                 writer.close(); 
             } 
             if(ui.tempRol == "Estudiante de Doctorado"){
-                File file = new File("./EstudianteDoc.txt");
+                File file = new File("EstudianteDoc.txt");
 
                 // Si el archivo no existe, lo crea
                 if (!file.exists()) {
@@ -113,7 +113,7 @@ public class Archivos{
                 writer.close(); 
             } 
             if(ui.tempRol == "Profesor Planta"){
-                File file = new File("./ProfesorPlanta.txt");
+                File file = new File("ProfesorPlanta.txt");
 
                 // Si el archivo no existe, lo crea
                 if (!file.exists()) {
@@ -126,7 +126,7 @@ public class Archivos{
                 writer.close(); 
             } 
                 if(ui.tempRol == "Profesor Catedra"){
-                File file = new File("./ProfesorCatedra.txt");
+                File file = new File("ProfesorCatedra.txt");
 
                 // Si el archivo no existe, lo crea
                 if (!file.exists()) {
@@ -139,7 +139,7 @@ public class Archivos{
                 writer.close(); 
             } 
             if(ui.tempRol == "Administrativo"){
-                File file = new File("./Administrativo.txt");
+                File file = new File("Administrativo.txt");
 
                 // Si el archivo no existe, lo crea
                 if (!file.exists()) {
@@ -152,7 +152,7 @@ public class Archivos{
                 writer.close(); 
             } 
             if(ui.tempRol == "Visitante"){
-                File file = new File("./Visitante.txt");
+                File file = new File("Visitante.txt");
 
                 // Si el archivo no existe, lo crea
                 if (!file.exists()) {

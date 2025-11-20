@@ -6,6 +6,7 @@ import Utileria.Validacion;
 public class Visitantes extends Persona{
     private String horaDeVisita;
     private boolean presencia;
+    public String dialogo;
     
      public Visitantes(){
         
@@ -50,7 +51,7 @@ public class Visitantes extends Persona{
         return mess;
     }
     public String descripcion(){
-        String mess = "No eres más que una desdichada alma que vaga sin rumbo por los lares de la universidad";
-        return mess;
+        dialogo = "No eres más que una desdichada alma que vaga sin rumbo por los lares de la universidad";
+        return dialogo;
     }
 }

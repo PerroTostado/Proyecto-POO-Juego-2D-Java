@@ -6,7 +6,7 @@ public class ProfesorPlanta extends Profesor{
     
     private int añosTrabajo;
     private boolean direccionTesis;
-    
+    public String dialogo;
     
         public ProfesorPlanta(){
             
@@ -52,7 +52,7 @@ public class ProfesorPlanta extends Profesor{
             return mess;
         }
         public String descripcion(){
-        String mess = "Te regocijas en tus bienes y no temes hacerle la vida imposible a los estudiantes, es tú elección.";
-        return mess;
+        dialogo = "Te regocijas en tus bienes y no temes hacerle la vida imposible a los estudiantes, es tú elección.";
+        return dialogo;
     }
 }

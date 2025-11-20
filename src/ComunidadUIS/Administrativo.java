@@ -6,7 +6,7 @@ public class Administrativo extends Persona {
     
     private String edificioDeTrabajo;
     private String oficina;
-   
+    public String dialogo;
     public Administrativo(){
         
     }
@@ -49,7 +49,7 @@ public class Administrativo extends Persona {
     }
     @Override
     public String descripcion(){
-        String mess = "Posees un rol alto en la comunidad UIS";
-        return mess;
+        dialogo = "Posees un rol alto en la comunidad UIS";
+        return dialogo;
     }
 }

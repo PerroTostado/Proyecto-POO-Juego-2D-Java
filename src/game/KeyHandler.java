@@ -14,6 +14,7 @@ import ComunidadUIS.EstudianteTec;
 import ComunidadUIS.EstudianteDoc;
 import ComunidadUIS.ProfesorPlanta;
 import ComunidadUIS.ProfesorCatedra;
+import ComunidadUIS.Administrativo;
 import noComunidadUIS.Visitantes;
 import java.util.ArrayList;
 public class KeyHandler implements KeyListener{
@@ -23,7 +24,9 @@ public class KeyHandler implements KeyListener{
     GamePanel gp;
     Archivos ar;
     public boolean upPress, downPress, leftPress, rigthPress;
-    public boolean enterPress = false; 
+    public boolean enterPress = false;
+    ArrayList<Persona> personas = new ArrayList<>();
+    public String mensajito;
     
     public KeyHandler(GamePanel gp,UI ui){
         this.gp = gp;
@@ -170,13 +173,18 @@ public class KeyHandler implements KeyListener{
                         gp.gameState = gp.playState;
                         ui.tempComunidadUIS = false;
                         ui.tempRol = "Visitante";
-                        ArrayList<Persona> personas = Utileria.Archivos.readPersona("./Visitante.txt");
+                        personas = Utileria.Archivos.readPersona("Visitante.txt");
                     }
                     if(ui.commandNum == 2){
                         ui.titleScreenState = 2;
                     }
                 }
-                
+            for(Persona p: personas){
+                        if(p instanceof Visitantes){
+                            ui.currentDialogue = p.descripcion();
+                            ui.drawDialogueScreen();
+                        }
+                    }    
             } 
             else if(ui.titleScreenState == 2){
                 
@@ -254,7 +262,13 @@ public class KeyHandler implements KeyListener{
                    
                         gp.gameState = gp.playState;
                         ui.tempRol = "Administrativo";
-                        ArrayList<Persona> personas = Utileria.Archivos.readPersona("./Administrativo.txt");
+                        personas = Utileria.Archivos.readPersona("Administrativo.txt");
+                    }
+                    for(Persona p: personas){
+                        if(p instanceof Administrativo){
+                            ui.currentDialogue = p.descripcion();
+                            ui.drawDialogueScreen();
+                        }
                     }
                     
                     if(ui.commandNum == 3){
@@ -285,39 +299,67 @@ public class KeyHandler implements KeyListener{
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition();
                        ui.tempRol = "Estudiante Pregrado";
-                       ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudiantePre.txt");
+                       personas = Utileria.Archivos.readPersona("EstudiantePre.txt");
                     }
                     if(ui.commandNum == 1){
                         gp.gameState = gp.playState;
                         gp.loadPlayerPosition();
                         ui.tempRol = "Estudiante Posgrado";
-                        ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudiantePos.txt");
+                        personas = Utileria.Archivos.readPersona("EstudiantePos.txt");
                     }
                     if(ui.commandNum == 2){
                         gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
                         ui.tempRol = "Estudiante Tecnologo";
-                        ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudianteTec.txt");
+                        personas = Utileria.Archivos.readPersona("EstudianteTec.txt");
                     }
                     
                     if(ui.commandNum == 3){
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition(); 
                        ui.tempRol = "Estudiante de Maestria";
-                       ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudianteMas.txt");
+                       personas = Utileria.Archivos.readPersona("EstudianteMas.txt");
                     }
                     if(ui.commandNum == 4){
                         gp.loadPlayerPosition();
                         gp.gameState = gp.playState;
                         ui.tempRol = "Estudiante de Espeliacizacion";
-                        ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudianteEspez.txt");
+                        personas = Utileria.Archivos.readPersona("EstudianteEspez.txt");
                     }
                     
                     if(ui.commandNum == 5){
                        gp.gameState = gp.playState;
                        gp.loadPlayerPosition(); 
                        ui.tempRol = "Estudiante de Doctorado";
-                       ArrayList<Persona> personas = Utileria.Archivos.readPersona("./EstudianteDoc.txt");
+                       personas = Utileria.Archivos.readPersona("EstudianteDoc.txt");
+                    }
+                    for(Persona p: personas){
+                        if(p instanceof EstudianteDoc){
+                            ui.currentDialogue = p.descripcion();
+                            ui.drawDialogueScreen();
+                        }
+                        else if(p instanceof EstudiantePre){
+                            ui.currentDialogue = p.descripcion();
+                            ui.drawDialogueScreen();
+                        }
+                        else if(p instanceof EstudianteMas){
+                            ui.currentDialogue = p.descripcion();
+                            ui.drawDialogueScreen();
+                        }
+                        else if(p instanceof EstudianteEspez){
+                            ui.currentDialogue = p.descripcion();
+                            ui.drawDialogueScreen();
+                        }
+                        else if(p instanceof EstudianteTec){
+                            ui.currentDialogue = p.descripcion();
+                            ui.drawDialogueScreen();
+                        }
+                        else if(p instanceof EstudiantePos){
+                            ui.currentDialogue = p.descripcion();
+                            ui.drawDialogueScreen();
+                        }
+                        
+                        
                     }
             }
         }
@@ -340,17 +382,27 @@ public class KeyHandler implements KeyListener{
                     if(ui.commandNum == 0){
                        gp.gameState = gp.playState;
                        ui.tempRol = "Profesor Planta";
-                       ArrayList<Persona> personas = Utileria.Archivos.readPersona("./ProfesorPlanta.txt");
+                       personas = Utileria.Archivos.readPersona("ProfesorPlanta.txt");
                        
                     }
                     if(ui.commandNum == 1){
                        gp.gameState = gp.playState;
                        ui.tempRol = "Profesor Catedra";
-                       ArrayList<Persona> personas = Utileria.Archivos.readPersona("./ProfesorCatedra.txt");
+                       personas = Utileria.Archivos.readPersona("ProfesorCatedra.txt");
                         
                     }
                 }
-            }
+            }       
+                    for(Persona p: personas){
+                        if(p instanceof ProfesorPlanta){
+                            ui.currentDialogue = p.descripcion();
+                            ui.drawDialogueScreen();
+                        }
+                        else if(p instanceof ProfesorCatedra){
+                            ui.currentDialogue = p.descripcion();
+                            ui.drawDialogueScreen();
+                        }
+                    }
     }
        
         //Play state
