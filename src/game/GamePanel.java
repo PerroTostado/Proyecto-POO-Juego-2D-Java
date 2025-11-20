@@ -28,8 +28,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
     
     // WORLD SETTINGS
-    public final int maxWorldCol = 60;
-    public final int maxWorldRow = 60;
+    public final int maxWorldCol = 49;
+    public final int maxWorldRow = 49;
     public final int maxMap = 10;
     public int currentMap = 0;
     public final int worldWidth = tileSize * maxWorldCol;
@@ -43,14 +43,13 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyH;
     Graphics2D g2;
     Entity ent;
-    UI ui;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public Player player;
     public SuperObject obj[] = new SuperObject[10];
     public Entity monster[] = new Entity[20];
     public Entity npc[] = new Entity[10];
-    public UI ui = new UI(this);
+    public UI ui = new UI(this,keyH,player);
     public EventHandler eHandler = new EventHandler(this);
    
     //GAME STATE
