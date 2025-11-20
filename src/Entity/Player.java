@@ -38,8 +38,10 @@ public class Player extends Entity{
     
     public final int screenX;
     public final int screenY;
-    public final int worldStartX = 48*24;
-    public final int worldStartY = 48*24;
+    //public final int worldStartX = 48*24;
+    //public final int worldStartY = 48*24;
+    public final int worldStartX = 48*7;
+    public final int worldStartY = 48*23;
     
     public Player(GamePanel gp, KeyHandler keyH,int screenx,int screeny){                                                                                           
         this.gp = gp;

@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 public class EventHandler {
     GamePanel gp;
     Rectangle eventRect;
-    int eventRectDefaultX, eventRectDefaultY;
+    int eventRectDefaultX, eventRectDefaultY, previousEventX, previousEventY;
     boolean canTouchEvent = true;
     
     public EventHandler(GamePanel gp){
@@ -23,27 +23,24 @@ public class EventHandler {
 
     public void checkEvent () {
  
-        // Lógica para resetear la bandera de evento
-        if(canTouchEvent == false){
-            if(hit(23, 23, "any") == false){
-                canTouchEvent = true; // El jugador ha salido de la casilla, puede volver a tocar el evento
-            }
+        // Check if the player character is more than 1 tile away from the last event
+        int xDistance = Math.abs(gp.player.worldX - previousEventX);
+        int yDistance = Math.abs(gp.player.worldY - previousEventY);
+        int distance = Math.max(xDistance, yDistance);
+
+        if (distance > gp.tileSize) {
+            canTouchEvent = true;
         }
-        
-        // Ejecución del evento solo si puede ser tocado
-        if(canTouchEvent == true) {
-            if(hit(23,23,"any") == true){
-                damagePit(gp.dialogueState);
-                canTouchEvent = false; // Bloquea el evento después de activarlo
-            }
-        }
-        
-        if(hit(24, 24, "any") == true){ 
-            healingPool(gp.dialogueState);
+
+        if (canTouchEvent == true) {
+            if (hit(0, 23, 23, "right") == true) {damagePit(gp.dialogueState);}
+            else if (hit(0, 24, 24, "up") == true) {healingPool(gp.dialogueState);}
+            else if (hit(0, 7, 23, "any") == true) {teleport(1, 7, 23);}
+            else if (hit(1, 7, 23, "any") == true) {teleport(0, 7, 23);}
         }
 
     }
-    public boolean hit(int eventCol, int eventRow, String reqDirection) {
+    public boolean hit(int map, int eventCol, int eventRow, String reqDirection) {
 
         boolean hit = false;
         
@@ -95,6 +92,13 @@ public class EventHandler {
             }
 
         }
-
     }
+    
+    public void teleport(int map, int col, int row) {
+
+        gp.currentMap = map;
+        gp.player.worldX = gp.tileSize * col;
+        gp.player.worldY = gp.tileSize * row;
+
+    }   
 }
