@@ -27,10 +27,10 @@ public class Player extends Entity{
     public int titleScreenState = 0;
     public String tempName = "Jugador UIS";
     public int tempEdad = 16;
-    public String tempGenero;
-    public boolean tempComunidadUIS;
-    public int tempEstratoSocial;
-    public String tempRol;
+    public String tempGenero = "";
+    public boolean tempComunidadUIS = false;
+    public int tempEstratoSocial = 0;
+    public String tempRol = "";
     public int solidAreaDefaultX;
     public int solidAreaDefaultY;
     public boolean invincible = false;
