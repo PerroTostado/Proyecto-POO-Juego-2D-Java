@@ -152,6 +152,7 @@ public class KeyHandler implements KeyListener{
                         //gp.player.titleScreenState = 3;
                         gp.gameState = gp.playState;
                         gp.player.tempComunidadUIS = false;
+                        gp.player.tempRol = "Visitante";
                     }
                     if(gp.player.commandNum == 2){
                         gp.player.titleScreenState = 2;
@@ -232,8 +233,8 @@ public class KeyHandler implements KeyListener{
                         
                     }
                     if(gp.player.commandNum == 2){
-                   
                         gp.gameState = gp.playState;
+                        gp.player.tempRol = "Administrativo";
                     }
                     
                     if(gp.player.commandNum == 3){
