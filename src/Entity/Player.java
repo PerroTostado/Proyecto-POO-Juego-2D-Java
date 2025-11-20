@@ -9,6 +9,7 @@ import game.UI;
 import game.UtilityTool;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -202,78 +203,66 @@ public class Player extends Entity{
             drawTitleScreen();
         }
         BufferedImage image = null;
-        
-        switch (direction){
-            case "UP":
-                if (spriteNum == 1){
-                    image = up1;
-                }
-                if (spriteNum == 2){
-                    image = up2;
-                }
-                if (spriteNum == 3){
-                    image = up3;
-                }
-                if (spriteNum == 4){
-                    image = up4;
-                }
-                break;
-                
-            case "DOWN":
-                if (spriteNum == 1){
-                    image = down1;
-                }
-                if (spriteNum == 2){
-                    image = down2;
-                }
-                if (spriteNum == 3){
-                    image = down3;
-                }
-                if (spriteNum == 4){
-                    image = down4;
-                }
-                break;
-                
-            case "LEFT":
-                if (spriteNum == 1){
-                    image = left1;
-                }
-                if (spriteNum == 2){
-                    image = left2;
-                }
-                if (spriteNum == 3){
-                    image = left3;
-                }
-                if (spriteNum == 4){
-                    image = left4;
-                }
-                break;
-                
-            case "RIGHT":
-                if (spriteNum == 1){
-                    image = right1;
-                }
-                if (spriteNum == 2){
-                    image = right2;
-                }
-                if (spriteNum == 3){
-                    image = right3;
-                }
-                if (spriteNum == 4){
-                    image = right4;
-                }
-                break;
-            }
-        // Prueba para ver la collision
-        //g2.setColor(Color.red);
-        //g2.fillRect(screenX+17, screenY+38, gp.tileSize-32, gp.tileSize-39);
-        
-        g2.drawImage(image, screenX, screenY, null);
-        
-        
-        
         if(gp.gameState == 1){
-           //algo 
+            switch (direction){
+                case "UP":
+                    if (spriteNum == 1){
+                        image = up1;
+                    }
+                    if (spriteNum == 2){
+                        image = up2;
+                    }
+                    if (spriteNum == 3){
+                        image = up3;
+                    }
+                    if (spriteNum == 4){
+                        image = up4;
+                    }
+                    break;  
+                case "DOWN":
+                    if (spriteNum == 1){
+                        image = down1;
+                    }
+                    if (spriteNum == 2){
+                        image = down2;
+                    }
+                    if (spriteNum == 3){
+                        image = down3;
+                    }
+                    if (spriteNum == 4){
+                        image = down4;
+                    }
+                    break;       
+                case "LEFT":
+                    if (spriteNum == 1){
+                        image = left1;
+                    }
+                    if (spriteNum == 2){
+                        image = left2;
+                    }
+                    if (spriteNum == 3){
+                        image = left3;
+                    }
+                    if (spriteNum == 4){
+                        image = left4;
+                    }
+                    break;
+                case "RIGHT":
+                    if (spriteNum == 1){
+                        image = right1;
+                    }
+                    if (spriteNum == 2){
+                        image = right2;
+                    }
+                    if (spriteNum == 3){
+                        image = right3;
+                    }
+                    if (spriteNum == 4){
+                        image = right4;
+                    }
+                    break;
+            }
+            g2.drawImage(image, screenX, screenY, null);
         }
         if(gp.gameState == 2){
             drawPauseScreen();
@@ -328,32 +317,35 @@ public class Player extends Entity{
     }
     
     public void drawPauseScreen(){
-        
+
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(42F));
             
         String text = "REANUDAR";
-        int x = getXforCenteredText(text)-42*2;
+        int textWidth = centerText(text);
+        int x = (gp.screenWidth - textWidth) / 2;
         int y = gp.tileSize*7;
-        g2.drawString(text, gp.tileSize+30, y);
+        g2.drawString(text, x, y);
         if(commandNumPause == 0){
-            g2.drawString(">", gp.tileSize, y);
+            g2.drawString(">", x-30, y);
         }
 
         text = "GUARDAR";
-        x = getXforCenteredText(text)-42;
+        textWidth = centerText(text);
+        x = (gp.screenWidth - textWidth) / 2;
         y += gp.tileSize;
-        g2.drawString(text, gp.tileSize+30, y);
+        g2.drawString(text, x, y);
         if(commandNumPause == 1){
-            g2.drawString(">", gp.tileSize, y);
+            g2.drawString(">", x-30, y);
         }
         
         text = "SALIR";
-        x = getXforCenteredText(text)-42;
+        textWidth = centerText(text);
+        x = (gp.screenWidth - textWidth) / 2;
         y += gp.tileSize;
-        g2.drawString(text, gp.tileSize+30, y);
+        g2.drawString(text, x, y);
         if(commandNumPause == 2){
-            g2.drawString(">", gp.tileSize, y);
+            g2.drawString(">", x-30, y);
         }
         
         g2.drawImage(pausa, 0, 0, gp.tileSize*16, gp.tileSize*12, null);
@@ -378,27 +370,30 @@ public class Player extends Entity{
             g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
 
             text = "NUEVO JUEGO";
-            int x = getXforCenteredText(text)-42*2;
+            int textWidth = centerText(text);
+            int x = (gp.screenWidth - textWidth) / 2;
             y += gp.tileSize*3.5;
-            g2.drawString(text, gp.tileSize+50, y);
+            g2.drawString(text, x, y);
             if(commandNum == 0){
-                g2.drawString(">", gp.tileSize, y);
+                g2.drawString(">", x-30, y);
             }
 
             text = "CARGAR JUEGO";
-            x = getXforCenteredText(text)-50*2;
+            textWidth = centerText(text);
+            x = (gp.screenWidth - textWidth) / 2;
             y += gp.tileSize;
-            g2.drawString(text, gp.tileSize+50, y);
+            g2.drawString(text, x, y);
             if(commandNum == 1){
-                g2.drawString(">", gp.tileSize, y);
+                g2.drawString(">", x-30, y);
             }
 
             text = "SALIR";
-            x = getXforCenteredText(text);
+            textWidth = centerText(text);
+            x = (gp.screenWidth - textWidth) / 2;
             y += gp.tileSize;
-            g2.drawString(text, gp.tileSize+50, y);
+            g2.drawString(text, x, y);
             if(commandNum == 2){
-                g2.drawString(">", gp.tileSize, y);
+                g2.drawString(">", x-30, y);
             }
         }
         else if(titleScreenState == 1){
@@ -408,34 +403,37 @@ public class Player extends Entity{
             g2.setFont(g2.getFont().deriveFont(42F));
             
             String text = "Escoge tú genero";
-            int x = getXforCenteredText(text)-42*2;
-            int y = gp.tileSize*3;
-            g2.drawString(text, gp.tileSize+175, y);
+            int textWidth = centerText(text);
+            int x = (gp.screenWidth - textWidth) / 2;
+            int y = gp.tileSize*2;
+            g2.drawString(text, x, y);
             
             text = "Masculino";
-            x = getXforCenteredText(text)-42*2;
+            textWidth = centerText(text);
+            x = (gp.screenWidth - textWidth) / 2;
             y += gp.tileSize*3;
-            g2.drawString(text, gp.tileSize+30, y);
+            g2.drawString(text, x, y);
             if(commandNum == 0){
-                g2.drawString(">", gp.tileSize, y);
+                g2.drawString(">", x-30, y);
             }
             
             text = "Femenino";
-            x = getXforCenteredText(text)-42*2;
+            textWidth = centerText(text);
+            x = (gp.screenWidth - textWidth) / 2;
             y += gp.tileSize;
-            g2.drawString(text, gp.tileSize+30, y);
+            g2.drawString(text, x, y);
             if(commandNum == 1){
-                g2.drawString(">", gp.tileSize, y);
+                g2.drawString(">", x-30, y);
             }
             
             text = "Volver";
-            x = getXforCenteredText(text)-42*2;
-            y += gp.tileSize*2;
-            g2.drawString(text, gp.tileSize+30, y);
+            textWidth = centerText(text);
+            x = (gp.screenWidth - textWidth) / 2;
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
             if(commandNum == 2){
-                g2.drawString(">", gp.tileSize, y);
-            }
-            
+                g2.drawString(">", x-30, y);
+            }       
         }
         
         else if(titleScreenState == 3){
@@ -685,5 +683,11 @@ public class Player extends Entity{
         g2.setColor(c);
         g2.setStroke(new java.awt.BasicStroke(5)); // Grosor del borde
         g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+    }
+    
+    public int centerText(String text){
+        FontMetrics fm = g2.getFontMetrics();
+        int textWidth = fm.stringWidth(text);
+        return textWidth;
     }
 }
