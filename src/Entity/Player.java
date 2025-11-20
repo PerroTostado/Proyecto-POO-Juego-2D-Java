@@ -203,6 +203,7 @@ public class Player extends Entity{
             drawTitleScreen();
         }
         BufferedImage image = null;
+
         if(gp.gameState == 1){
             switch (direction){
                 case "UP":

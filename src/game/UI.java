@@ -45,17 +45,16 @@ public class UI {
         // PLAY STATE (También incluye PAUSE y DIALOGUE)
         else {
 
-            // UI drawing: drawPlayerLife should be here too 
             drawPlayerLife(); 
 
             // PAUSE STATE
             if(gp.gameState == gp.pauseState){
-                drawPauseScreen(); // Asumiendo que existe un método para la pantalla de pausa
+                drawPauseScreen();
             }
 
             // DIALOGUE STATE
             if(gp.gameState == gp.dialogueState){
-                drawDialogueScreen(); // <-- Llamada al nuevo método de diálogo
+                drawDialogueScreen();
             }
         }
     }
@@ -138,7 +137,7 @@ public class UI {
         g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
     }
 
-        public void drawTitleScreen() {
+    public void drawTitleScreen() {
         
        // g2.setColor(new Color(70, 120, 180));
         //g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
