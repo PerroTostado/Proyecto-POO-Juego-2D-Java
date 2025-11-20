@@ -38,6 +38,7 @@ public class UI {
         this.gp = gp;
         this.keyH = keyH;
         this.player = player;
+        ar = new Archivos();
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         
         // CREATE HUD OBJECT
@@ -51,8 +52,8 @@ public class UI {
     public void draw(Graphics2D g2) throws IOException{
         
         this.g2 = g2;
-        
-        
+        this.ar = ar;
+
         // TITLE STATE
         if(gp.gameState == gp.titleState){
             drawTitleScreen();
@@ -67,7 +68,7 @@ public class UI {
         if(gp.gameState == gp.pauseState){
             drawPlayerScreen(g2);
             drawPlayerLife();
-             drawPauseScreen();
+            drawPauseScreen();
         }
         // DIALOGUE STATE
         if(gp.gameState == gp.dialogueState){

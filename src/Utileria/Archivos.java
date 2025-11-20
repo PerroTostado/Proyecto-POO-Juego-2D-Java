@@ -184,8 +184,7 @@ public class Archivos{
         Player player = null;
         GamePanel gp = null;
         KeyHandler keyH = null;
-
-        UI ui = new UI(gp,keyH,player); 
+        UI ui = null;
         
         try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
             reader.readLine();
