@@ -55,6 +55,9 @@ public class EstudiantePre extends Estudiante {
             public String obtenerID(){
                 String mess = "hla;";
                 return mess;
-        
             }
+            public String descripcion(){
+            String mess = "Apenas comienzas tu camino, eres considerado un primíparo";
+            return mess;
+    }
 }

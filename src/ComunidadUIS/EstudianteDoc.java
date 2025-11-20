@@ -47,7 +47,10 @@ public class EstudianteDoc extends Estudiante{
     @Override
     public String obtenerID(){
         String mess = "hla;";
+        return mess;        
+    }
+    public String descripcion(){
+        String mess = "Has sobrevivido a arduas y batallas y has llegado hasta aquí";
         return mess;
-        
     }
 }

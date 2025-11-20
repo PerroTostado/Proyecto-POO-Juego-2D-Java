@@ -85,7 +85,7 @@ public abstract class Persona {
     public abstract void mostrarPersonalInfo();
     public abstract String obtenerID();
     public abstract void mostrarRol();
-
+    public abstract String descripcion();
 
     
             

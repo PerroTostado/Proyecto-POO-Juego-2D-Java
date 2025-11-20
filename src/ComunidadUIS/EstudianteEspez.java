@@ -48,6 +48,9 @@ public class EstudianteEspez extends Estudiante {
     public String obtenerID(){
         String mess = "hla;";
         return mess;
-        
+    }
+    public String descripcion(){
+        String mess = "Has logrado obtener obtener tu título y ahora vas en busca de más conocimiento";
+        return mess;
     }
 }
