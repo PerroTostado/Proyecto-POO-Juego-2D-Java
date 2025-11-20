@@ -48,6 +48,9 @@ public class EstudiantePos extends Estudiante {
     public String obtenerID(){
         String mess = "hla;";
         return mess;
-        
+    }
+    public String descripcion(){
+        String mess = "Eres un formidable guerrero que sobrevivió a las pruebas del pregrado";
+        return mess;
     }
 }

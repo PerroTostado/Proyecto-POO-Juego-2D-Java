@@ -50,6 +50,9 @@ public class ProfesorPlanta extends Profesor{
         public String obtenerID(){
             String mess = "hla;";
             return mess;
-        
         }
+        public String descripcion(){
+        String mess = "Te regocijas en tus bienes y no temes hacerle la vida imposible a los estudiantes, es tú elección.";
+        return mess;
+    }
 }

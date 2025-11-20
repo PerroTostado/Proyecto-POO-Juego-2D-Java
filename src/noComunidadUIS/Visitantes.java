@@ -48,6 +48,9 @@ public class Visitantes extends Persona{
     public String obtenerID(){
         String mess = "hla;";
         return mess;
-        
+    }
+    public String descripcion(){
+        String mess = "No eres más que una desdichada alma que vaga sin rumbo por los lares de la universidad";
+        return mess;
     }
 }

@@ -50,6 +50,9 @@ public class ProfesorCatedra extends Profesor {
         public String obtenerID(){
             String mess = "hla;";
             return mess;
-        
         }
+        public String descripcion(){
+        String mess = "Estás a un paso de lograr un sueldo fijo, falta poco";
+        return mess;
+    }
 }

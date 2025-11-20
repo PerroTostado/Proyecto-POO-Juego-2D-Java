@@ -59,6 +59,9 @@ public class EstudianteMas extends Estudiante {
     public String obtenerID(){
         String mess = "hla;";
         return mess;
-        
+    }
+    public String descripcion(){
+        String mess = "Estarás a una elección de unirte a la gran sociedad docente";
+        return mess;
     }
 }

@@ -45,7 +45,11 @@ public class Administrativo extends Persona {
     @Override
     public String obtenerID(){
         String mess = "hla;";
+        return mess;  
+    }
+    @Override
+    public String descripcion(){
+        String mess = "Posees un rol alto en la comunidad UIS";
         return mess;
-        
     }
 }
