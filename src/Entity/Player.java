@@ -336,15 +336,15 @@ public class Player extends Entity{
         String text = "REANUDAR";
         int x = getXforCenteredText(text)-42*2;
         int y = gp.tileSize*7;
-        g2.drawString(text, x, y);
+        g2.drawString(text, gp.tileSize+30, y);
         if(commandNumPause == 0){
-            g2.drawString(">", x-gp.tileSize, y);
+            g2.drawString(">", gp.tileSize, y);
         }
 
         text = "GUARDAR";
         x = getXforCenteredText(text)-42;
         y += gp.tileSize;
-        g2.drawString(text, x, y);
+        g2.drawString(text, gp.tileSize+30, y);
         if(commandNumPause == 1){
             g2.drawString(">", x-gp.tileSize, y);
         }
@@ -352,9 +352,9 @@ public class Player extends Entity{
         text = "SALIR";
         x = getXforCenteredText(text)-42;
         y += gp.tileSize;
-        g2.drawString(text, x, y);
+        g2.drawString(text, gp.tileSize+30, y);
         if(commandNumPause == 2){
-            g2.drawString(">", x-gp.tileSize, y);
+            g2.drawString(">", gp.tileSize, y);
         }
         
         g2.drawImage(pausa, 0, 0, gp.tileSize*16, gp.tileSize*12, null);
@@ -488,7 +488,7 @@ public class Player extends Entity{
             text = "1";
             x = getXforCenteredText(text)-4;
             y += gp.tileSize*2;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 0){
                 g2.drawString(">", gp.tileSize, y);
             }
@@ -555,7 +555,7 @@ public class Player extends Entity{
             text = "Estudiante";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*2;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 0){
                 g2.drawString(">", gp.tileSize, y);
             }
@@ -597,7 +597,7 @@ public class Player extends Entity{
             text = "Pregrado";
             x = getXforCenteredText(text)-42*2;
             y += gp.tileSize*2;
-            g2.drawString(text, x, y);
+            g2.drawString(text, gp.tileSize+30, y);
             if(commandNum == 0){
                 g2.drawString(">", gp.tileSize, y);
             }
