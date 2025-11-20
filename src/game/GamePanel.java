@@ -159,6 +159,7 @@ public class GamePanel extends JPanel implements Runnable{
         if(gameState == dialogueState){ // <-- Nuevo caso para dialogueState
             // No hacer nada en dialogueState
         }
+        
     }
     
     @Override
