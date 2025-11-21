@@ -1,0 +1,1 @@
+Jugador UIS,16,Femenino,true,3,Profesor Planta,0,0,0,Ninguno

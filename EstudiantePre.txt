@@ -1,1 +1,1 @@
-Jugador UIS,16,Masculino,true,2,Estudiante Pregrado,0,0,false,false,false
+Jugador UIS,16,Masculino,true,1,Estudiante Pregrado,0,0,false,false,false
