@@ -83,7 +83,7 @@ public class EventHandler {
                 gp.gameState=gameState; 
 
                 // 2. Establece el texto del diálogo
-                gp.ui.currentDialogue = "Bebes el agua. \nTu vida ha sido recuperada.";
+                gp.ui.currentDialogue = "Tu vida ha sido recuperada.";
 
                 // 3. Aplica la curación
                 gp.player.life = gp.player.maxLife;
