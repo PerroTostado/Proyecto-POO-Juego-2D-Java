@@ -33,8 +33,8 @@ public class EventHandler {
         }
 
         if (canTouchEvent == true) {
-            if (hit(0, 23, 23, "right") == true) {damagePit(gp.dialogueState);}
-            else if (hit(0, 24, 24, "up") == true) {healingPool(gp.dialogueState);}
+            if (hit(0, 23, 23, "any") == true) {damagePit(gp.dialogueState);}
+            else if (hit(0, 24, 24, "any") == true) {healingPool(gp.dialogueState);}
             else if (hit(0, 7, 23, "any") == true) {teleport(1, 7, 23);}
             else if (hit(1, 7, 23, "any") == true) {teleport(0, 7, 23);}
         }
