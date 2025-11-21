@@ -458,7 +458,6 @@ public class KeyHandler implements KeyListener{
             if(code == KeyEvent.VK_ENTER){
                 // Al presionar ENTER en el diálogo, volvemos al juego.
                 gp.gameState = gp.playState;
-                enterPress = true;
             }
         }
         
