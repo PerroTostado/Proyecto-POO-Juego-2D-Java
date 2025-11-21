@@ -67,6 +67,7 @@ public class EventHandler {
         gp.gameState=gameState;
         gp.ui.currentDialogue = "Haz caido en una trampa";
         gp.player.life -= 1;
+        canTouchEvent = false;
     }
     
     public void healingPool(int gameState){
